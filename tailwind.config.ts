@@ -11,7 +11,7 @@ export default <Partial<Config>>{
     plugins: [require("daisyui")],
     daisyui: {
         themes: [
-            "night",
+            "sunset",
             // {
             //     main: {
             //         primary: "#fa882f",

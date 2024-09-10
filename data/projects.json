@@ -29,8 +29,7 @@
         "icon": "streamline:startup-solid",
         "projects": [
             {
-                "title": "Wildspace",
-                "role": "CEO & Founder",
+                "title": "Wildspace <p class='text-sm text-secondary'>CEO & Founder</p>",
                 "date": "01/06/2024",
                 "url": "https://wildspace.it?locale=en",
                 "description": "The first software platform that directly connects outdoor passionates with the entrepreneurs of the outdoor sector.",
@@ -47,31 +46,28 @@
         "icon": "bx:bxs-joystick-alt",
         "projects": [
             {
-                "title": "Transfer Chest",
+                "title": "Transfer Chest <img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/transfer-chest",
-                "role": "<img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
-                "description": "<img src='https://img.shields.io/curseforge/dt/432830?style=flat&logo=curseforge&logoSize=auto' >",
+                "description": "Transfer items at any time and in any dimension in a blink. <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/432830?style=flat&logo=curseforge&logoSize=auto' ></div>",
                 "icon": "https://github.com/trat-mods/TransferChest/blob/main/icon.png?raw=true"
             },
             {
-                "title": "Launchers",
+                "title": "Launchers <img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/launchers",
-                "role": "<img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
-                "description": "<img src='https://img.shields.io/curseforge/dt/372835?style=flat&logo=curseforge&logoSize=auto' >",
+                "description": "Launch anything with the Launchers: items, entities players and more. <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/372835?style=flat&logo=curseforge&logoSize=auto' >",
                 "icon": "https://github.com/trat-mods/LaunchersMod/blob/master/icon.png?raw=true"
             },
             {
-                "title": "Literally Chunk Loader",
+                "title": "Literally Chunk Loader <img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/literally-chunk-loader",
-                "role": "<img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
-                "description": "<img src='https://img.shields.io/curseforge/dt/378183?style=flat&logo=curseforge&logoSize=auto' >",
+                "description": "A very simple yet functional vanilla inspired chunk loader. <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/378183?style=flat&logo=curseforge&logoSize=auto' >",
                 "icon": "https://github.com/trat-mods/LiterallyChunkLoader/blob/master/icon.png?raw=true"
             },
             {
-                "title": "Multihopper",
+                "title": "Multihopper <img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/multihopper",
-                "role": "<img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
-                "description": "<img src='https://img.shields.io/curseforge/dt/1027743?style=flat&logo=curseforge&logoSize=auto' >",
+                "date": "01/09/2024",
+                "description": "Introduces a smart hopper that does not get clogged with items during transfering  <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/1027743?style=flat&logo=curseforge&logoSize=auto' >",
                 "icon": "https://github.com/trat-mods/Multihopper/blob/main/icon.png?raw=true"
             }
         ]
@@ -114,6 +110,26 @@
                 "tags": [
                     "flutter",
                     "map"
+                ]
+            },
+            {
+                "title": "Validatox <img width='70px' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Unity_2021.svg/640px-Unity_2021.svg.png' >",
+                "url": "https://github.com/tratteo/Validatox",
+                "description": "A lightweight Unity editor tool that allows for references and custom validation logic in projects",
+                "icon": "https://github.com/tratteo/Validatox/blob/main/Editor/Icons/validatox_icon.png?raw=true",
+                "tags": [
+                    "unity",
+                    "tool"
+                ]
+            },
+            {
+                "title": "GibFrame <img width='70px' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Unity_2021.svg/640px-Unity_2021.svg.png' >",
+                "url": "https://github.com/tratteo/GibFrame",
+                "description": "An extended library for Unity that includes advanced game design patterns and useful utilities",
+                "icon": "https://raw.githubusercontent.com/tratteo/GibFrame/main/logo.png",
+                "tags": [
+                    "unity",
+                    "library"
                 ]
             }
         ]

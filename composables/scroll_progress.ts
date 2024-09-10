@@ -5,25 +5,28 @@ export const useScrollProgress = () => {
     const xDirection = ref<number>(1);
     const yDirection = ref<number>(1);
 
+    const rootScrollable = ref<HTMLElement | null>();
+
     onUnmounted(() => {
-        window.removeEventListener("scroll", onScroll);
-        window.removeEventListener("scrollend", onScrollEnd);
+        rootScrollable.value?.removeEventListener("scroll", onScroll);
+        rootScrollable.value?.removeEventListener("scrollend", onScrollEnd);
     });
+
     onMounted(() => {
-        window.addEventListener("scroll", onScroll);
-        window.addEventListener("scrollend", onScrollEnd);
+        rootScrollable.value = document.getElementById("root-div");
+        rootScrollable.value?.addEventListener("scroll", onScroll);
+        rootScrollable.value?.addEventListener("scrollend", onScrollEnd);
     });
 
     function onScroll(event: Event) {
+        if (!rootScrollable.value) return;
         if (!isScrolling.value) {
             isScrolling.value = true;
         }
         let newY =
-            document.documentElement.scrollTop /
-            (document.documentElement.scrollHeight - document.documentElement.offsetHeight);
+            rootScrollable.value.scrollTop / (rootScrollable.value.scrollHeight - rootScrollable.value.offsetHeight);
         let newX =
-            document.documentElement.scrollLeft /
-            (document.documentElement.scrollWidth - document.documentElement.offsetWidth);
+            rootScrollable.value.scrollLeft / (rootScrollable.value.scrollWidth - rootScrollable.value.offsetWidth);
         newX = Number.isNaN(newX) ? 0 : newX;
         newY = Number.isNaN(newY) ? 0 : newY;
 

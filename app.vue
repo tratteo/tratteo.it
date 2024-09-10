@@ -1,5 +1,5 @@
 <template>
-    <SplashScreen :icon="sleekConfig.icon" :loader="loader">
+    <SplashScreen :icon="sleekConfig.icon" :loader="loader" id="root-div" class="root-scrollable">
         <template #content>
             <div class="h-screen w-screen flex flex-col justify-start">
                 <Scrollbar></Scrollbar>
@@ -41,4 +41,8 @@ onMounted(() => {
 async function loader() {}
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css">
+.root-scrollable {
+    @apply overflow-y-scroll !important;
+}
+</style>
