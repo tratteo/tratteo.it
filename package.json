@@ -1,0 +1,43 @@
+{
+  "name": "sleek",
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --host",
+    "clean": "nuxt cleanup",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/content": "^2.13.2",
+    "@nuxt/icon": "^1.5.1",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/seo": "^2.0.0-rc.21",
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "@pinia/nuxt": "^0.5.4",
+    "@types/culori": "^2.1.1",
+    "@vuepic/vue-datepicker": "^9.0.3",
+    "axios": "^1.7.7",
+    "culori": "^4.0.1",
+    "h3": "^1.12.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1",
+    "nuxt": "^3.13.1",
+    "nuxt-multi-cache": "^3.3.3",
+    "nuxt-security": "^2.0.0-rc.9",
+    "pinia": "^2.2.2",
+    "prettier": "^3.3.3",
+    "uuid": "^10.0.0",
+    "vue": "^3.5.4"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.7",
+    "@vueuse/core": "^10.11.1",
+    "@vueuse/nuxt": "^10.11.1",
+    "daisyui": "^4.12.10"
+  },
+  "optionalDependencies": {}
+}

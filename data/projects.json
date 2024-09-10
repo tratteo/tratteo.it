@@ -1,0 +1,121 @@
+{
+    "Web & Saas": {
+        "icon": "material-symbols:code-rounded",
+        "projects": [
+            {
+                "title": "Codemeup",
+                "description": "Embed code snippets directly from Github in a blink.",
+                "date": "10/09/2024",
+                "url": "https://codemeup.dev",
+                "icon": "https://codemeup.dev/icon.png",
+                "tags": [
+                    "dev",
+                    "api"
+                ]
+            },
+            {
+                "title": "Depthlog",
+                "description": "Plan and log your dives, compute useful statistics and share your progresses with the world.",
+                "date": "10/09/2024",
+                "url": "https://depthlog.vercel.app",
+                "icon": "https://depthlog.vercel.app/icon.png",
+                "tags": [
+                    "app"
+                ]
+            }
+        ]
+    },
+    "Startups": {
+        "icon": "streamline:startup-solid",
+        "projects": [
+            {
+                "title": "Wildspace",
+                "role": "CEO & Founder",
+                "date": "01/06/2024",
+                "url": "https://wildspace.it?locale=en",
+                "description": "The first software platform that directly connects outdoor passionates with the entrepreneurs of the outdoor sector.",
+                "icon": "https://wildspace.it/logo.svg",
+                "tags": [
+                    "platform",
+                    "web",
+                    "mobile"
+                ]
+            }
+        ]
+    },
+    "Videogames & modding": {
+        "icon": "bx:bxs-joystick-alt",
+        "projects": [
+            {
+                "title": "Transfer Chest",
+                "url": "https://www.curseforge.com/minecraft/mc-mods/transfer-chest",
+                "role": "<img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
+                "description": "<img src='https://img.shields.io/curseforge/dt/432830?style=flat&logo=curseforge&logoSize=auto' >",
+                "icon": "https://github.com/trat-mods/TransferChest/blob/main/icon.png?raw=true"
+            },
+            {
+                "title": "Launchers",
+                "url": "https://www.curseforge.com/minecraft/mc-mods/launchers",
+                "role": "<img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
+                "description": "<img src='https://img.shields.io/curseforge/dt/372835?style=flat&logo=curseforge&logoSize=auto' >",
+                "icon": "https://github.com/trat-mods/LaunchersMod/blob/master/icon.png?raw=true"
+            },
+            {
+                "title": "Literally Chunk Loader",
+                "url": "https://www.curseforge.com/minecraft/mc-mods/literally-chunk-loader",
+                "role": "<img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
+                "description": "<img src='https://img.shields.io/curseforge/dt/378183?style=flat&logo=curseforge&logoSize=auto' >",
+                "icon": "https://github.com/trat-mods/LiterallyChunkLoader/blob/master/icon.png?raw=true"
+            },
+            {
+                "title": "Multihopper",
+                "url": "https://www.curseforge.com/minecraft/mc-mods/multihopper",
+                "role": "<img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
+                "description": "<img src='https://img.shields.io/curseforge/dt/1027743?style=flat&logo=curseforge&logoSize=auto' >",
+                "icon": "https://github.com/trat-mods/Multihopper/blob/main/icon.png?raw=true"
+            }
+        ]
+    },
+    "Libraries & open source": {
+        "icon": "lucide:package",
+        "projects": [
+            {
+                "title": "Omnimodel",
+                "url": "https://github.com/tratteo/omnimodel",
+                "description": "Model complex data and access it in an easy and safe way",
+                "icon": "https://static-00.iconduck.com/assets.00/dart-icon-2042x2048-775u9j9x.png",
+                "tags": [
+                    "dart"
+                ]
+            },
+            {
+                "title": "MarkedText",
+                "url": "https://github.com/tratteo/marked_text",
+                "description": "Handle text spans in Flutter like a pro",
+                "icon": "https://cdn.prod.website-files.com/5ee12d8d7f840543bde883de/5ef3a1148ac97166a06253c1_flutter-logo-white-inset.svg",
+                "tags": [
+                    "flutter"
+                ]
+            },
+            {
+                "title": "GuideIt",
+                "url": "https://github.com/tratteo/guide_it",
+                "description": "Create guides and interactive tutorials for your Flutter applications",
+                "icon": "https://cdn.prod.website-files.com/5ee12d8d7f840543bde883de/5ef3a1148ac97166a06253c1_flutter-logo-white-inset.svg",
+                "tags": [
+                    "flutter"
+                ]
+            },
+            {
+                "title": "Mapplet",
+                "url": "https://github.com/wildspace-dev/mapplet",
+                "description": "The easiest way to store flutter maps for offline usage",
+                "icon": "https://cdn.prod.website-files.com/5ee12d8d7f840543bde883de/5ef3a1148ac97166a06253c1_flutter-logo-white-inset.svg",
+                "tags": [
+                    "flutter",
+                    "map"
+                ]
+            }
+        ]
+    }
+}
