@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col xl:flex-row items-stretch w-full h-full gap-8 xl:gap-0">
+    <div class="flex flex-col xl:flex-row items-stretch w-full gap-8 xl:gap-0">
         <div class="xl:flex-[1] flex flex-col gap-2 items-start px-4">
             <div class="avatar">
                 <div class="w-[12rem] rounded-full">
@@ -10,7 +10,7 @@
                 <h2 class="m-0 font-bold">Matteo Beltrame</h2>
                 <div class="flex flex-row gap-8">
                     <div class="flex flex-row items-center gap-2 justify-start">
-                        <icon name="material-symbols:location-on-rounded"></icon>
+                        <icon name="twemoji:flag-italy"></icon>
                         <p>Italy</p>
                     </div>
                     <div class="flex flex-row items-center gap-2 justify-start">
@@ -18,7 +18,7 @@
                         <p>bltmtt@gmail.com</p>
                     </div>
                 </div>
-                <p class="italic text-accent">Do it to be the kind of person you need to be to achieve your goal</p>
+                <p class="italic text-secondary">Do it to be the kind of person you need to be to achieve your goal</p>
                 <div class="flex flex-row items-center justify-center gap-8 my-2">
                     <a href="https://www.linkedin.com/in/matteo-beltrame" target="_blank"
                         ><icon class="social-icon" name="skill-icons:linkedin"></icon
@@ -54,7 +54,7 @@
                 >
                     <div
                         v-for="p in s.projects"
-                        class="card card-compact bg-neutral w-64 md:w-96 shadow-xl cursor-pointer hover:scale-[102%] transition-all duration-150"
+                        class="card card-compact bg-neutral w-64 md:w-[20rem] shadow-xl cursor-pointer hover:scale-[102%] transition-all duration-150"
                     >
                         <a :href="p.url" target="_blank">
                             <div class="card-body">

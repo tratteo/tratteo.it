@@ -6,7 +6,7 @@ export const sleekConfig = {
         subtitle: "Create web applications in a blink with Sleek",
         author: "Matteo Beltrame",
         homepage: "https://sleek.it/",
-        icon: "/icon.png",
+        icon: "/trat.webp",
         email: "bltmtt+sleek@gmail.com",
         routes: [
             { path: "/support", title: "Help", description: "Get help and write me" },

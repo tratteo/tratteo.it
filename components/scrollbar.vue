@@ -1,5 +1,10 @@
 <template>
-    <div v-if="breakpoints.greater('md').value && mounted" class="scroll-indicator" :style="{ '--scale': scale }"></div>
+    <div
+        :key="renderKey"
+        v-if="breakpoints.greaterOrEqual('md').value && mounted"
+        class="scroll-indicator"
+        :style="{ '--scale': scale }"
+    ></div>
 </template>
 
 <script lang="ts" setup>
@@ -7,6 +12,7 @@ import { breakpointsTailwind } from "@vueuse/core";
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const scroll = useScrollProgress();
 const scale = computed(() => scroll.y.value);
+const renderKey = ref(0);
 const mounted = useMounted();
 </script>
 

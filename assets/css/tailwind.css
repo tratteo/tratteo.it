@@ -21,7 +21,7 @@ h3 {
 }
 
 html {
-    @apply text-base text-base-content overflow-y-auto !important;
+    @apply text-base text-base-content !important;
 }
 
 * {
