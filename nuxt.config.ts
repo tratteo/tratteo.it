@@ -67,6 +67,7 @@ export default defineNuxtConfig({
         preload: true,
         families: {
             "Noto Sans": true,
+            Inconsolata: true,
         },
     },
     multiCache: {

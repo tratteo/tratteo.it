@@ -5,6 +5,7 @@ export default <Partial<Config>>{
     theme: {
         fontFamily: {
             poppins: "Poppins",
+            inconsolata: "Inconsolata",
         },
     },
     plugins: [require("daisyui")],
