@@ -14,7 +14,7 @@
                 </p>
             </div>
             <div class="flex-1 flex flex-row justify-evenly flex-wrap">
-                <div class="flex flex-row items-center">
+                <div class="flex flex-row items-center gap-2">
                     <div>
                         <div class="avatar">
                             <div class="w-12 rounded-full">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center">
-                        <ul class="self-center menu bg-base-200 menu-horizontal rounded-box items-center">
+                        <ul class="self-center menu bg-transparent menu-horizontal rounded-box items-center">
                             <li v-for="link in sleekConfig.supportLinks">
                                 <a :href="link.url" :aria-label="`Support me on ${link.name}`" target="_blank">
                                     <icon :name="link.icon" class="size-4"></icon>

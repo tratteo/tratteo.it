@@ -1,12 +1,12 @@
 <template>
-    <div v-if="mounted" class="flex flex-col xl:flex-row items-stretch w-full gap-8 xl:gap-0">
-        <div class="xl:flex-[1] flex flex-col gap-2 items-start px-4">
+    <div v-if="mounted" class="flex flex-col xl:flex-row items-stretch w-full gap-8">
+        <div class="xl:flex-[1] flex flex-col gap-2 items-stretch xl:items-start">
             <div class="avatar">
                 <div class="w-[12rem] rounded-full ring-primary ring-2">
                     <img :src="sleekConfig.icon" />
                 </div>
             </div>
-            <section class="flex flex-col items-start gap-2">
+            <section class="flex flex-col items-stretch xl:items-start gap-2 xl:gap-4 xl:w-full">
                 <h2 class="m-0 font-bold">Matteo Beltrame</h2>
                 <div class="flex flex-row gap-8">
                     <div class="flex flex-row items-center gap-2 justify-start">
@@ -30,13 +30,13 @@
                         <p class="underline">bltmtt@gmail.com</p>
                     </button>
                 </div>
-                <div class="card bg-secondary/10 card-compact">
-                    <div class="card-body italic flex flex-row items-center group">
+                <div class="card bg-primary/15 card-compact self-center xl:self-auto">
+                    <div class="card-body italic flex flex-row items-center group select-none">
                         <icon
                             name="ic:baseline-format-quote"
                             class="rotate-180 mb-8 group-hover:text-primary transition-all duration-200 group-hover:scale-110"
                         ></icon>
-                        <p class="transition-all duration-200 group-hover:scale-[102%] max-w-80">
+                        <p class="transition-all duration-200 group-hover:scale-[102%]">
                             Don't do it just for the goal, do it for the person you need to embody to achieve the goal
                         </p>
                         <icon
@@ -45,20 +45,75 @@
                         ></icon>
                     </div>
                 </div>
+
                 <div class="flex flex-row items-center justify-center gap-8 my-2">
-                    <a href="https://www.linkedin.com/in/matteo-beltrame" target="_blank"
-                        ><icon class="social-icon" name="skill-icons:linkedin"></icon
-                    ></a>
-                    <a href="https://github.com/tratteo" target="_blank"
-                        ><icon class="social-icon" name="mdi:github"></icon
-                    ></a>
-                    <a href="https://www.instagram.com/tratteo" target="_blank"
-                        ><icon class="social-icon" name="skill-icons:instagram"></icon
-                    ></a>
+                    <div class="tooltip" data-tip="LinkedIn">
+                        <a href="https://www.linkedin.com/in/matteo-beltrame" target="_blank">
+                            <icon class="social-icon" name="skill-icons:linkedin"></icon>
+                        </a>
+                    </div>
+                    <div class="tooltip" data-tip="Github">
+                        <a href="https://github.com/tratteo" target="_blank">
+                            <icon class="social-icon" name="mdi:github"></icon>
+                        </a>
+                    </div>
+                    <div class="tooltip" data-tip="Instagram">
+                        <a href="https://www.instagram.com/tratteo" target="_blank">
+                            <icon class="social-icon" name="skill-icons:instagram"></icon>
+                        </a>
+                    </div>
+                    <div class="tooltip" data-tip="Buy Me A Coffee">
+                        <a href="https://www.buymeacoffee.com/tratteo" target="_blank">
+                            <icon class="social-icon" name="fluent-emoji-flat:kiwi-fruit"></icon>
+                        </a>
+                    </div>
+                    <div class="tooltip" data-tip="Product Hunt">
+                        <a href="https://www.producthunt.com/@tratteo" target="_blank">
+                            <icon class="social-icon" name="logos:producthunt"></icon>
+                        </a>
+                    </div>
                 </div>
+                <Accordion>
+                    <template #title>
+                        <p>✏️ Something about me</p>
+                    </template>
+                    <template #content>
+                        <p class="text-sm">
+                            My path began in a pretty standard way. I studied Computer Engineering and then Computer
+                            Science. <br />
+                            I easily landed a job in a big corporate months before graduating, I was excited and happy
+                            to be thrown into the real world. However, my expectation were actually in conflict with my
+                            nature.<br /><br />
+                            Since the first day at my new job, I felt
+                            <b
+                                >something was off, things were not as I imagined, suddenly I did not felt the
+                                protagonist of my own life anymore</b
+                            >.<br />
+                            After less than 3 months, I got offered an important remote position in an American startup,
+                            I immediately quitted my corporate job and grasped this opportunity.
+                            <b
+                                >This new job was better aligned with my identity, yet I still felt something was
+                                missing.</b
+                            ><br /><br />
+                            During this period, I founded the startup
+                            <a href="https://wildspace.it?locale=en" target="_blank" class="link">wildspace.it</a> with
+                            a close friend of mine.<br />
+                            This was the spark that I needed:
+                            <b
+                                >I understood that my path was different, I wanted to live a life at its fullest, I
+                                wanted to be the main protagonist of my life.</b
+                            ><br />
+                            <span class="font-bold text-secondary"
+                                >For the second time in less than a year, I decided to quit my job to dedicate all my
+                                time to my startup, to what I have created and to what I will create in the
+                                future.</span
+                            >
+                        </p>
+                    </template>
+                </Accordion>
             </section>
         </div>
-        <div class="xl:flex-[2] flex flex-col gap-4 px-4">
+        <div class="xl:flex-[2] flex flex-col gap-4">
             <div class="flex flex-row items-center justify-between gap-2 flex-wrap">
                 <h3>Check out what I have been creating 👇</h3>
                 <p>{{ projectsCount }} published projects 😎</p>
@@ -99,7 +154,7 @@
                                                 8.6e7 * 31
                                         "
                                     >
-                                        <div class="badge badge-secondary">NEW</div>
+                                        <div class="badge badge-accent">NEW</div>
                                     </div>
                                 </h2>
                                 <p class="text-sm" v-html="p.description"></p>
