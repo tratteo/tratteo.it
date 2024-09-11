@@ -4,9 +4,17 @@ export const sleekConfig = {
         name: "Matteo Beltrame",
         description: "Bootstrap your projects with Sleek",
         subtitle: "Create web applications in a blink with Sleek",
-        author: "Matteo Beltrame",
-        homepage: "https://sleek.it/",
-        icon: "/trat.webp",
+        author: {
+            name: "Matteo Beltrame",
+            website: "https://tratteo.it",
+            icon: "/trat.webp",
+        },
+        linkedProjects: [
+            { title: "Depthlog", url: "https://depthlog.vercel.app" },
+            { title: "Codemeup", url: "https://codemeup.dev" },
+        ],
+        homepage: "https://tratteo.it/",
+        icon: "/icon.webp",
         email: "bltmtt+sleek@gmail.com",
         routes: [
             { path: "/support", title: "Help", description: "Get help and write me" },
