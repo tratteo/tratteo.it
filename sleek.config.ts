@@ -2,8 +2,8 @@ export const sleekConfig = {
     app: {
         id: "tratteo",
         name: "Matteo Beltrame",
-        description: "Bootstrap your projects with Sleek",
-        subtitle: "Create web applications in a blink with Sleek",
+        description: "Looking for an app or inspiration? Check out my creations 😎",
+        subtitle: "I fired myself 2 times so I decided to start my career as a Solopreneur",
         author: {
             name: "Matteo Beltrame",
             website: "https://tratteo.it",
@@ -14,7 +14,7 @@ export const sleekConfig = {
             { title: "Codemeup", url: "https://codemeup.dev" },
         ],
         homepage: "https://tratteo.it/",
-        icon: "/icon.webp",
+        icon: "/trat.webp",
         email: "bltmtt+sleek@gmail.com",
         routes: [
             { path: "/support", title: "Help", description: "Get help and write me" },

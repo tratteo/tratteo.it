@@ -3,7 +3,7 @@
         <div class="xl:flex-[1] flex flex-col gap-2 items-start px-4">
             <div class="avatar">
                 <div class="w-[12rem] rounded-full ring-primary ring-2">
-                    <img src="/trat.webp" />
+                    <img :src="sleekConfig.icon" />
                 </div>
             </div>
             <section class="flex flex-col items-start gap-2">
@@ -123,6 +123,7 @@ const clipboard = useClipboard();
 const toast = useToast();
 const openedSection = ref<number>(0);
 const mounted = useMounted();
+const sleekConfig = useAppConfig().sleek;
 const projectsCount = computed(() => {
     let count = 0;
     Object.values(projectsData).forEach((v) => (count += v.projects.length));
