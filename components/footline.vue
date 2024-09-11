@@ -14,14 +14,8 @@
                 </p>
             </div>
             <div class="flex-1 flex flex-row justify-evenly flex-wrap">
-                <div class="flex flex-row items-center gap-2">
-                    <div>
-                        <div class="avatar">
-                            <div class="w-12 rounded-full">
-                                <img :src="sleekConfig.author.icon" />
-                            </div>
-                        </div>
-                    </div>
+                <div class="flex flex-col items-center gap-0">
+                    <p>Support me ❤️</p>
                     <div class="flex flex-col items-center">
                         <ul class="self-center menu bg-transparent menu-horizontal rounded-box items-center">
                             <li v-for="link in sleekConfig.supportLinks">
