@@ -37,3 +37,7 @@ body {
 .iconify {
     @apply shrink-0 !important;
 }
+
+.input {
+    @apply contain-strict;
+}

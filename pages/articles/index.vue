@@ -1,10 +1,15 @@
 <template>
-    <div class="flex flex-col gap-4 items-start">
-        <h2>List of Articles</h2>
+    <div class="flex flex-col gap-6 items-start">
+        <h1>List of Articles</h1>
         <input type="text" v-model="titleFilter" placeholder="Search by title" class="input input-bordered w-full" />
-        <section class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8">
-            <NuxtLink v-for="article in filteredArticles" v-bind:key="article._path" :to="`${article._path}`">
-                <div class="card article-card min-h-[20rem]">
+        <section class="flex flex-row flex-wrap items-stretch justify-center gap-8">
+            <NuxtLink
+                v-for="article in filteredArticles"
+                v-bind:key="article._path"
+                :to="`${article._path}`"
+                class="flex"
+            >
+                <div class="card article-card">
                     <figure>
                         <img class="aspect-[2/1]" :src="`${article.cover}`" :alt="article.title" />
                     </figure>
@@ -16,13 +21,13 @@
                         >
                             New
                         </div>
-                        <h2>{{ article?.title }}</h2>
+                        <h3>{{ article?.title }}</h3>
 
                         <div class="flex flex-wrap flex-row items-end justify-between gap-2">
                             <div class="card-actions gap-4 flex flex-col items-start">
                                 <div class="avatar">
                                     <div class="mask mask-squircle w-16">
-                                        <img :src="article?.author_avatar" />
+                                        <img :src="article?.author_avatar" alt="author avatar" />
                                     </div>
                                 </div>
                                 <div class="flex flex-row gap-2 items-center">
@@ -63,6 +68,6 @@ const filteredArticles = computed(() => {
 
 <style lang="css" scoped>
 .article-card {
-    @apply bg-base-200 image-full shadow-xl hover:scale-[102%] transition-all duration-200 ease-out;
+    @apply bg-base-200 image-full shadow-xl hover:scale-[102%] transition-all  duration-200 ease-out min-w-[15rem] max-w-[40rem];
 }
 </style>

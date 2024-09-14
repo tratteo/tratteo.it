@@ -1,12 +1,12 @@
 <template>
     <div v-if="mounted" class="flex flex-col xl:flex-row items-stretch w-full gap-8">
-        <div class="xl:flex-[1] flex flex-col gap-2 items-stretch xl:items-start">
+        <div class="xl:flex-[1] flex flex-col gap-2 items-center xl:items-start">
             <div class="avatar">
-                <div class="w-[12rem] rounded-full ring-primary ring-2">
+                <div class="w-[10rem] rounded-full ring-primary ring-2">
                     <img :src="sleekConfig.icon" />
                 </div>
             </div>
-            <section class="flex flex-col items-stretch xl:items-start gap-2 xl:gap-4 xl:w-full">
+            <section class="flex flex-col items-center xl:items-start gap-2 xl:gap-4 xl:w-full">
                 <h2 class="m-0 font-bold">Matteo Beltrame</h2>
                 <div class="flex flex-row gap-8">
                     <div class="flex flex-row items-center gap-2 justify-start">
@@ -103,7 +103,7 @@
                                 >I understood that my path was different, I wanted to live a life at its fullest, I
                                 wanted to be the main protagonist of my life.</b
                             ><br />
-                            <span class="font-bold text-secondary"
+                            <span class="font-bold text-primary"
                                 >For the second time in less than a year, I decided to quit my job to dedicate all my
                                 time to my startup, to what I have created and to what I will create in the
                                 future.</span

@@ -4,7 +4,7 @@
         "projects": [
             {
                 "title": "Codemeup",
-                "description": "Embed code snippets directly from Github in a blink.",
+                "description": "Embed code snippets directly from Github in a blink. <a href='https://www.producthunt.com/posts/codemeup?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-codemeup'  target='_blank' ><img src='https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=488841&theme=neutral' alt='Codemeup - Embed&#0032;code&#0032;snippets&#0032;directly&#0032;from&#0032;Github&#0032;in&#0032;a&#0032;blink | Product Hunt' style='width: 160px; padding-top: 8px;' /></a>",
                 "date": "10/09/2024",
                 "url": "https://codemeup.dev",
                 "icon": "https://codemeup.dev/icon.png",
@@ -48,7 +48,7 @@
             {
                 "title": "Transfer Chest <img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/transfer-chest",
-                "description": "Transfer items at any time and in any dimension in a blink. <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/432830?style=flat&logo=curseforge&logoSize=auto' ></div>",
+                "description": "Transfer items at any time and in any dimension in a blink. <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/432830?style=flat&logo=curseforge&logoSize=auto' >",
                 "icon": "https://github.com/trat-mods/TransferChest/blob/main/icon.png?raw=true"
             },
             {
