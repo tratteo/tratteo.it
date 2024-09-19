@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <div class="flex flex-row items-center justify-center gap-8 my-2">
+                <div class="flex flex-row items-center justify-center flex-wrap gap-6 my-2">
                     <div class="tooltip" data-tip="LinkedIn">
                         <a href="https://www.linkedin.com/in/matteo-beltrame" target="_blank">
                             <icon class="social-icon" name="skill-icons:linkedin"></icon>
@@ -70,6 +70,16 @@
                     <div class="tooltip" data-tip="Product Hunt">
                         <a href="https://www.producthunt.com/@tratteo" target="_blank">
                             <icon class="social-icon" name="logos:producthunt"></icon>
+                        </a>
+                    </div>
+                    <div class="tooltip" data-tip="X">
+                        <a href="https://x.com/tratteo" target="_blank">
+                            <icon class="social-icon" name="bi:twitter-x"></icon>
+                        </a>
+                    </div>
+                    <div class="tooltip" data-tip="Threads">
+                        <a href="https://www.threads.net/@tratteo" target="_blank">
+                            <icon class="social-icon" name="ph:threads-logo-bold"></icon>
                         </a>
                     </div>
                 </div>
@@ -141,7 +151,7 @@
                             <div class="card-body">
                                 <h2 class="card-title">
                                     <div class="avatar">
-                                        <div class="w-12 rounded-full">
+                                        <div class="w-12 rounded-[0.25rem]">
                                             <img :src="p.icon" />
                                         </div>
                                     </div>

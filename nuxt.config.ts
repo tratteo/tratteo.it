@@ -38,6 +38,7 @@ export default defineNuxtConfig({
     watch: ["sleek.config.ts"],
     icon: {
         size: "24px",
+        fetchTimeout: 4000,
     },
     tailwindcss: {
         exposeConfig: true,
