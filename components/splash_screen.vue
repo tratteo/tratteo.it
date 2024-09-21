@@ -1,5 +1,5 @@
 <template>
-    <div class="w-screen h-screen" :class="{ 'overflow-hidden': !loaded }">
+    <div class="w-screen h-screen" id="root-div" :class="{ 'overflow-clip': !loaded, 'overflow-y-scroll': loaded }">
         <div class="flex relative h-screen w-screen items-center justify-center">
             <Transition name="fade" mode="out-in">
                 <div
