@@ -46,32 +46,32 @@
         "icon": "bx:bxs-joystick-alt",
         "projects": [
             {
-                "title": "Transfer Chest <img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
+                "title": "Transfer Chest <img width='100px' src='/minecraft.svg' >",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/transfer-chest",
                 "description": "Transfer items at any time and in any dimension in a blink. <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/432830?style=flat&logo=curseforge&logoSize=auto' >",
                 "icon": "https://github.com/trat-mods/TransferChest/blob/main/icon.png?raw=true"
             },
             {
-                "title": "Launchers <img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
+                "title": "Launchers <img width='100px' src='/minecraft.svg' >",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/launchers",
                 "description": "Launch anything with the Launchers: items, entities players and more. <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/372835?style=flat&logo=curseforge&logoSize=auto' >",
                 "icon": "https://github.com/trat-mods/LaunchersMod/blob/main/icon.png?raw=true"
             },
             {
-                "title": "Literally Chunk Loader <img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
+                "title": "Literally Chunk Loader <img width='100px' src='/minecraft.svg' >",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/literally-chunk-loader",
                 "description": "A very simple yet functional vanilla inspired chunk loader. <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/378183?style=flat&logo=curseforge&logoSize=auto' >",
                 "icon": "https://github.com/trat-mods/LiterallyChunkLoader/blob/main/icon.png?raw=true"
             },
             {
-                "title": "Multihopper <img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
+                "title": "Multihopper <img width='100px' src='/minecraft.svg' >",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/multihopper",
                 "date": "01/09/2024",
                 "description": "Introduces a smart hopper that does not get clogged with items during transfering  <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/1027743?style=flat&logo=curseforge&logoSize=auto' >",
                 "icon": "https://github.com/trat-mods/Multihopper/blob/main/icon.png?raw=true"
             },
             {
-                "title": "Not That Item! <img width='100px' src='https://github.com/tratteo/tratteo/raw/main/res/minecraft.svg' >",
+                "title": "Not That Item! <img width='100px' src='/minecraft.svg' >",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/not-that-item",
                 "date": "18/09/2024",
                 "description": "Stop picking up trash when you don't want to. Introduces a filter that can prevent players from picking up unwanted items  <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/1104943?style=flat&logo=curseforge&logoSize=auto' >",

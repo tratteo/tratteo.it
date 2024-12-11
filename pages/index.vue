@@ -32,17 +32,11 @@
                 </div>
                 <div class="card bg-primary/15 card-compact self-center xl:self-auto">
                     <div class="card-body italic flex flex-row items-center group select-none">
-                        <icon
-                            name="ic:baseline-format-quote"
-                            class="rotate-180 mb-8 group-hover:text-primary transition-all duration-200 group-hover:scale-110"
-                        ></icon>
+                        <icon name="ic:baseline-format-quote" class="rotate-180 mb-8 group-hover:text-primary transition-all duration-200 group-hover:scale-110"></icon>
                         <p class="transition-all duration-200 group-hover:scale-[102%]">
                             Don't do it just for the goal, do it for the person you need to embody to achieve the goal
                         </p>
-                        <icon
-                            name="ic:baseline-format-quote"
-                            class="mt-8 group-hover:text-primary transition-all duration-200 group-hover:scale-110"
-                        ></icon>
+                        <icon name="ic:baseline-format-quote" class="mt-8 group-hover:text-primary transition-all duration-200 group-hover:scale-110"></icon>
                     </div>
                 </div>
 
@@ -89,34 +83,21 @@
                     </template>
                     <template #content>
                         <p class="text-sm">
-                            My path began in a pretty standard way. I studied Computer Engineering and then Computer
-                            Science. <br />
-                            I easily landed a job in a big corporate months before graduating, I was excited and happy
-                            to be thrown into the real world. However, my expectation were actually in conflict with my
-                            nature.<br /><br />
+                            My path began in a pretty standard way. I studied Computer Engineering and then Computer Science. <br />
+                            I easily landed a job in a big corporate months before graduating, I was excited and happy to be thrown into the real world. However, my expectation
+                            were actually in conflict with my nature.<br /><br />
                             Since the first day at my new job, I felt
-                            <b
-                                >something was off, things were not as I imagined, suddenly I did not felt the
-                                protagonist of my own life anymore</b
-                            >.<br />
-                            After less than 3 months, I got offered an important remote position in an American startup,
-                            I immediately quitted my corporate job and grasped this opportunity.
-                            <b
-                                >This new job was better aligned with my identity, yet I still felt something was
-                                missing.</b
-                            ><br /><br />
+                            <b>something was off, things were not as I imagined, suddenly I did not felt the protagonist of my own life anymore</b>.<br />
+                            After less than 3 months, I got offered an important remote position in an American startup, I immediately quitted my corporate job and grasped this
+                            opportunity.
+                            <b>This new job was better aligned with my identity, yet I still felt something was missing.</b><br /><br />
                             During this period, I founded the startup
-                            <a href="https://wildspace.it?locale=en" target="_blank" class="link">wildspace.it</a> with
-                            a close friend of mine.<br />
+                            <a href="https://wildspace.it?locale=en" target="_blank" class="link">wildspace.it</a> with a close friend of mine.<br />
                             This was the spark that I needed:
-                            <b
-                                >I understood that my path was different, I wanted to live a life at its fullest, I
-                                wanted to be the main protagonist of my life.</b
-                            ><br />
+                            <b>I understood that my path was different, I wanted to live a life at its fullest, I wanted to be the main protagonist of my life.</b><br />
                             <span class="font-bold text-primary"
-                                >For the second time in less than a year, I decided to quit my job to dedicate all my
-                                time to my startup, to what I have created and to what I will create in the
-                                future.</span
+                                >For the second time in less than a year, I decided to quit my job to dedicate all my time to my startup, to what I have created and to what I will
+                                create in the future.</span
                             >
                         </p>
                     </template>
@@ -129,24 +110,13 @@
                 <p>{{ projectsCount }} published projects 😎</p>
             </div>
             <div v-for="(s, key, index) in projectsData" class="collapse collapse-arrow bg-base-300">
-                <input
-                    type="radio"
-                    @click="() => openSection(index)"
-                    name="sections_accordion"
-                    class="cursor-pointer"
-                    :checked="openedSection === index"
-                />
+                <input type="radio" @click="() => openSection(index)" name="sections_accordion" class="cursor-pointer" :checked="openedSection === index" />
                 <div class="collapse-title flex flex-row gap-2">
                     <icon :name="s.icon" :class="{ 'text-primary': openedSection === index }"></icon>
                     <p>{{ key }}</p>
                 </div>
-                <div
-                    class="collapse-content flex flex-row items-stretch justify-center xl:justify-start flex-wrap gap-8"
-                >
-                    <div
-                        v-for="p in s.projects"
-                        class="card card-compact bg-neutral w-64 md:w-[20rem] shadow-xl cursor-pointer hover:scale-[102%] transition-all duration-150"
-                    >
+                <div class="collapse-content flex flex-row items-stretch justify-center xl:justify-start flex-wrap gap-8">
+                    <div v-for="p in s.projects" class="card card-compact bg-neutral w-64 md:w-[20rem] shadow-xl cursor-pointer hover:scale-[102%] transition-all duration-150">
                         <a :href="p.url" target="_blank">
                             <div class="card-body">
                                 <h2 class="card-title">
@@ -156,14 +126,7 @@
                                         </div>
                                     </div>
                                     <div v-html="p.title"></div>
-                                    <div
-                                        v-if="
-                                            (p as any).date &&
-                                            new Date().getTime() -
-                                                fns.parse((p as any).date, 'dd/MM/yyyy', new Date()).getTime() <
-                                                8.6e7 * 31
-                                        "
-                                    >
+                                    <div v-if="(p as any).date && new Date().getTime() - fns.parse((p as any).date, 'dd/MM/yyyy', new Date()).getTime() < 8.6e7 * 31">
                                         <div class="badge badge-accent">NEW</div>
                                     </div>
                                 </h2>

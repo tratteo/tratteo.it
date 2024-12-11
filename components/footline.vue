@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col items-start gap-2">
-                    <p class="font-bold">OTHER APPS</p>
+                    <p class="font-bold">MY APPS</p>
                     <div class="section-col">
                         <div v-for="p in sleekConfig.linkedProjects">
                             <a :href="p.url" target="_blank" class="link-hover">

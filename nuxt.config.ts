@@ -55,7 +55,7 @@ export default defineNuxtConfig({
         sleek: sleekConfig.runtime,
     },
     nitro: {
-        experimental: { openAPI: true },
+        experimental: { openAPI: false },
         prerender: {
             crawlLinks: true,
             failOnError: false,
@@ -75,17 +75,7 @@ export default defineNuxtConfig({
         data: { enabled: true },
     },
 
-    modules: [
-        "@nuxtjs/tailwindcss",
-        "@nuxtjs/google-fonts",
-        "@nuxt/icon",
-        "@vueuse/nuxt",
-        "@pinia/nuxt",
-        "nuxt-multi-cache",
-        "nuxt-security",
-        "@nuxtjs/seo",
-        "@nuxt/content",
-    ],
+    modules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts", "@nuxt/icon", "@vueuse/nuxt", "@pinia/nuxt", "nuxt-multi-cache", "nuxt-security", "@nuxtjs/seo", "@nuxt/content"],
 
     compatibilityDate: "2024-07-25",
 });
