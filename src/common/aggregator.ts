@@ -1,108 +1,112 @@
+import dayjs, { Dayjs } from "dayjs";
+import { type Duration } from "dayjs/plugin/duration";
 import l from "lodash";
-import Timespan from "./timespan";
 
 export interface Aggregation<K, V> {
     key: K;
     elements: V[];
 }
-
-export type Grouping = "daily" | "weekly" | "monthly" | "quarterly";
-
-/**Grouping timeframe */
-export class TimespanAggregationInterval {
-    id: Grouping;
-    timespan: Timespan;
-    constructor(id: Grouping, timespan: Timespan) {
-        this.id = id;
-        this.timespan = timespan;
-    }
-
-    toString() {
-        return capitalize(this.id);
-    }
-
-    getIntervals(): Timespan[] {
-        switch (this.id) {
-            case "daily":
-                return Timespan.getDailyIntervals(this.timespan);
-            case "weekly":
-                return Timespan.getWeeklyIntervals(this.timespan);
-            case "monthly":
-                return Timespan.getMonthlyIntervals(this.timespan);
-            case "quarterly":
-                return Timespan.getQuarterlyIntervals(this.timespan);
-            default:
-                return [this.timespan];
-        }
-    }
-
-    static adaptive(timespan: Timespan): TimespanAggregationInterval {
-        const days = timespan.days();
-        if (days <= 31) {
-            return new TimespanAggregationInterval("daily", timespan);
-        }
-        if (days <= 120) {
-            return new TimespanAggregationInterval("weekly", timespan);
-        }
-        if (days <= 500) {
-            return new TimespanAggregationInterval("monthly", timespan);
-        }
-        return new TimespanAggregationInterval("quarterly", timespan);
-    }
+export interface DateInterval {
+    from: Date;
+    to: Date;
 }
 
-/** Given a list of elements, and a timespan, group the elements in a list of smaller {@link Timespan}.
- *
- * If {@link Grouping} is not provided, the function dynamically computes the corresponding {@link TimespanAggregationInterval} based on the size of the initial timespan.
- */
+function adaptiveStride(timespan: DateInterval): Duration {
+    const days = dayjs.duration(dayjs(timespan.to).diff(timespan.from), "millisecond").days();
+    if (days <= 1) {
+        return dayjs.duration(1, "hour");
+    }
+    if (days <= 31) {
+        return dayjs.duration(1, "day");
+    }
+    if (days <= 120) {
+        return dayjs.duration(1, "week");
+    }
+    if (days <= 500) {
+        return dayjs.duration(1, "month");
+    }
+    return dayjs.duration(3, "month");
+}
+
+function getPeriodBound(date: Dayjs | Date, dur: Duration, bound: "start" | "end"): Dayjs {
+    date = dayjs(date);
+    if (dur.asYears() >= 1) {
+        return bound === "start" ? date.startOf("year") : date.endOf("year");
+    }
+
+    if (dur.asMonths() >= 3) {
+        return bound === "start" ? date.startOf("quarter") : date.endOf("quarter");
+    }
+    if (dur.asMonths() >= 1) {
+        return bound === "start" ? date.startOf("month") : date.endOf("month");
+    }
+    if (dur.asWeeks() >= 1) {
+        return bound === "start" ? date.startOf("week") : date.endOf("week");
+    }
+    if (dur.asDays() >= 1) {
+        return bound === "start" ? date.startOf("day") : date.endOf("day");
+    }
+    return date;
+}
+
 export function aggregate<T extends { [key: string]: any }>({
     elements,
-    timespan,
-    grouping,
+    interval,
+    stride,
     key,
-    includeEmptyTimespans = true,
+    includeEmptyIntervals = true,
 }: {
     elements: T[];
     key: (e: T) => Date;
-    timespan?: Timespan;
-    grouping?: Grouping | undefined;
-    includeEmptyTimespans?: boolean;
-}): {
-    interval: TimespanAggregationInterval;
-    aggregation: Aggregation<Timespan, T>[];
-} {
-    let elementsTimespan = Timespan.all();
-    if (timespan) {
-        elementsTimespan = new Timespan(timespan.from, timespan.to);
-    }
-    if (elementsTimespan.days() > 1095 || !timespan) {
-        elements = l.orderBy(elements, key, "desc");
-        let startDate = elements.length > 0 ? key(elements[elements.length - 1]) : undefined;
-        let endDate = elements.length > 0 ? key(elements[0]) : undefined;
-        if (!startDate || !endDate) {
-            return { interval: TimespanAggregationInterval.adaptive(elementsTimespan), aggregation: [] };
-        } else {
-            elementsTimespan = new Timespan(startDate, endDate);
-        }
-    }
-    let interval = grouping
-        ? new TimespanAggregationInterval(grouping, elementsTimespan)
-        : TimespanAggregationInterval.adaptive(elementsTimespan);
-    let aggregation: Aggregation<Timespan, T>[] = interval
-        .getIntervals()
-        .map((t) => <Aggregation<Timespan, T>>{ key: t, elements: <T[]>[] });
+    interval?: DateInterval;
+    stride?: { duration: Duration; fixed?: boolean };
+    includeEmptyIntervals?: boolean;
+}): Aggregation<DateInterval, T>[] {
+    var start = performance.now();
+    elements = l.orderBy(elements, key, "asc");
 
-    for (const doc of elements) {
-        let match = aggregation.find((d) => d.key.fits(key(doc)));
-        if (match) {
-            match.elements.push(doc);
+    if (elements.length <= 0) return [];
+    let endDate = elements.length > 0 ? key(elements[elements.length - 1]) : undefined;
+    let startDate = elements.length > 0 ? key(elements[0]) : undefined;
+    if (!startDate || !endDate) {
+        return [];
+    }
+    var strideMs = 0;
+    var strideDuration = stride?.duration;
+    if (stride === undefined) {
+        interval ??= { from: startDate, to: endDate };
+        strideDuration = adaptiveStride(interval);
+    } else {
+        strideMs = stride.duration.asMilliseconds();
+        if (stride.fixed) {
+            interval ??= { from: getPeriodBound(startDate, stride.duration, "start").toDate(), to: getPeriodBound(endDate, stride.duration, "end").toDate() };
+        } else {
+            interval ??= { from: startDate, to: endDate };
         }
     }
-    if (!includeEmptyTimespans) {
+
+    strideMs = strideDuration!.asMilliseconds();
+
+    var aggregation: Aggregation<DateInterval, T>[] = [];
+    var current = interval.from.getTime();
+
+    while (current + strideMs < interval.to.getTime()) {
+        aggregation.push({ key: { from: new Date(current), to: new Date(current + strideMs) }, elements: [] });
+        current = current + strideMs;
+    }
+    if (stride === undefined || !stride.fixed) {
+        aggregation.push({ key: { from: new Date(current), to: interval.to }, elements: [] });
+    }
+
+    for (const e of elements) {
+        const moment = (key(e) as Date).getTime();
+        if (moment > interval.to.getTime() || moment < interval.from.getTime()) continue;
+        const m = aggregation.find((i) => moment >= i.key.from.getTime() && moment <= i.key.to.getTime());
+        if (!m) continue;
+        m!.elements.push(e);
+    }
+    if (!includeEmptyIntervals) {
         aggregation = aggregation.filter((a) => a.elements.length > 0);
     }
-    return {
-        interval: interval,
-        aggregation: aggregation,
-    };
+    return aggregation;
 }

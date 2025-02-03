@@ -1,36 +1,28 @@
 <template>
-    <div>
+    <div v-if="mounted">
         <div
-            class="relative"
+            ref="rootEl"
+            class="relative items-center flex flex-row gap-2 group cursor-pointer"
             @click="
                 (ev) => {
-                    modal.open(tooltipModalId);
+                    modal.open(modalEl);
                 }
             "
             @mouseenter="hovering = true"
             @mouseleave="hovering = false"
         >
-            <icon
-                class="hover:scale-110 transition-all duration-150 text-secondary ease-out cursor-pointer"
-                name="material-symbols:info-outline-rounded"
-            ></icon>
+            <icon class="group-hover:scale-110 transition-all duration-150 text-primary ease-out size-6" name="material-symbols:info-rounded"></icon>
+            <slot v-if="slots.el" name="el"></slot>
         </div>
-        <Modal
-            v-if="bp.smallerOrEqual('xl').value"
-            :id="tooltipModalId"
-            :close-button="false"
-            :close-icon="false"
-            :actions="false"
-        >
-            <template #content> <slot></slot></template>
+        <Modal v-if="bp.smallerOrEqual('xl').value" @ref-init="(el) => (modalEl = el)" :closeAction="false" :actions="false">
+            <template #content>
+                <div class="w-full flex flex-row items-center justify-stretch">
+                    <slot></slot>
+                </div>
+            </template>
         </Modal>
         <Transition name="fade" mode="out-in" appear>
-            <div
-                ref="el"
-                :style="{ '--x-offset': offsets.xOffset, '--y-offset': offsets.yOffset }"
-                v-if="hovering && bp.greater('xl').value"
-                class="panel border-default"
-            >
+            <div ref="floatingEl" v-if="hovering && bp.greater('xl').value" class="panel" :style="floatingStyles">
                 <slot></slot>
             </div>
         </Transition>
@@ -38,39 +30,28 @@
 </template>
 
 <script lang="ts" setup>
+import { autoUpdate, offset, shift, useFloating } from "@floating-ui/vue";
 import { breakpointsTailwind } from "@vueuse/core";
 const bp = useBreakpoints(breakpointsTailwind);
 
-const tooltipModalId = "tooltip_modal";
-const el = ref<HTMLElement | null>(null);
-const offsets = ref<{ xOffset: string; yOffset: string }>({ xOffset: "0px", yOffset: "0px" });
-const windowSize = useWindowSize();
-const modal = useModalController();
+const slots = useSlots();
+const mounted = useMounted();
+const modalEl = ref();
+const rootEl = ref();
+const floatingEl = ref<HTMLElement | null>(null);
 
+const modal = useModalController();
 const hovering = ref(false);
 
-watch(el, () => {
-    if (!el.value) {
-        offsets.value = { xOffset: "0px", yOffset: "0px" };
-        return;
-    }
-    let bbox = el.value.getBoundingClientRect();
-    if (bbox.x <= 0) {
-        offsets.value.xOffset = -bbox.x + "px";
-    } else if (bbox.x > windowSize.width.value - bbox.width) {
-        offsets.value.xOffset = -(windowSize.width.value - bbox.width) + "px";
-    }
-    if (bbox.y < 0) {
-        offsets.value.yOffset = -bbox.y + "px";
-    } else if (bbox.y > windowSize.height.value - bbox.height) {
-        offsets.value.yOffset = -(windowSize.height.value - bbox.height) + "px";
-    }
+const { floatingStyles } = useFloating(rootEl, floatingEl, {
+    middleware: [offset(10), shift({ padding: 8 })],
+    placement: "bottom",
+    whileElementsMounted: autoUpdate,
 });
 </script>
 
 <style lang="css" scoped>
 .panel {
-    transform: translateX(calc(-50% + var(--x-offset, 0px))) translateY(var(--y-offset, 0px));
-    @apply absolute bg-base-300 rounded-box px-4 py-4 z-[1000000] border-[1px];
+    @apply bg-base-300 text-sm border border-base-content/20 rounded-box px-4 py-4 z-[1000000] max-w-2xl shadow-xl;
 }
 </style>

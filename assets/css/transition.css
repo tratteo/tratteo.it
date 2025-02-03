@@ -17,7 +17,7 @@
 }
 .fade-enter-active,
 .fade-leave-active {
-    transition: all var(--duration-tr, 150ms) cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity var(--duration-tr, 150ms) cubic-bezier(0.25, 1, 0.5, 1);
     transition-delay: var(--delay-tr, 0ms);
 }
 
@@ -26,4 +26,20 @@
 .pop-enter-active {
     animation: pop var(--duration-tr, 150ms) cubic-bezier(0.25, 1, 0.5, 1);
     animation-delay: var(--delay-tr, 0ms);
+}
+
+/* LIST */
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+    transition: all 200ms ease-out;
+}
+
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+    transform: translateX(10px);
+}
+.list-leave-active {
+    position: absolute;
 }

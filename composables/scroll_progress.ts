@@ -13,7 +13,7 @@ export const useScrollProgress = () => {
     });
 
     onMounted(() => {
-        rootScrollable.value = document.getElementById("root-div");
+        rootScrollable.value = getScrollableRoot();
         rootScrollable.value?.addEventListener("scroll", onScroll);
         rootScrollable.value?.addEventListener("scrollend", onScrollEnd);
     });
@@ -23,10 +23,8 @@ export const useScrollProgress = () => {
         if (!isScrolling.value) {
             isScrolling.value = true;
         }
-        let newY =
-            rootScrollable.value.scrollTop / (rootScrollable.value.scrollHeight - rootScrollable.value.offsetHeight);
-        let newX =
-            rootScrollable.value.scrollLeft / (rootScrollable.value.scrollWidth - rootScrollable.value.offsetWidth);
+        let newY = rootScrollable.value.scrollTop / (rootScrollable.value.scrollHeight - rootScrollable.value.offsetHeight);
+        let newX = rootScrollable.value.scrollLeft / (rootScrollable.value.scrollWidth - rootScrollable.value.offsetWidth);
         newX = Number.isNaN(newX) ? 0 : newX;
         newY = Number.isNaN(newY) ? 0 : newY;
 

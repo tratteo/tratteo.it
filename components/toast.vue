@@ -1,53 +1,51 @@
 <template>
-    <div
-        class="fixed bottom-[1rem] lg:bottom-[8rem] w-full flex flex-row justify-center lg:justify-end pointer-events-none z-[1000]"
+    <li
+        class="relative alert gap-2 flex flex-row text-start items-center justify-start overflow-clip border-none"
+        :key="toastData.id"
+        :class="{
+            'alert-error': toastData.data.type === 'error',
+            'alert-info': toastData.data.type === 'info',
+            'alert-warning': toastData.data.type === 'warning',
+            'alert-success': toastData.data.type === 'success',
+        }"
     >
-        <div class="lg:px-8">
-            <TransitionGroup name="list" tag="ul" class="flex flex-col gap-4">
-                <li
-                    v-for="(t, i) in toast.toasts"
-                    class="alert gap-2"
-                    :key="t.id"
-                    :class="{
-                        'alert-error': t.type === ToastType.error,
-                        'alert-info': t.type === ToastType.info,
-                        'alert-warning': t.type === ToastType.warning,
-                        'alert-success': t.type === ToastType.success,
-                    }"
-                >
-                    <icon class="size-6" :name="iconName(t)"></icon>
-                    <span>{{ t.message }}</span>
-                </li>
-            </TransitionGroup>
-        </div>
-    </div>
+        <icon class="size-6" :name="iconName(toastData.data)"></icon>
+        <span v-html="toastData.data.message" class="text-sm flex-1"></span>
+        <button v-if="toastData.data.dismissible || true" class="btn btn-sm btn-circle btn-ghost right-2 top-2 ml-4" @click="toasts.dismiss(toastData.id)">
+            <icon name="material-symbols:close-rounded"></icon>
+        </button>
+        <div
+            class="absolute bottom-0 left-0 w-[var(--w)] right-0 bg-base-100/60 h-[0.3rem] origin-left ease-linear z-[10000]"
+            :style="{ 'transition-duration': toastData.data.duration! + 'ms', '--w': width }"
+        ></div>
+    </li>
 </template>
 
 <script lang="ts" setup>
-const toast = useToast();
+const toasts = useToast();
+const prop = defineProps<{ toastData: WithId<ToastData> }>();
+
+const width = ref("100%");
+onMounted(() => {
+    nextTick(() => {
+        setTimeout(() => {
+            width.value = "0%";
+        }, 10);
+    });
+});
 
 function iconName(toast: ToastData) {
     switch (toast.type) {
-        case ToastType.error:
-            return "charm:circle-cross";
-        case ToastType.warning:
+        case "error":
+            return "ph:minus-circle-fill";
+        case "warning":
             return "ic:round-warning";
-        case ToastType.info:
-            return "mdi:information-outline";
-        case ToastType.success:
-            return "material-symbols:check-circle-outline-rounded";
+        case "info":
+            return "material-symbols:info-rounded";
+        case "success":
+            return "material-symbols:check-circle-rounded";
     }
 }
 </script>
 
-<style lang="css" scoped>
-.list-enter-active,
-.list-leave-active {
-    transition: all 0.5s ease;
-}
-.list-enter-from,
-.list-leave-to {
-    opacity: 0;
-    transform: translateX(50px);
-}
-</style>
+<style lang="css" scoped></style>

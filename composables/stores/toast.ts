@@ -1,30 +1,28 @@
 import l from "lodash";
 import { defineStore } from "pinia";
 
-export enum ToastType {
-    error,
-    warning,
-    info,
-    success,
-}
+export type ToastType = "error" | "warning" | "info" | "success";
 
 export interface ToastData {
     type: ToastType;
     message: string;
-    id: string;
+    dismissible?: boolean;
+    duration?: number;
 }
 export const useToast = defineStore("toast", () => {
-    const toasts = ref<ToastData[]>([]);
+    const toasts = ref<WithId<ToastData>[]>([]);
 
-    function dequeue(data: ToastData) {
-        toasts.value = toasts.value.filter((t) => t.id !== data.id);
+    function dismiss(id: string) {
+        toasts.value = toasts.value.filter((t) => t.id !== id);
     }
 
-    const add = ({ type, message, durationMs = 2000 }: { type: ToastType; message: string; durationMs?: number }) => {
-        const toastData = { type: type, message: message, id: l.uniqueId() };
-        toasts.value.push(toastData);
-        setTimeout(() => dequeue(toastData), durationMs);
+    const add = (data: ToastData) => {
+        data.duration ??= 5000;
+        data.dismissible ??= true;
+        const id = l.uniqueId();
+        toasts.value.push({ id: id, data: data });
+        setTimeout(() => dismiss(id), data.duration);
     };
 
-    return { add, toasts };
+    return { add, toasts, dismiss };
 });

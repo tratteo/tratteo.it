@@ -1,45 +1,54 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { sleekConfig } from "./sleek.config";
+import { definePerson } from "nuxt-schema-org/schema";
+
+import sleekConfig from "./sleek.config";
 
 export default defineNuxtConfig({
     devtools: { enabled: true },
 
+    sitemap: {
+        strictNuxtContentPaths: true,
+        autoLastmod: true,
+        discoverImages: true,
+        exclude: ["/app", "/api"],
+        debug: false,
+        sources: ["/api/__sitemap__/users"],
+        xslColumns: [
+            { label: "URL", width: "60%" },
+            {
+                label: "Images",
+                width: "20%",
+                select: "count(image:image)",
+            },
+            { label: "Last Modified", select: "sitemap:lastmod", width: "20%" },
+        ],
+    },
+
+    robots: {
+        disallow: ["/app/**", "/api/**"],
+    },
     site: {
-        url: sleekConfig.app.homepage,
-        name: sleekConfig.app.name,
-        description: sleekConfig.app.description,
+        url: sleekConfig.url,
+        name: sleekConfig.name,
         defaultLocale: "en",
+    },
+    schemaOrg: {
+        identity: definePerson(sleekConfig.author),
     },
     router: {
         options: { scrollBehaviorType: "smooth" },
     },
-    vite: {},
-    routeRules: {
-        "/api/**": {
-            security: {
-                rateLimiter: {
-                    interval: 60000,
-                    tokensPerInterval: 120,
-                    headers: true,
-                },
-            },
-        },
-    },
-    security: {
-        enabled: true,
-        xssValidator: false,
-        headers: {
-            xXSSProtection: false,
-            crossOriginOpenerPolicy: false,
-            crossOriginEmbedderPolicy: false,
-            contentSecurityPolicy: false,
-        },
-    },
-    watch: ["sleek.config.ts"],
     icon: {
         size: "24px",
         fetchTimeout: 4000,
+        clientBundle: {
+            scan: true,
+        },
     },
+    vite: {},
+    build: { transpile: ["@vuepic/vue-datepicker"] },
+
+    css: ["katex/dist/katex.min.css"],
     tailwindcss: {
         exposeConfig: true,
     },
@@ -48,34 +57,64 @@ export default defineNuxtConfig({
         dirs: ["src/**/*", "composables/**/*"],
         global: true,
     },
-    appConfig: {
-        sleek: sleekConfig.app,
-    },
-    runtimeConfig: {
-        sleek: sleekConfig.runtime,
-    },
-    nitro: {
-        experimental: { openAPI: false },
-        prerender: {
-            crawlLinks: true,
-            failOnError: false,
-            routes: ["/", "/articles/**"],
-            ignore: ["/api", "/app/**"],
+    watch: ["sleek.config.ts"],
+    appConfig: {},
+    runtimeConfig: {},
+    routeRules: {
+        "/_nuxt/**": {
+            cache: {
+                maxAge: 2592000,
+                staleMaxAge: 31536000,
+            },
+        },
+        "/sitemap.xml": {
+            isr: 3600,
         },
     },
+    nitro: {
+        debug: false,
+        experimental: { openAPI: false },
+        compressPublicAssets: { brotli: true },
 
+        prerender: {
+            crawlLinks: true,
+            failOnError: true,
+            ignore: ["/api", "/app"],
+            routes: ["/", "sitemap.xml"],
+        },
+    },
+    ogImage: {
+        strictNuxtContentPaths: true,
+        defaults: { component: "OgImageDefault" },
+    },
     googleFonts: {
         preload: true,
         families: {
-            "Noto Sans": true,
+            Poppins: true,
             Inconsolata: true,
         },
     },
-    multiCache: {
-        data: { enabled: true },
-    },
 
-    modules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts", "@nuxt/icon", "@vueuse/nuxt", "@pinia/nuxt", "nuxt-multi-cache", "nuxt-security", "@nuxtjs/seo", "@nuxt/content"],
+    content: {
+        markdown: {
+            remarkPlugins: ["remark-math"],
+            rehypePlugins: ["rehype-katex"],
+        },
+    },
+    modules: [
+        "@nuxtjs/tailwindcss",
+        "@nuxtjs/google-fonts",
+        "@nuxt/icon",
+        "@vueuse/nuxt",
+        "@pinia/nuxt",
+        "@nuxtjs/robots",
+        "@nuxt/content",
+        "@nuxt/image",
+        "@nuxtjs/sitemap",
+        "@nuxtjs/seo",
+        "nuxt-og-image",
+        "nuxt-schema-org",
+    ],
 
     compatibilityDate: "2024-07-25",
 });

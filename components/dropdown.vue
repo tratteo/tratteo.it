@@ -1,157 +1,112 @@
 <template>
-    <div class="relative">
-        <button ref="buttonEl" :aria-label="`menu`" class="btn w-full">
-            {{ props.label }}
-        </button>
-        <div
-            ref="el"
-            :style="{
-                '--max-h': maxHeight,
-                '--min-w': minWidth,
-                '--x-offset': offsets.xOffset,
-                '--y-offset': offsets.yOffset,
-            }"
-            class="vertical-panel"
-            v-if="open"
-        >
-            <div class="w-full">
-                <slot></slot>
+    <div v-if="mounted" ref="rootEl" class="dropdown font-normal relative scrollbar" :class="{ 'dropdown-open': open }">
+        <input type="text" :required="required" :value="model" class="absolute opacity-0 bottom-0 left-0 right-0 top-0 pointer-events-none" />
+        <div role="button" @click="toggleOpen" class="min-w-[inherit] max-w-[inherit] w-full">
+            <div v-if="slots.button" class="w-full">
+                <slot name="button" :value="model" :formatter="formatter"></slot>
             </div>
-            <div v-if="props.items.length > 0" class="mt-2 overflow-y-scroll max-h-[var(--max-h)]">
-                <div class="flex flex-col gap-2">
-                    <ul class="flex-col items-center justify-center gap-2 top-[-50%]">
-                        <li
-                            :class="elementStyle(index, i)"
-                            :aria-label="`select ${itemsFormatter?.(i) ?? i.toString()}`"
-                            v-for="(i, index) in props.items"
-                            class="element-button"
-                            @click="elementClicked(i, index)"
-                        >
-                            {{ itemsFormatter?.(i) ?? i.toString() }}
+            <div v-else>
+                <button type="button" class="btn btn-ghost w-full border-base-content/20">
+                    <p v-if="placeholder && !model" class="opacity-75">{{ placeholder }}</p>
+                    <p v-else>
+                        {{ formatter?.(model) ?? model }}
+                    </p>
+                </button>
+            </div>
+        </div>
+        <div
+            v-if="bp.greaterOrEqual('md').value"
+            ref="panelEl"
+            :style="floatingStyles"
+            class="dropdown-content flex flex-col items-stretch bg-base-200 z-[100] shadow border border-base-content/20 p-1 rounded-box gap-4 w-full min-w-fit"
+        >
+            <slot name="header"></slot>
+            <ul class="max-h-[20rem] scrollbar-display flex flex-col items-stretch text-sm">
+                <li v-for="(el, i) in items" @click="(ev) => elementClicked(el, i)" class="rounded-btn hover:bg-base-content/20 px-2 py-1 cursor-pointer">
+                    <a>{{ formatter?.(el) ?? el }}</a>
+                </li>
+            </ul>
+        </div>
+        <Modal v-else @ref-init="(el) => (modalEl = el)" @close="() => (open = false)">
+            <template #title><slot name="header"></slot></template>
+            <template #content>
+                <div v-if="props.items.length > 0" class="w-full">
+                    <ul class="flex-col flex flex-wrap items-stretch justify-center gap-2">
+                        <li :aria-label="`select ${formatter?.(i) ?? i?.toString()}`" v-for="(i, index) in props.items" class="element-button" @click="elementClicked(i, index)">
+                            {{ formatter?.(i) ?? i?.toString() }}
                         </li>
                     </ul>
                 </div>
-            </div>
-        </div>
+            </template>
+        </Modal>
     </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup generic="T extends any">
+import { autoPlacement, autoUpdate, offset, shift, useFloating } from "@floating-ui/vue";
+import { breakpointsTailwind } from "@vueuse/core";
+const bp = useBreakpoints(breakpointsTailwind);
+const mounted = useMounted();
+const rootEl = ref<HTMLElement>();
+const modalEl = ref<HTMLDialogElement>();
+const modalController = useModalController();
 const open = ref(false);
-const el = ref<HTMLElement | null>(null);
-const buttonEl = ref<HTMLElement | null>(null);
-const minWidth = ref<string>();
-const offsets = ref<{ xOffset: string; yOffset: string }>({
-    xOffset: "0px",
-    yOffset: "0px",
+const slots = useSlots();
+const model = defineModel<T>();
+const panelEl = ref();
+const { floatingStyles } = useFloating(rootEl, panelEl, {
+    middleware: [offset(10), shift({ padding: 2 }), autoPlacement({ allowedPlacements: ["bottom", "top"] })],
+    whileElementsMounted: autoUpdate,
 });
-
-const windowSize = useWindowSize();
-
-const model = defineModel<any>();
 
 const props = withDefaults(
     defineProps<{
-        label: string;
-        items: any[];
-        itemsFormatter?: (e: any) => string;
-        selectedItems?: any[];
-        maxHeight?: string;
+        items: T[];
+        closeOnSelect?: boolean;
+        placeholder?: string;
+        required?: boolean;
+        formatter?: (e: T | undefined) => string;
     }>(),
-    {
-        label: "Dropdown",
-        selectedItems: <any>[],
-        maxHeight: "20rem",
-    }
+    { closeOnSelect: true, placeholder: "Select" }
 );
+onMounted(() => {
+    window.addEventListener("click", onWindowClick);
+});
+onUnmounted(() => {
+    window.removeEventListener("click", onWindowClick);
+});
+
+function onWindowClick(ev: MouseEvent) {
+    if (rootEl.value && !rootEl.value.contains(ev.target as HTMLElement)) {
+        open.value = false;
+    }
+}
+
+function toggleOpen() {
+    if (open.value) {
+        modalController.close(modalEl.value);
+    } else {
+        modalController.open(modalEl.value);
+    }
+    open.value = !open.value;
+}
+
 const emit = defineEmits<{
     (e: "changed", value: any, index: number): void;
-    (e: "changedStatus", open: boolean): void;
 }>();
 
 function elementClicked(element: any, index: number) {
-    emit("changed", element, index);
-    open.value = false;
     model.value = element;
+    emit("changed", element, index);
+    if (props.closeOnSelect) {
+        open.value = false;
+    }
+    modalController.close(modalEl.value);
 }
-
-const elementStyle = computed(() => (index: number, i: any) => {
-    if (!props.selectedItems) return [];
-    if (
-        (typeof i === "string" && props.selectedItems.includes(i.toLocaleLowerCase())) ||
-        props.selectedItems.includes(i)
-    ) {
-        return ["bg-accent/50"];
-    }
-
-    return [];
-});
-
-watch(open, () => emit("changedStatus", open.value));
-
-watch(el, () => {
-    if (!el.value) {
-        offsets.value = { xOffset: "0px", yOffset: "0px" };
-        return;
-    }
-    minWidth.value = (el.value?.clientWidth ?? 0) + "px";
-    let bbox = el.value.getBoundingClientRect();
-    if (bbox.x <= 0) {
-        offsets.value.xOffset = -bbox.x + "px";
-    } else if (bbox.x > windowSize.width.value - bbox.width) {
-        offsets.value.xOffset = windowSize.width.value - bbox.width - bbox.x + "px";
-        console.log(offsets.value.xOffset);
-    }
-    if (bbox.y < 0) {
-        offsets.value.yOffset = -bbox.y + "px";
-    } else if (bbox.y > windowSize.height.value - bbox.height) {
-        offsets.value.yOffset = -(windowSize.height.value - bbox.height) + "px";
-    }
-});
-onMounted(() => {
-    window.addEventListener("click", function (e) {
-        if (e.target != el.value && !el.value?.contains(e.target as Node) && open.value) {
-            open.value = false;
-        } else if (e.target == buttonEl.value) {
-            open.value = !open.value;
-        }
-        console.log(open.value);
-    });
-});
 </script>
 
 <style lang="css" scoped>
-.vertical-panel {
-    z-index: 10;
-    transform: translateX(calc(-50% + var(--x-offset, 0px)));
-    @apply absolute min-w-[var(--min-w,0)] left-[50%] rounded-2xl border-none bg-base-300 py-2 pl-[10px] pr-[10px];
-}
 .element-button {
-    @apply btn btn-ghost w-full text-nowrap rounded-lg px-4 text-start;
-}
-* {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-/* Scroll bar stylings */
-::-webkit-scrollbar {
-    display: none;
-    width: 6px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    @apply rounded-[var(--border-radius)] bg-base-100;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    @apply bg-neutral-content;
+    @apply btn  text-nowrap rounded-lg px-4 text-start;
 }
 </style>

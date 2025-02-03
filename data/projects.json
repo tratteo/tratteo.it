@@ -1,142 +1,230 @@
 {
-    "Web & Saas": {
-        "icon": "material-symbols:code-rounded",
+    "projects": [
+        {
+            "title": "Wildspace",
+            "role": "CEO & Founder",
+            "status": "discountinued",
+            "thumbnail": "/thumbnails/wildspace.webp",
+            "url": "https://wildspace.it?locale=en",
+            "description": "The first software platform that directly connects outdoor passionates with the entrepreneurs of the outdoor sector.",
+            "links": [],
+            "icon": "/icons/wildspace.svg",
+            "tags": [
+                "b2b/b2c",
+                "web",
+                "mobile"
+            ]
+        },
+        {
+            "title": "Depthlog",
+            "role": "Creator",
+            "status": "shipped",
+            "thumbnail": "/thumbnails/depthlog.webp",
+            "url": "https://depthlog.net",
+            "description": "The most accurate, simple and versatile scuba dive log and companion.",
+            "links": [],
+            "icon": "/icons/depthlog.svg",
+            "tags": [
+                "app",
+                "web"
+            ]
+        },
+        {
+            "title": "Codemeup",
+            "role": "Creator",
+            "status": "shipped",
+            "thumbnail": "/thumbnails/codemeup.svg",
+            "url": "https://codemeup.dev",
+            "description": "Embed code snippets directly from Github in a blink.",
+            "links": [
+                {
+                    "icon": "logos:producthunt",
+                    "url": "https://www.producthunt.com/posts/codemeup?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-codemeup"
+                }
+            ],
+            "icon": "/icons/codemeup.png",
+            "tags": [
+                "dev",
+                "tool",
+                "api"
+            ]
+        },
+        {
+            "title": "ReserveFlow",
+            "role": "Founder",
+            "status": "validating",
+            "thumbnail": "/thumbnails/reserveflow.jpeg",
+            "url": "https://reserveflow.vercel.app",
+            "description": "Free your time by automatizing reservations.",
+            "links": [],
+            "icon": "https://reserveflow.vercel.app/icon.svg",
+            "tags": [
+                "app",
+                "web",
+                "b2b"
+            ]
+        }
+    ],
+    "mods": {
+        "github": "https://github.com/trat-mods",
         "projects": [
             {
-                "title": "Codemeup",
-                "description": "Embed code snippets directly from Github in a blink. <a href='https://www.producthunt.com/posts/codemeup?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-codemeup'  target='_blank' ><img src='https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=488841&theme=neutral' alt='Codemeup - Embed&#0032;code&#0032;snippets&#0032;directly&#0032;from&#0032;Github&#0032;in&#0032;a&#0032;blink | Product Hunt' style='width: 160px; padding-top: 8px;' /></a>",
-                "date": "10/09/2024",
-                "url": "https://codemeup.dev",
-                "icon": "https://codemeup.dev/icon.png",
-                "tags": [
-                    "dev",
-                    "api"
-                ]
-            },
-            {
-                "title": "Depthlog",
-                "description": "Plan and log your dives, compute useful statistics and share your progresses with the world.",
-                "date": "10/09/2024",
-                "url": "https://depthlog.vercel.app",
-                "icon": "https://depthlog.vercel.app/icon.png",
-                "tags": [
-                    "app"
-                ]
-            }
-        ]
-    },
-    "Startups": {
-        "icon": "streamline:startup-solid",
-        "projects": [
-            {
-                "title": "Wildspace <p class='text-sm text-secondary'>CEO & Founder</p>",
-                "date": "01/06/2024",
-                "url": "https://wildspace.it?locale=en",
-                "description": "The first software platform that directly connects outdoor passionates with the entrepreneurs of the outdoor sector.",
-                "icon": "https://wildspace.it/logo.svg",
-                "tags": [
-                    "platform",
-                    "web",
-                    "mobile"
-                ]
-            }
-        ]
-    },
-    "Videogames & modding": {
-        "icon": "bx:bxs-joystick-alt",
-        "projects": [
-            {
-                "title": "Transfer Chest <img width='100px' src='/minecraft.svg' >",
+                "title": "Transfer Chest",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/transfer-chest",
-                "description": "Transfer items at any time and in any dimension in a blink. <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/432830?style=flat&logo=curseforge&logoSize=auto' >",
-                "icon": "https://github.com/trat-mods/TransferChest/blob/main/icon.png?raw=true"
+                "description": "Transfer items at any time and in any dimension in a blink.",
+                "shields": [
+                    {
+                        "name": "Curseforge",
+                        "url": "https://img.shields.io/curseforge/dt/432830?style=flat&logo=curseforge&logoSize=auto"
+                    },
+                    {
+                        "name": "Issues",
+                        "url": "https://img.shields.io/github/issues/trat-mods/TransferChest"
+                    }
+                ],
+                "github": "https://github.com/trat-mods/TransferChest",
+                "icon": "https://github.com/trat-mods/TransferChest/blob/main/icon.png?raw=true",
+                "wiki": "https://github.com/trat-mods/TransferChest/blob/main/README.md",
+                "frameworks": [
+                    {
+                        "name": "Fabric",
+                        "icon": "/icons/fabric.jpeg"
+                    },
+                    {
+                        "name": "Forge",
+                        "icon": "/icons/forge.jpeg"
+                    }
+                ],
+                "tags": [
+                    "storage",
+                    "addons",
+                    "magic"
+                ]
             },
             {
-                "title": "Launchers <img width='100px' src='/minecraft.svg' >",
+                "title": "Launchers",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/launchers",
-                "description": "Launch anything with the Launchers: items, entities players and more. <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/372835?style=flat&logo=curseforge&logoSize=auto' >",
-                "icon": "https://github.com/trat-mods/LaunchersMod/blob/main/icon.png?raw=true"
+                "description": "Launch anything with the Launchers: items, entities players and more.",
+                "shields": [
+                    {
+                        "name": "Curseforge",
+                        "url": "https://img.shields.io/curseforge/dt/372835?style=flat&logo=curseforge&logoSize=auto"
+                    },
+                    {
+                        "name": "Issues",
+                        "url": "https://img.shields.io/github/issues/trat-mods/LaunchersMod"
+                    }
+                ],
+                "icon": "https://github.com/trat-mods/LaunchersMod/blob/main/icon.png?raw=true",
+                "github": "https://github.com/trat-mods/LaunchersMod",
+                "frameworks": [
+                    {
+                        "name": "Fabric",
+                        "icon": "/icons/fabric.jpeg"
+                    },
+                    {
+                        "name": "Forge",
+                        "icon": "/icons/forge.jpeg"
+                    },
+                    {
+                        "name": "Neoforge",
+                        "icon": "/icons/neoforge.jpeg"
+                    }
+                ],
+                "tags": [
+                    "tech",
+                    "transport",
+                    "redstone",
+                    "automation"
+                ]
             },
             {
-                "title": "Literally Chunk Loader <img width='100px' src='/minecraft.svg' >",
+                "title": "Literally Chunk Loader",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/literally-chunk-loader",
-                "description": "A very simple yet functional vanilla inspired chunk loader. <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/378183?style=flat&logo=curseforge&logoSize=auto' >",
-                "icon": "https://github.com/trat-mods/LiterallyChunkLoader/blob/main/icon.png?raw=true"
+                "description": "A very simple yet functional vanilla inspired chunk loader.",
+                "shields": [
+                    {
+                        "name": "Curseforge",
+                        "url": "https://img.shields.io/curseforge/dt/378183?style=flat&logo=curseforge&logoSize=auto"
+                    },
+                    {
+                        "name": "Issues",
+                        "url": "https://img.shields.io/github/issues-raw/trat-mods/LiterallyChunkLoader"
+                    }
+                ],
+                "icon": "https://github.com/trat-mods/LiterallyChunkLoader/blob/main/icon.png?raw=true",
+                "github": "https://github.com/trat-mods/LiterallyChunkLoader",
+                "frameworks": [
+                    {
+                        "name": "Fabric",
+                        "icon": "/icons/fabric.jpeg"
+                    },
+                    {
+                        "name": "Forge",
+                        "icon": "/icons/forge.jpeg"
+                    }
+                ],
+                "tags": [
+                    "utility",
+                    "addons",
+                    "world"
+                ]
             },
             {
-                "title": "Multihopper <img width='100px' src='/minecraft.svg' >",
+                "title": "Multihopper",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/multihopper",
                 "date": "01/09/2024",
-                "description": "Introduces a smart hopper that does not get clogged with items during transfering  <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/1027743?style=flat&logo=curseforge&logoSize=auto' >",
-                "icon": "https://github.com/trat-mods/Multihopper/blob/main/icon.png?raw=true"
+                "description": "Introduces a smart hopper that does not get clogged with items during transfering",
+                "shields": [
+                    {
+                        "name": "Curseforge",
+                        "url": "https://img.shields.io/curseforge/dt/1027743?style=flat&logo=curseforge&logoSize=auto"
+                    },
+                    {
+                        "name": "Issues",
+                        "url": "https://img.shields.io/github/issues/trat-mods/Multihopper"
+                    }
+                ],
+                "icon": "https://github.com/trat-mods/Multihopper/blob/main/icon.png?raw=true",
+                "github": "https://github.com/trat-mods/Multihopper",
+                "frameworks": [
+                    {
+                        "name": "Fabric",
+                        "icon": "/icons/fabric.jpeg"
+                    }
+                ],
+                "tags": [
+                    "tech",
+                    "storage",
+                    "automation"
+                ]
             },
             {
-                "title": "Not That Item! <img width='100px' src='/minecraft.svg' >",
+                "title": "Not That Item!",
                 "url": "https://www.curseforge.com/minecraft/mc-mods/not-that-item",
                 "date": "18/09/2024",
-                "description": "Stop picking up trash when you don't want to. Introduces a filter that can prevent players from picking up unwanted items  <img style='padding-top: 8px;' src='https://img.shields.io/curseforge/dt/1104943?style=flat&logo=curseforge&logoSize=auto' >",
-                "icon": "https://github.com/trat-mods/NotThatItem/blob/main/icon.png?raw=true"
-            }
-        ]
-    },
-    "Libraries & open source": {
-        "icon": "lucide:package",
-        "projects": [
-            {
-                "title": "Omnimodel",
-                "url": "https://github.com/tratteo/omnimodel",
-                "description": "Model complex data and access it in an easy and safe way",
-                "icon": "https://static-00.iconduck.com/assets.00/dart-icon-2042x2048-775u9j9x.png",
+                "description": "Stop picking up trash when you don't want to. Introduces a filter that can prevent players from picking up unwanted items",
+                "shields": [
+                    {
+                        "name": "Curseforge",
+                        "url": "https://img.shields.io/curseforge/dt/1104943?style=flat&logo=curseforge&logoSize=auto"
+                    },
+                    {
+                        "name": "Issues",
+                        "url": "https://img.shields.io/github/issues/trat-mods/NotThatItem"
+                    }
+                ],
+                "github": "https://github.com/trat-mods/NotThatItem",
+                "icon": "https://github.com/trat-mods/NotThatItem/blob/main/icon.png?raw=true",
+                "frameworks": [
+                    {
+                        "name": "Fabric",
+                        "icon": "/icons/fabric.jpeg"
+                    }
+                ],
                 "tags": [
-                    "dart"
-                ]
-            },
-            {
-                "title": "MarkedText",
-                "url": "https://github.com/tratteo/marked_text",
-                "description": "Handle text spans in Flutter like a pro",
-                "icon": "https://cdn.prod.website-files.com/5ee12d8d7f840543bde883de/5ef3a1148ac97166a06253c1_flutter-logo-white-inset.svg",
-                "tags": [
-                    "flutter"
-                ]
-            },
-            {
-                "title": "GuideIt",
-                "url": "https://github.com/tratteo/guide_it",
-                "description": "Create guides and interactive tutorials for your Flutter applications",
-                "icon": "https://cdn.prod.website-files.com/5ee12d8d7f840543bde883de/5ef3a1148ac97166a06253c1_flutter-logo-white-inset.svg",
-                "tags": [
-                    "flutter"
-                ]
-            },
-            {
-                "title": "Mapplet",
-                "url": "https://github.com/wildspace-dev/mapplet",
-                "description": "The easiest way to store flutter maps for offline usage",
-                "icon": "https://cdn.prod.website-files.com/5ee12d8d7f840543bde883de/5ef3a1148ac97166a06253c1_flutter-logo-white-inset.svg",
-                "tags": [
-                    "flutter",
-                    "map"
-                ]
-            },
-            {
-                "title": "Validatox <img width='70px' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Unity_2021.svg/640px-Unity_2021.svg.png' >",
-                "url": "https://github.com/tratteo/Validatox",
-                "description": "A lightweight Unity editor tool that allows for references and custom validation logic in projects",
-                "icon": "https://github.com/tratteo/Validatox/blob/main/Editor/Icons/validatox_icon.png?raw=true",
-                "tags": [
-                    "unity",
-                    "tool"
-                ]
-            },
-            {
-                "title": "GibFrame <img width='70px' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Unity_2021.svg/640px-Unity_2021.svg.png' >",
-                "url": "https://github.com/tratteo/GibFrame",
-                "description": "An extended library for Unity that includes advanced game design patterns and useful utilities",
-                "icon": "https://raw.githubusercontent.com/tratteo/GibFrame/main/logo.png",
-                "tags": [
-                    "unity",
-                    "library"
+                    "utility",
+                    "qol"
                 ]
             }
         ]

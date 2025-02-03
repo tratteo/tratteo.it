@@ -1,0 +1,11 @@
+.scrollbar-display {
+    scrollbar-width: thin;
+    scrollbar-color: theme("colors.base-content") / 20 transparent;
+    @apply overflow-y-auto p-1;
+}
+
+.expanded-vertical-scrollview {
+    scrollbar-width: thin;
+    scrollbar-color: theme("colors.base-content") / 20 transparent;
+    @apply absolute top-1 left-1 right-1 bottom-1 overflow-y-auto p-1;
+}

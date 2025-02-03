@@ -1,174 +1,245 @@
 <template>
-    <div v-if="mounted" class="flex flex-col xl:flex-row items-stretch w-full gap-8">
-        <div class="xl:flex-[1] flex flex-col gap-2 items-center xl:items-start">
-            <div class="avatar">
-                <div class="w-[10rem] rounded-full ring-primary ring-2">
-                    <img :src="sleekConfig.icon" />
+    <div class="flex flex-col items-center w-full gap-8 max-w-7xl self-center mb-16 mt-16">
+        <div class="flex flex-row items-center justify-center w-full gap-4 flex-wrap">
+            <div class="flex items-start justify-center flex-row gap-4">
+                <div class="flex flex-col items-center gap-2">
+                    <div class="avatar">
+                        <div class="w-[6rem] sm:w-[10rem] rounded-full">
+                            <img alt="Trat" src="/icon.webp" />
+                        </div>
+                    </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <label class="flex items-center gap-2 text-sm">
+                            <icon name="twemoji:flag-italy" class="size-5"></icon>
+                            <p class="opacity-75">Italy</p>
+                        </label>
+                    </div>
+                </div>
+                <div class="chat chat-start gap-1 w-full md:min-w-[16rem]">
+                    <div class="chat-header">
+                        <div class="flex flex-row items-center gap-0">
+                            <p>When I'm not&nbsp;</p>
+                            <Transition name="join" mode="out-in">
+                                <p :key="currentAction.action.name" :style="{ '--y-tr': '4px', '--duration-tr': '400ms' }" class="font-bold">
+                                    {{ currentAction.action.name }}
+                                </p>
+                            </Transition>
+                        </div>
+                    </div>
+                    <div class="chat-bubble chat-bubble-primary">I am building cool stuff.</div>
+                    <div class="chat-footer">
+                        <ClientOnly>
+                            <time class="text-xs opacity-50">{{ fns.format(currentAction.date, "HH:mm:ss") }}</time>
+                        </ClientOnly>
+                    </div>
                 </div>
             </div>
-            <section class="flex flex-col items-center xl:items-start gap-2 xl:gap-4 xl:w-full">
-                <h2 class="m-0 font-bold">Matteo Beltrame</h2>
-                <div class="flex flex-row gap-8">
-                    <div class="flex flex-row items-center gap-2 justify-start">
-                        <icon name="twemoji:flag-italy"></icon>
-                        <p>Italy</p>
-                    </div>
-                    <button
-                        @click="
-                            () => {
-                                clipboard.copy('bltmtt@gmail.com');
-                                toast.add({
-                                    type: ToastType.success,
-                                    durationMs: 2000,
-                                    message: 'Email copied, hit me up! 📬',
-                                });
-                            }
-                        "
-                        class="flex cursor-pointer flex-row items-center gap-2 justify-start"
-                    >
-                        <icon name="material-symbols:mail-rounded"></icon>
-                        <p class="underline">bltmtt@gmail.com</p>
-                    </button>
-                </div>
-                <div class="card bg-primary/15 card-compact self-center xl:self-auto">
-                    <div class="card-body italic flex flex-row items-center group select-none">
-                        <icon name="ic:baseline-format-quote" class="rotate-180 mb-8 group-hover:text-primary transition-all duration-200 group-hover:scale-110"></icon>
-                        <p class="transition-all duration-200 group-hover:scale-[102%]">
-                            Don't do it just for the goal, do it for the person you need to embody to achieve the goal
-                        </p>
-                        <icon name="ic:baseline-format-quote" class="mt-8 group-hover:text-primary transition-all duration-200 group-hover:scale-110"></icon>
+            <div class="relative flex p-4 lg:p-8 rounded-box flex-col border shadow-lg border-base-content/20 card-compact mb-16">
+                <p class="card-title">Hey, it's Matteo!</p>
+                <p>I fired myself two times in less than a year.</p>
+                <p>So I decided to become my own boss to build and do stuff that i love.</p>
+                <div class="absolute flex items-end bottom-[-0.75rem] left-[2rem] translate-y-[100%] gap-2">
+                    <SvgDrawnArrow class="fill-primary size-12 rotate-90"></SvgDrawnArrow>
+                    <div class="flex flex-col items-start gap-0 mb-[-.5rem]">
+                        <p class="">Tracing my path as Solopreneur</p>
+                        <!-- <p class="text-sm opacity-75">Haven't earned much yet tho 👉👈</p> -->
                     </div>
                 </div>
-
-                <div class="flex flex-row items-center justify-center flex-wrap gap-6 my-2">
-                    <div class="tooltip" data-tip="LinkedIn">
-                        <a href="https://www.linkedin.com/in/matteo-beltrame" target="_blank">
-                            <icon class="social-icon" name="skill-icons:linkedin"></icon>
-                        </a>
-                    </div>
-                    <div class="tooltip" data-tip="Github">
-                        <a href="https://github.com/tratteo" target="_blank">
-                            <icon class="social-icon" name="mdi:github"></icon>
-                        </a>
-                    </div>
-                    <div class="tooltip" data-tip="Instagram">
-                        <a href="https://www.instagram.com/tratteo" target="_blank">
-                            <icon class="social-icon" name="skill-icons:instagram"></icon>
-                        </a>
-                    </div>
-                    <div class="tooltip" data-tip="Buy Me A Coffee">
-                        <a href="https://www.buymeacoffee.com/tratteo" target="_blank">
-                            <icon class="social-icon" name="fluent-emoji-flat:kiwi-fruit"></icon>
-                        </a>
-                    </div>
-                    <div class="tooltip" data-tip="Product Hunt">
-                        <a href="https://www.producthunt.com/@tratteo" target="_blank">
-                            <icon class="social-icon" name="logos:producthunt"></icon>
-                        </a>
-                    </div>
-                    <div class="tooltip" data-tip="X">
-                        <a href="https://x.com/tratteo" target="_blank">
-                            <icon class="social-icon" name="bi:twitter-x"></icon>
-                        </a>
-                    </div>
-                    <div class="tooltip" data-tip="Threads">
-                        <a href="https://www.threads.net/@tratteo" target="_blank">
-                            <icon class="social-icon" name="ph:threads-logo-bold"></icon>
-                        </a>
-                    </div>
-                </div>
-                <Accordion>
-                    <template #title>
-                        <p>✏️ Something about me</p>
-                    </template>
-                    <template #content>
-                        <p class="text-sm">
-                            My path began in a pretty standard way. I studied Computer Engineering and then Computer Science. <br />
-                            I easily landed a job in a big corporate months before graduating, I was excited and happy to be thrown into the real world. However, my expectation
-                            were actually in conflict with my nature.<br /><br />
-                            Since the first day at my new job, I felt
-                            <b>something was off, things were not as I imagined, suddenly I did not felt the protagonist of my own life anymore</b>.<br />
-                            After less than 3 months, I got offered an important remote position in an American startup, I immediately quitted my corporate job and grasped this
-                            opportunity.
-                            <b>This new job was better aligned with my identity, yet I still felt something was missing.</b><br /><br />
-                            During this period, I founded the startup
-                            <a href="https://wildspace.it?locale=en" target="_blank" class="link">wildspace.it</a> with a close friend of mine.<br />
-                            This was the spark that I needed:
-                            <b>I understood that my path was different, I wanted to live a life at its fullest, I wanted to be the main protagonist of my life.</b><br />
-                            <span class="font-bold text-primary"
-                                >For the second time in less than a year, I decided to quit my job to dedicate all my time to my startup, to what I have created and to what I will
-                                create in the future.</span
-                            >
-                        </p>
-                    </template>
-                </Accordion>
-            </section>
+            </div>
         </div>
-        <div class="xl:flex-[2] flex flex-col gap-4">
-            <div class="flex flex-row items-center justify-between gap-2 flex-wrap">
-                <h3>Check out what I have been creating 👇</h3>
-                <p>{{ projectsCount }} published projects 😎</p>
-            </div>
-            <div v-for="(s, key, index) in projectsData" class="collapse collapse-arrow bg-base-300">
-                <input type="radio" @click="() => openSection(index)" name="sections_accordion" class="cursor-pointer" :checked="openedSection === index" />
-                <div class="collapse-title flex flex-row gap-2">
-                    <icon :name="s.icon" :class="{ 'text-primary': openedSection === index }"></icon>
-                    <p>{{ key }}</p>
-                </div>
-                <div class="collapse-content flex flex-row items-stretch justify-center xl:justify-start flex-wrap gap-8">
-                    <div v-for="p in s.projects" class="card card-compact bg-neutral w-64 md:w-[20rem] shadow-xl cursor-pointer hover:scale-[102%] transition-all duration-150">
-                        <a :href="p.url" target="_blank">
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    <div class="avatar">
-                                        <div class="w-12 rounded-[0.25rem]">
-                                            <img :src="p.icon" />
-                                        </div>
-                                    </div>
-                                    <div v-html="p.title"></div>
-                                    <div v-if="(p as any).date && new Date().getTime() - fns.parse((p as any).date, 'dd/MM/yyyy', new Date()).getTime() < 8.6e7 * 31">
-                                        <div class="badge badge-accent">NEW</div>
-                                    </div>
-                                </h2>
-                                <p class="text-sm" v-html="p.description"></p>
-                                <div class="card-side"></div>
-                                <div class="card-actions justify-end">
-                                    <div v-for="t in (p as any).tags ?? []" class="badge badge-primary">{{ t }}</div>
+        <section class="flex flex-col items-stretch gap-4 w-full">
+            <h3 class="m-0">What the hell are you doing here?</h3>
+            <p>My app's are way cooler than this lame website 👇</p>
+            <div class="lg:grid lg:grid-cols-2 flex flex-col items-stretch gap-4 rounded-box">
+                <a
+                    v-for="p in sortedProjects"
+                    class="card-compact cursor-pointer image-full select-none shadow group relative card card-bordered border-base-content/20 w-full overflow-clip"
+                    :href="p.url"
+                    target="_blank"
+                >
+                    <img
+                        v-if="p.thumbnail"
+                        :src="p.thumbnail"
+                        class="z-[-1] group-hover:scale-[106%] ease-out transition-transform duration-[300ms] object-cover absolute w-full h-full opacity-15"
+                        :alt="p.title"
+                    />
+                    <div class="card-body">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="avatar">
+                                <div class="w-16 rounded-xl">
+                                    <img :src="p.icon" />
                                 </div>
                             </div>
-                        </a>
+                            <div class="flex flex-col items-start gap-1">
+                                <p class="card-title">{{ p.title }}</p>
+                                <div
+                                    class="flex items-center gap-2 px-2 py-1 rounded-btn border border-transparent transition-all duration-300 ease-out"
+                                    :class="classesFromStatus(p.status)"
+                                >
+                                    <icon :name="iconFromStatus(p.status)"></icon>
+                                    <p class="text-sm font-semibold">{{ capitalize(p.status) }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-sm">{{ p.description }}</p>
+                        <div class="card-side">
+                            <p v-for="l in p.links" :href="l.url" class="btn btn-ghost btn-square btn-sm" target="_blank"><icon class="size-6" :name="l.icon"></icon></p>
+                        </div>
+                        <div class="card-actions justify-end">
+                            <div v-for="t in p.tags" class="badge badge-primary">{{ t }}</div>
+                        </div>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <icon
+                            name="material-symbols:arrow-outward-rounded"
+                            class="group-hover:translate-x-2 group-hover:-translate-y-2 duration-[300ms] ease-out transition-transform"
+                        ></icon>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <section class="flex flex-col items-stretch w-full gap-6">
+            <img src="/icons/minecraft_logo.svg" alt="Minecraft logo" class="h-40" />
+            <div ref="minecraftCardEl" class="relative h-fit w-full">
+                <img src="/icons/creeper.png" class="creeper" :style="{ '--x-tr': creeperTrs.x, '--y-tr': creeperTrs.y }" alt="Minecraft creeper" />
+                <NuxtLink
+                    href="/minecraft-mods"
+                    class="card z-[4] relative min-h-[10rem] cursor-pointer card-bordered border-base-content/20 shadow group flex flex-col items-stretch gap-4 w-full rounded-box overflow-clip"
+                >
+                    <div class="card-body">
+                        <h3 class="m-0">Are you here for my Minecraft mods?</h3>
+                        <p>Got a dedicated page for that 😎</p>
+                    </div>
+
+                    <div class="absolute w-full h-full opacity-50 bg-base-300 z-[-1]"></div>
+                    <div class="absolute top-4 right-4">
+                        <icon
+                            name="material-symbols:arrow-outward-rounded"
+                            class="group-hover:translate-x-2 group-hover:-translate-y-2 duration-[300ms] ease-out transition-transform"
+                        ></icon>
+                    </div>
+                    <img
+                        src="/thumbnails/minecraft.jpeg"
+                        class="z-[-2] group-hover:scale-[104%] ease-out transition-transform duration-[300ms] object-cover absolute w-full h-full"
+                        alt="Minecraft thumbnail"
+                    />
+                </NuxtLink>
+            </div>
+        </section>
+        <!-- <div class="flex flex-col items-center gap-2">
+                <div class="avatar">
+                    <div class="rounded-full w-64">
+                        <img src="/icon.webp" />
                     </div>
                 </div>
-            </div>
-        </div>
+                <h2>Matteo Beltrame</h2>
+            </div> -->
     </div>
 </template>
 
 <script lang="ts" setup>
 import * as fns from "date-fns";
-import projectsData from "~/data/projects.json";
-const clipboard = useClipboard();
-const toast = useToast();
-const openedSection = ref<number>(0);
-const mounted = useMounted();
-const sleekConfig = useAppConfig().sleek;
-const projectsCount = computed(() => {
-    let count = 0;
-    Object.values(projectsData).forEach((v) => (count += v.projects.length));
-    return count;
-});
+import projects from "~/data/projects.json";
 
-function openSection(index: number) {
-    if (openedSection.value === index) {
-        openedSection.value = -1;
-    } else {
-        openedSection.value = index;
-    }
+interface ProjectStatus {
+    status: string;
 }
+const statusPriority: Record<string, number> = {
+    shipped: 1,
+    validating: 2,
+    discountinued: 3,
+};
+const minecraftCardEl = ref();
+const creeperTrs = ref<{ x: number | string; y: number | string }>({ x: 0, y: 0 });
+const actions = [{ name: "Diving 🌊" }, { name: "Climbing 🏔️" }, { name: "Skiing ❄️" }, { name: "Sleeping 💤" }, { name: "Training 🏋️" }];
+const currentAction = ref<{ action: any; date: Date; index: number }>({ action: actions[0], date: new Date(), index: 0 });
+
+function updateAction() {
+    const index = (currentAction.value.index + 1) % actions.length;
+    currentAction.value = { action: actions.at(index), date: new Date(), index: index };
+    setTimeout(updateAction, Math.random() * 2000 + 2000);
+}
+function creeperPeak() {
+    const width = (minecraftCardEl.value?.getBoundingClientRect()?.width ?? 128) - 64;
+    creeperTrs.value = { x: `${Math.random() * width}px`, y: "-64px" };
+    setTimeout(
+        () => {
+            creeperTrs.value = { x: creeperTrs.value.x, y: 0 };
+            setTimeout(creeperPeak, Math.random() * 3000 + 4000);
+        },
+        Math.random() * 2000 + 1000
+    );
+}
+onMounted(() => {
+    updateAction();
+    setTimeout(creeperPeak, 1000);
+});
+const sortedProjects = computed(() => sortByStatus(projects.projects));
+
+function sortByStatus<T extends ProjectStatus>(items: T[]): T[] {
+    return [...items].sort((a, b) => {
+        return statusPriority[a.status] - statusPriority[b.status];
+    });
+}
+function iconFromStatus(status: string): string {
+    switch (status) {
+        case "discountinued":
+            return "fluent-emoji-flat:skull";
+        case "validating":
+            return "emojione:eyes";
+        case "shipped":
+            return "streamline-emojis:rocket";
+    }
+    return "fxemoji:bolt";
+}
+function classesFromStatus(status: string): string[] {
+    switch (status) {
+        case "discountinued":
+            return ["bg-error/15", "group-hover:border-error"];
+        case "validating":
+            return ["bg-warning/15", "group-hover:border-warning"];
+        case "shipped":
+            return ["bg-success/15", "group-hover:border-success"];
+    }
+    return ["bg-success/15", "border-success"];
+}
+useSeoMeta({
+    description: "I fired myself from everywhere to become my own boss and build stuff that I love.",
+});
+defineOgImageComponent("OgImageDefault", { avatarUrl: "/icon.png", subtitle: "I am building cool stuff 😎" });
 </script>
 
 <style lang="css" scoped>
-.social-icon {
-    @apply grayscale hover:grayscale-0 transition-all duration-150 hover:scale-110;
+.faded-image {
+    -webkit-mask-image: radial-gradient(circle at center, theme("colors.base-100") 50%, transparent 70%);
+    mask-image: radial-gradient(circle at center, theme("colors.base-100") 50%, transparent 70%);
+}
+.creeper {
+    @apply z-[3] absolute w-16 left-[var(--x-tr)] top-[8px] cursor-grab transition-transform duration-[500ms] ease-out  translate-y-[var(--y-tr)];
+}
+.creeper:hover {
+    @apply shake;
+}
+@keyframes shake {
+    0%,
+    100% {
+        scale: 1;
+        rotate: 0deg;
+        opacity: 1;
+    }
+    25% {
+        scale: 0.97;
+        rotate: -1deg;
+        opacity: 0.95;
+    }
+    75% {
+        scale: 0.97;
+        rotate: 1deg;
+        opacity: 0.95;
+    }
+}
+.shake {
+    animation: shake 0.1s ease-in-out infinite;
+    transform-style: preserve-3d;
 }
 </style>
