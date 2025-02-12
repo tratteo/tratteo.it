@@ -4,9 +4,14 @@
             <div class="flex items-start justify-center flex-row gap-4">
                 <div class="flex flex-col items-center gap-2">
                     <div class="avatar">
-                        <div class="w-[6rem] sm:w-[10rem] rounded-full border-2 shadow-md border-primary">
-                            <Transition name="fade" mode="out-in">
-                                <img :key="currentAction.index" :style="{ '--duration-tr': '400ms' }" alt="Trat" :src="currentAction.action.src" />
+                        <div class="w-[6rem] sm:w-[10rem] rounded-full border-2 shadow-md border-primary overflow-hidden relative">
+                            <Transition
+                                mode="in-out"
+                                enter-active-class="transition-all duration-[800ms] absolute inset-0"
+                                leave-active-class="transition-none absolute hidden"
+                                enter-from-class="opacity-0"
+                            >
+                                <img :key="currentAction.index" alt="Trat" :src="currentAction.action.src" />
                             </Transition>
                         </div>
                     </div>
