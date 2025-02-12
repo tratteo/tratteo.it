@@ -4,8 +4,10 @@
             <div class="flex items-start justify-center flex-row gap-4">
                 <div class="flex flex-col items-center gap-2">
                     <div class="avatar">
-                        <div class="w-[6rem] sm:w-[10rem] rounded-full">
-                            <img alt="Trat" src="/icon.webp" />
+                        <div class="w-[6rem] sm:w-[10rem] rounded-full border-2 shadow-md border-primary">
+                            <Transition name="fade" mode="out-in">
+                                <img :key="currentAction.index" :style="{ '--duration-tr': '400ms' }" alt="Trat" :src="currentAction.action.src" />
+                            </Transition>
                         </div>
                     </div>
                     <div class="flex flex-row items-center gap-2">
@@ -151,7 +153,14 @@ const statusPriority: Record<string, number> = {
 };
 const minecraftCardEl = ref();
 const creeperTrs = ref<{ x: number | string; y: number | string }>({ x: 0, y: 0 });
-const actions = [{ name: "Diving 🌊" }, { name: "Climbing 🏔️" }, { name: "Skiing ❄️" }, { name: "Sleeping 💤" }, { name: "Training 🏋️" }];
+const actions = [
+    { name: "Diving 🌊", src: "/avatar/trat_dive.webp" },
+    { name: "Climbing 🧗‍♂️", src: "/avatar/trat_climb.webp" },
+    { name: "Skiing ❄️", src: "/avatar/trat_ski.webp" },
+    { name: "Hiking 🏔️", src: "/avatar/trat_hike.webp" },
+    { name: "Sleeping 💤", src: "/icon.webp" },
+    { name: "Training 🤸‍♂️", src: "/avatar/trat_train.webp" },
+];
 const currentAction = ref<{ action: any; date: Date; index: number }>({ action: actions[0], date: new Date(), index: 0 });
 
 function updateAction() {
@@ -165,9 +174,9 @@ function creeperPeak() {
     setTimeout(
         () => {
             creeperTrs.value = { x: creeperTrs.value.x, y: 0 };
-            setTimeout(creeperPeak, Math.random() * 3000 + 4000);
+            setTimeout(creeperPeak, Math.random() * 3000 + 1500);
         },
-        Math.random() * 2000 + 1000
+        Math.random() * 3000 + 1000
     );
 }
 onMounted(() => {
