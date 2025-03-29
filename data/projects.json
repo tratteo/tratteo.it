@@ -1,9 +1,9 @@
 {
     "projects": [
         {
-            "title": "Wildspace",
-            "role": "CEO & Founder",
-            "status": "discountinued",
+            "title": "Wildspace (ex Atera)",
+            "role": "Creator & Founder",
+            "status": "archived",
             "thumbnail": "/thumbnails/wildspace.webp",
             "url": "https://wildspace.it?locale=en",
             "description": "The first software platform that directly connects outdoor passionates with the entrepreneurs of the outdoor sector.",
@@ -50,14 +50,14 @@
             ]
         },
         {
-            "title": "ReserveFlow",
-            "role": "Founder",
+            "title": "Agendista",
+            "role": "Founder & Creator",
             "status": "validating",
             "thumbnail": "/thumbnails/reserveflow.jpeg",
-            "url": "https://reserveflow.vercel.app",
+            "url": null,
             "description": "Free your time by automatizing reservations.",
             "links": [],
-            "icon": "https://reserveflow.vercel.app/icon.svg",
+            "icon": "/icons/agend.svg",
             "tags": [
                 "app",
                 "web",

@@ -1,18 +1,10 @@
 <template>
-    <div class="flex flex-col items-center w-full gap-8 max-w-7xl self-center mb-16 mt-16">
+    <div class="flex flex-col items-center w-full gap-8 max-w-7xl self-center mb-16">
         <div class="flex flex-row items-center justify-center w-full gap-4 flex-wrap">
             <div class="flex items-start justify-center flex-row gap-4">
                 <div class="flex flex-col items-center gap-2">
                     <div class="avatar">
                         <div class="w-[6rem] sm:w-[10rem] rounded-full border-2 shadow-md border-primary overflow-hidden relative">
-                            <!-- <Transition
-                                mode="in-out"
-                                enter-active-class="transition-opacity duration-[800ms] absolute inset-0"
-                                leave-active-class="transition-none absolute hidden"
-                                enter-from-class="opacity-0"
-                            >
-                                <img :key="currentAction.index" alt="Trat" :src="currentAction.action.src" />
-                            </Transition> -->
                             <Transition name="crossfade" mode="in-out">
                                 <img :key="currentAction.index" :style="{ '--duration-tr': '800ms' }" alt="Trat" :src="currentAction.action.src" />
                             </Transition>
@@ -46,12 +38,11 @@
             </div>
             <div class="relative flex p-4 lg:p-8 rounded-box flex-col border shadow-lg border-base-content/20 card-compact mb-16">
                 <p class="card-title">Hey, it's Matteo!</p>
-                <p>I fired myself two times in less than a year.</p>
-                <p>So I decided to become my own boss to build and do stuff that i love.</p>
+                <p>I love building cool stuff.</p>
                 <div class="absolute flex items-end bottom-[-0.75rem] left-[2rem] translate-y-[100%] gap-2">
                     <SvgDrawnArrow class="fill-primary size-12 rotate-90"></SvgDrawnArrow>
                     <div class="flex flex-col items-start gap-0 mb-[-.5rem]">
-                        <p class="">Tracing my path as Solopreneur</p>
+                        <p class="">Tracing my path</p>
                         <!-- <p class="text-sm opacity-75">Haven't earned much yet tho 👉👈</p> -->
                     </div>
                 </div>
@@ -64,7 +55,7 @@
                 <a
                     v-for="p in sortedProjects"
                     class="card-compact cursor-pointer image-full select-none shadow group relative card card-bordered border-base-content/20 w-full overflow-clip"
-                    :href="p.url"
+                    :href="p.url ?? undefined"
                     target="_blank"
                 >
                     <img
@@ -157,7 +148,7 @@ interface ProjectStatus {
 const statusPriority: Record<string, number> = {
     shipped: 1,
     validating: 2,
-    discountinued: 3,
+    archived: 3,
 };
 const minecraftCardEl = ref();
 const creeperTrs = ref<{ x: number | string; y: number | string }>({ x: 0, y: 0 });
@@ -179,13 +170,10 @@ function updateAction() {
 function creeperPeak() {
     const width = (minecraftCardEl.value?.getBoundingClientRect()?.width ?? 128) - 64;
     creeperTrs.value = { x: `${Math.random() * width}px`, y: "-64px" };
-    setTimeout(
-        () => {
-            creeperTrs.value = { x: creeperTrs.value.x, y: 0 };
-            setTimeout(creeperPeak, Math.random() * 3000 + 1500);
-        },
-        Math.random() * 3000 + 1000
-    );
+    setTimeout(() => {
+        creeperTrs.value = { x: creeperTrs.value.x, y: 0 };
+        setTimeout(creeperPeak, Math.random() * 3000 + 1500);
+    }, Math.random() * 3000 + 1000);
 }
 onMounted(() => {
     updateAction();
@@ -200,8 +188,8 @@ function sortByStatus<T extends ProjectStatus>(items: T[]): T[] {
 }
 function iconFromStatus(status: string): string {
     switch (status) {
-        case "discountinued":
-            return "fluent-emoji-flat:skull";
+        case "archived":
+            return "bx:bxs-archive";
         case "validating":
             return "emojione:eyes";
         case "shipped":
@@ -211,7 +199,7 @@ function iconFromStatus(status: string): string {
 }
 function classesFromStatus(status: string): string[] {
     switch (status) {
-        case "discountinued":
+        case "archived":
             return ["bg-error/15", "group-hover:border-error"];
         case "validating":
             return ["bg-warning/15", "group-hover:border-warning"];

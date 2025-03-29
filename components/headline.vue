@@ -1,5 +1,5 @@
 <template>
-    <div class="drawer-end fixed z-[10000] w-screen max-w-[var(--max-content-width)] h-[var(--headline-height)]">
+    <div class="drawer-end sticky top-0 z-[10000] w-full max-w-[var(--content-width)] h-[var(--headline-height)]">
         <input id="navbar_drawer" type="checkbox" class="drawer-toggle" />
         <!-- Side menu -->
         <div class="drawer-side z-[10000]">

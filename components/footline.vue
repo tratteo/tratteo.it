@@ -82,7 +82,7 @@ import sources from "~/assets/sources.json";
 import sleekConfig from "~/sleek.config";
 const mounted = useMounted();
 const modal = useModalController();
-const { data } = await useAsyncData("legal-docs", () => queryContent("/docs").only(["date", "_path", "title"]).find());
+//const { data } = await useAsyncData("legal-docs", () => queryContent("/docs").only(["date", "_path", "title"]).find());
 </script>
 
 <style lang="css" scoped>

@@ -7,7 +7,6 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
 
     sitemap: {
-        strictNuxtContentPaths: true,
         autoLastmod: true,
         discoverImages: true,
         exclude: ["/app", "/api"],
@@ -95,13 +94,8 @@ export default defineNuxtConfig({
         },
     },
 
-    content: {
-        markdown: {
-            remarkPlugins: ["remark-math"],
-            rehypePlugins: ["rehype-katex"],
-        },
-    },
     modules: [
+        "@nuxtjs/sitemap",
         "@nuxtjs/tailwindcss",
         "@nuxtjs/google-fonts",
         "@nuxt/icon",
@@ -110,7 +104,6 @@ export default defineNuxtConfig({
         "@nuxtjs/robots",
         "@nuxt/content",
         "@nuxt/image",
-        "@nuxtjs/sitemap",
         "@nuxtjs/seo",
         "nuxt-og-image",
         "nuxt-schema-org",

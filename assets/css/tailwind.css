@@ -20,13 +20,13 @@ h3 {
 }
 
 html {
-    @apply text-base text-base-content  !important;
+    @apply text-base text-base-content scroll-smooth !important;
 }
 
 * {
     scrollbar-width: none;
     --headline-height: 72px;
-    --max-content-width: 100rem;
+    --content-width: 100rem;
 }
 
 body {
@@ -37,12 +37,9 @@ body {
         scroll-behavior: smooth !important;
         @apply overflow-y-scroll;
     } */
-    #__root {
-        scroll-behavior: smooth !important;
-        @apply overflow-y-scroll;
-    }
-    @apply m-0 h-screen text-base overflow-x-hidden overflow-y-hidden;
+    @apply m-0 h-screen text-base;
 }
+
 .click-anim {
     @apply transition-all;
     @media (prefers-reduced-motion: no-preference) {

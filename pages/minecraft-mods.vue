@@ -1,6 +1,6 @@
 <template>
-    <div v-if="mounted" class="flex flex-col items-stretch justify-center w-full min-h-screen">
-        <div class="absolute left-0 right-0 top-0 overflow-clip z-[-1]">
+    <div v-if="mounted" class="flex flex-col items-stretch justify-start w-full">
+        <div class="absolute inset-0 overflow-clip z-[-1]">
             <img src="/thumbnails/minecraft.jpeg" alt="minecraft background" width="2048px" height="1170px" class="w-full h-fit" />
             <div class="gradient-overlay"></div>
         </div>
