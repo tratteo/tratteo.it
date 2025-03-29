@@ -47,7 +47,7 @@ export default defineNuxtConfig({
     vite: {},
     build: { transpile: ["@vuepic/vue-datepicker"] },
 
-    css: ["katex/dist/katex.min.css"],
+    css: [],
     tailwindcss: {
         exposeConfig: true,
     },
