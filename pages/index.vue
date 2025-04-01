@@ -55,7 +55,7 @@
                 <a
                     v-for="p in sortedProjects"
                     class="card-compact cursor-pointer image-full select-none shadow group relative card card-bordered border-base-content/20 w-full overflow-clip"
-                    :href="p.url ?? undefined"
+                    :href="p.url ?? '/'"
                     target="_blank"
                 >
                     <img
@@ -68,7 +68,7 @@
                         <div class="flex items-center gap-2 mb-4">
                             <div class="avatar">
                                 <div class="w-16 rounded-xl">
-                                    <img :src="p.icon" />
+                                    <img :src="p.icon" :alt="p.title" />
                                 </div>
                             </div>
                             <div class="flex flex-col items-start gap-1">
@@ -112,7 +112,7 @@
                         <p>Got a dedicated page for that 😎</p>
                     </div>
 
-                    <div class="absolute w-full h-full opacity-50 bg-base-300 z-[-1]"></div>
+                    <div class="absolute w-full h-full opacity-75 bg-base-300 z-[-1]"></div>
                     <div class="absolute top-4 right-4">
                         <icon
                             name="material-symbols:arrow-outward-rounded"
@@ -127,14 +127,6 @@
                 </NuxtLink>
             </div>
         </section>
-        <!-- <div class="flex flex-col items-center gap-2">
-                <div class="avatar">
-                    <div class="rounded-full w-64">
-                        <img src="/icon.webp" />
-                    </div>
-                </div>
-                <h2>Matteo Beltrame</h2>
-            </div> -->
     </div>
 </template>
 

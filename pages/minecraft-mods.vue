@@ -1,7 +1,7 @@
 <template>
     <div v-if="mounted" class="flex flex-col items-stretch justify-start w-full">
         <div class="absolute inset-0 overflow-clip z-[-1]">
-            <img src="/thumbnails/minecraft.jpeg" alt="minecraft background" width="2048px" height="1170px" class="w-full h-fit" />
+            <img src="/thumbnails/minecraft.webp" alt="minecraft background" width="2048px" height="1170px" class="w-full h-fit" />
             <div class="gradient-overlay"></div>
         </div>
         <div class="flex flex-row items-end gap-8">
@@ -49,13 +49,15 @@
                         <div class="flex items-start gap-2 mb-2">
                             <div class="avatar">
                                 <div class="w-16 rounded-xl border border-base-content/20 shadow-md">
-                                    <img :src="mod.icon" />
+                                    <img :src="mod.icon" :alt="mod.title" />
                                 </div>
                             </div>
                             <div class="flex flex-col items-start">
                                 <p class="card-title">{{ mod.title }}</p>
                                 <div class="flex flex-row flex-wrap items-center gap-2">
-                                    <a class="btn btn-ghost btn-square btn-sm z-[100]" :href="mod.github" target="_blank"><icon name="mdi:github"></icon></a>
+                                    <a class="btn btn-ghost btn-square btn-sm z-[100]" :href="mod.github" target="_blank" aria-label="Github page"
+                                        ><icon name="mdi:github"></icon
+                                    ></a>
                                     <img v-for="s in mod.shields" :src="s.url" :title="s.name" />
                                 </div>
                             </div>

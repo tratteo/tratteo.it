@@ -40,7 +40,7 @@
     "@vueuse/core": "^13.0.0",
     "@vueuse/nuxt": "^13.0.0",
     "daisyui": "^4.12.24",
-    "nuxt": "^3.16.1"
+    "nuxt": "^3.16.2"
   },
   "optionalDependencies": {}
 }
