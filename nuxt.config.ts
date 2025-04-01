@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     sitemap: {
         autoLastmod: true,
         discoverImages: true,
-        exclude: ["/app", "/api"],
+        exclude: ["/app/**", "/api/**", "/_nuxt/**", "/__nuxt_content/**"],
         debug: false,
         sources: ["/api/__sitemap__/users"],
         xslColumns: [
