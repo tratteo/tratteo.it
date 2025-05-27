@@ -82,12 +82,16 @@
     ],
     "projects": [
         {
-            "name": "Codemeup",
-            "url": "https://codemeup.dev"
-        },
-        {
             "name": "Depthlog",
             "url": "https://depthlog.net"
+        },
+        {
+            "name": "Agendista",
+            "url": "https://agendista.it"
+        },
+        {
+            "name": "Codemeup",
+            "url": "https://codemeup.dev"
         }
     ]
 }

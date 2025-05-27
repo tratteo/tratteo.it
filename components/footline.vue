@@ -1,11 +1,11 @@
 <template>
     <footer class="footer footer-center bg-base-300 text-base-content border-t border-base-content/20 p-10 text-opacity-70">
-        <div class="flex flex-row items-stretch w-full justify-stretch flex-wrap gap-8 max-w-[var(--max-content-width)]">
+        <div class="flex flex-row items-stretch w-full justify-stretch flex-wrap gap-8">
             <div class="flex flex-col items-stretch gap-2">
                 <div class="flex flex-row items-start gap-2">
                     <div class="avatar">
                         <div class="w-10 rounded-full">
-                            <img src="/icon.webp" alt="author, owner" width="40px" height="40px" />
+                            <img src="/favicon.svg" alt="author, owner" width="40px" height="40px" />
                         </div>
                     </div>
                     <div class="text-sm text-start">

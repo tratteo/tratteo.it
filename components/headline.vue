@@ -49,7 +49,7 @@
                     <icon name="ic:round-arrow-back-ios-new"></icon>
                     Home
                 </NuxtLink>
-                <div v-if="route.path === '/'" class="hidden lg:flex flex-1 flex-row items-center gap-2 justify-center">
+                <div class="hidden lg:flex flex-1 flex-row items-center gap-2 justify-center">
                     <ul class="menu menu-horizontal items-center gap-2">
                         <li v-for="sec in sections">
                             <button v-if="sec.subsections.length <= 0" @click="(ev) => focusNavigationSection(sec.id)" class="btn btn-ghost btn-sm">
@@ -71,7 +71,6 @@
                     </ul>
                 </div>
 
-                <div v-else class="flex-1"></div>
                 <nav class="hidden flex-none lg:block">
                     <ul class="flex flex-row items-center gap-0">
                         <!-- Navbar menu content here -->

@@ -5,7 +5,7 @@
             "role": "Creator & Founder",
             "status": "archived",
             "thumbnail": "/thumbnails/wildspace.webp",
-            "url": "https://wildspace.it?locale=en",
+            "url": null,
             "description": "The first software platform that directly connects outdoor passionates with the entrepreneurs of the outdoor sector.",
             "links": [],
             "icon": "/icons/wildspace.svg",
@@ -20,7 +20,7 @@
             "role": "Creator",
             "status": "shipped",
             "thumbnail": "/thumbnails/depthlog.webp",
-            "url": "https://depthlog.net",
+            "url": "https://depthlog.net?utm_source=personal_site",
             "description": "The most accurate, simple and versatile scuba dive log and companion.",
             "links": [],
             "icon": "/icons/depthlog.svg",
@@ -34,7 +34,7 @@
             "role": "Creator",
             "status": "shipped",
             "thumbnail": "/thumbnails/codemeup.svg",
-            "url": "https://codemeup.dev",
+            "url": "https://codemeup.dev?utm_source=personal_site",
             "description": "Embed code snippets directly from Github in a blink.",
             "links": [
                 {
@@ -52,9 +52,9 @@
         {
             "title": "Agendista",
             "role": "Founder & Creator",
-            "status": "validating",
+            "status": "shipped",
             "thumbnail": "/thumbnails/reserveflow.jpeg",
-            "url": null,
+            "url": "https://agendista.it?utm_source=personal_site",
             "description": "Free your time by automatizing reservations.",
             "links": [],
             "icon": "/icons/agend.svg",

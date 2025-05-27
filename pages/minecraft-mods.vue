@@ -4,14 +4,18 @@
             <img src="/thumbnails/minecraft.webp" alt="minecraft background" width="2048px" height="1170px" class="w-full h-fit" />
             <div class="gradient-overlay"></div>
         </div>
-        <div class="flex flex-row items-end gap-8">
-            <div class="hidden sm:flex ml-12 relative flex-col items-end gap-4">
+        <div class="flex flex-row items-stretch flex-wrap gap-4">
+            <NuxtLink class="btn btn-sm" to="/">
+                <icon name="material-symbols-light:home-rounded"></icon>
+            </NuxtLink>
+            <div class="self-end hidden sm:flex ml-12 relative flex-col items-end gap-4">
                 <SvgDrawnArrow class="mr-8 lg:hidden w-auto h-[6rem] fill-primary scale-x-[-1] rotate-90"></SvgDrawnArrow>
                 <img src="/icons/steve.png" alt="Trat steve" class="w-[12rem] lg:w-[16rem]" width="1750" height="1010" />
             </div>
+
             <div class="flex-1 flex items-end gap-4 mb-4">
                 <SvgDrawnArrowTwist class="hidden lg:block w-auto h-[8rem] fill-primary"></SvgDrawnArrowTwist>
-                <div class="card card-compact card-bordered bg-base-100/75 border-base-content/20 w-full">
+                <div class="min-w-[12rem] card card-compact card-bordered bg-base-100/75 border-base-content/20 w-full">
                     <div class="card-body">
                         <div class="card-title justify-between flex-wrap">
                             <p>Yo nerd 😎</p>
@@ -37,7 +41,7 @@
             </div>
         </div>
         <!-- <img src="/icons/minecraft_logo.svg" alt="Minecraft logo" class="h-64" /> -->
-        <div class="lg:grid lg:grid-cols-2 flex flex-col items-stretch gap-4 border-base-content/20 bg-base-300 rounded-box md:border p-0 sm:p-10">
+        <div class="lg:grid lg:grid-cols-2 flex flex-col items-stretch gap-4 border-base-content/20 bg-base-100/75 rounded-box md:border p-0 sm:p-10">
             <Transition v-for="(mod, i) in mods" name="join" appear mode="out-in">
                 <a
                     class="card-compact cursor-pointer bg-base-100 image-full select-none shadow group relative card card-bordered border-base-content/20 w-full overflow-clip"

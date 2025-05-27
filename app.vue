@@ -8,18 +8,6 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-useHead({
-    meta: [{ charset: "utf-8" }],
-    link: [
-        {
-            rel: "icon",
-            type: "image/webp",
-            href: "/favicon.webp",
-        },
-    ],
-    htmlAttrs: { lang: "en" },
-});
-</script>
+<script lang="ts" setup></script>
 
 <style lang="css"></style>
