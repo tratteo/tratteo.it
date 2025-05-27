@@ -1,8 +1,8 @@
 {
-  "name": "sleek",
+  "name": "tratteo",
   "private": true,
-  "version": "1.0.0",
-  "type": "commonjs",
+  "version": "1.0.1",
+  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --host",

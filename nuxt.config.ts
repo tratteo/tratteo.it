@@ -101,7 +101,6 @@ export default defineNuxtConfig({
         },
     },
     ogImage: {
-        strictNuxtContentPaths: true,
         defaults: { component: "OgImageDefault" },
     },
     googleFonts: {
