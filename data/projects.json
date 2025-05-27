@@ -53,11 +53,11 @@
             "title": "Agendista",
             "role": "Founder & Creator",
             "status": "shipped",
-            "thumbnail": "/thumbnails/reserveflow.jpeg",
+            "thumbnail": "/thumbnails/agendista.webp",
             "url": "https://agendista.it?utm_source=personal_site",
             "description": "Free your time by automatizing reservations.",
             "links": [],
-            "icon": "/icons/agend.svg",
+            "icon": "/icons/agendista.svg",
             "tags": [
                 "app",
                 "web",
