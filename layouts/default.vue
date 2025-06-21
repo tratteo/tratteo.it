@@ -10,6 +10,26 @@
 
 <script lang="ts" setup>
 defineOgImage();
+let removeScript: () => boolean;
+onMounted(() => {
+    const { load, status, remove } = useScript({
+        src: `https://bubblet.vercel.app/plugin.js`,
+        "data-key": "rsndvYPirJY60jqZbQ7Bv4jh2Lb2",
+        "data-primary": daisyUiColorHex("--p"),
+        "data-neutral": hexToRgba(daisyUiColorHex("--bc")!, 0.1),
+        "data-base": daisyUiColorHex("--b1"),
+        "data-text": daisyUiColorHex("--bc"),
+        "data-anchor": "bottom right",
+        "data-size": "md",
+        "data-fontfamily": "Geist",
+    });
+    removeScript = remove;
+});
+onUnmounted(() => {
+    const el = document.getElementById("bb-container");
+    removeScript?.();
+    el?.remove();
+});
 </script>
 
 <style lang="css"></style>

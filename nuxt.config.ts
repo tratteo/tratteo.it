@@ -103,28 +103,20 @@ export default defineNuxtConfig({
     ogImage: {
         defaults: { component: "OgImageDefault" },
     },
-    googleFonts: {
-        preload: true,
-        families: {
-            Poppins: true,
-            Inconsolata: true,
+    fonts: {
+        defaults: {
+            weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
         },
     },
+    // googleFonts: {
+    //     preload: true,
+    //     families: {
+    //         Poppins: true,
+    //         Inconsolata: true,
+    //     },
+    // },
 
-    modules: [
-        "@nuxtjs/sitemap",
-        "@nuxtjs/tailwindcss",
-        "@nuxtjs/google-fonts",
-        "@nuxt/icon",
-        "@vueuse/nuxt",
-        "@pinia/nuxt",
-        "@nuxtjs/robots",
-        "@nuxt/content",
-        "@nuxt/image",
-        "@nuxtjs/seo",
-        "nuxt-og-image",
-        "nuxt-schema-org",
-    ],
+    modules: ["@nuxtjs/tailwindcss", "@nuxt/fonts", "@nuxt/icon", "@vueuse/nuxt", "@pinia/nuxt", "@nuxt/content", "@nuxt/image", "@nuxtjs/seo", "@nuxt/scripts"],
 
     compatibilityDate: "2024-07-25",
 });

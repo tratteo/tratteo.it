@@ -1,18 +1,17 @@
 {
     "projects": [
         {
-            "title": "Wildspace (ex Atera)",
-            "role": "Creator & Founder",
-            "status": "archived",
-            "thumbnail": "/thumbnails/wildspace.webp",
-            "url": null,
-            "description": "The first software platform that directly connects outdoor passionates with the entrepreneurs of the outdoor sector.",
+            "title": "Bubblet",
+            "role": "Creator",
+            "status": "shipped",
+            "thumbnail": "/thumbnails/bubblet.webp",
+            "url": "https://bubblet.vercel.app?utm_source=personal_site",
+            "description": "Make your websites alive. A free customizable hub: add it to any website, display personal information, projects, news and affiliate links.",
             "links": [],
-            "icon": "/icons/wildspace.svg",
+            "icon": "https://bubblet.vercel.app/favicon.svg",
             "tags": [
-                "b2b/b2c",
-                "web",
-                "mobile"
+                "dev",
+                "tool"
             ]
         },
         {
@@ -27,6 +26,21 @@
             "tags": [
                 "app",
                 "web"
+            ]
+        },
+        {
+            "title": "Agendista",
+            "role": "Founder & Creator",
+            "status": "shipped",
+            "thumbnail": "/thumbnails/agendista.webp",
+            "url": "https://agendista.it?utm_source=personal_site",
+            "description": "Free your time by automatizing reservations.",
+            "links": [],
+            "icon": "/icons/agendista.svg",
+            "tags": [
+                "app",
+                "web",
+                "b2b"
             ]
         },
         {
@@ -50,18 +64,18 @@
             ]
         },
         {
-            "title": "Agendista",
-            "role": "Founder & Creator",
-            "status": "shipped",
-            "thumbnail": "/thumbnails/agendista.webp",
-            "url": "https://agendista.it?utm_source=personal_site",
-            "description": "Free your time by automatizing reservations.",
+            "title": "Wildspace (ex Atera)",
+            "role": "Creator & Founder",
+            "status": "archived",
+            "thumbnail": "/thumbnails/wildspace.webp",
+            "url": null,
+            "description": "The first software platform that directly connects outdoor passionates with the entrepreneurs of the outdoor sector.",
             "links": [],
-            "icon": "/icons/agendista.svg",
+            "icon": "/icons/wildspace.svg",
             "tags": [
-                "app",
+                "b2b/b2c",
                 "web",
-                "b2b"
+                "mobile"
             ]
         }
     ],

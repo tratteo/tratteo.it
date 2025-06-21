@@ -145,6 +145,7 @@
                 </div>
             </section>
         </FadeScroll>
+
         <FadeScroll>
             <section>
                 <h3>My Services</h3>
@@ -246,6 +247,7 @@
 </template>
 
 <script lang="ts" setup>
+import { TransitionPresets } from "@vueuse/core";
 import * as fns from "date-fns";
 import sources from "~/assets/sources.json";
 import projects from "~/data/projects.json";
@@ -317,10 +319,13 @@ function updateAction() {
 function creeperPeak() {
     const width = (minecraftCardEl.value?.getBoundingClientRect()?.width ?? 128) - 64;
     creeperTrs.value = { x: `${Math.random() * width}px`, y: "-64px" };
-    setTimeout(() => {
-        creeperTrs.value = { x: creeperTrs.value.x, y: 0 };
-        setTimeout(creeperPeak, Math.random() * 3000 + 1500);
-    }, Math.random() * 3000 + 1000);
+    setTimeout(
+        () => {
+            creeperTrs.value = { x: creeperTrs.value.x, y: 0 };
+            setTimeout(creeperPeak, Math.random() * 3000 + 1500);
+        },
+        Math.random() * 3000 + 1000
+    );
 }
 onMounted(() => {
     updateAction();
