@@ -21,7 +21,7 @@ onMounted(() => {
         "data-text": daisyUiColorHex("--bc"),
         "data-anchor": "bottom right",
         "data-size": "md",
-        "data-fontfamily": "Geist",
+        "data-fontfamily": "Poppins",
     });
     removeScript = remove;
 });
