@@ -32,7 +32,7 @@
                 </div>
                 <u-card variant="subtle">
                     <u-form class="w-full flex flex-col gap-2">
-                        <u-input placeholder="Describe your need, I am sure i will help you!" v-model="query" :maxlength="100"></u-input>
+                        <u-input placeholder="Describe your need, I am sure i will help you!" v-model="query" aria-label="Input query" :maxlength="100"></u-input>
                         <StickyElement :amplitude="16" class="ml-auto">
                             <u-button @click="askNeed" class="group" type="submit"><AnimatedArrow>Ask!</AnimatedArrow> </u-button>
                         </StickyElement>

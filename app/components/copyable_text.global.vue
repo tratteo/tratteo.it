@@ -1,6 +1,6 @@
 <template>
     <u-field-group class="w-full">
-        <u-input :model-value="content" readonly class="w-full"> </u-input>
+        <u-input :model-value="content" aria-label="Copy text" readonly class="w-full"> </u-input>
         <u-button
             @click="onClick"
             type="button"

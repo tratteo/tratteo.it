@@ -84,6 +84,9 @@ export default defineNuxtConfig({
             isr: 3600,
         },
     },
+    ui: {
+        colorMode: false,
+    },
     nitro: {
         debug: false,
         experimental: { openAPI: false },
