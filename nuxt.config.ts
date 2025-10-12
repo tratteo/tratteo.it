@@ -11,7 +11,7 @@ export default defineNuxtConfig({
         discoverImages: true,
         exclude: ["/app/**", "/api/**", "/_nuxt/**", "/__nuxt_content/**"],
         debug: false,
-        sources: ["/api/__sitemap__/users"],
+
         xslColumns: [
             { label: "URL", width: "60%" },
             {
