@@ -3,13 +3,19 @@ import { asSitemapCollection } from "@nuxtjs/sitemap/content";
 
 export default defineContentConfig({
     collections: {
-        docs: defineCollection(
+        articles: defineCollection(
             asSitemapCollection({
-                source: "docs/**/*.md",
+                source: "articles/**/*.md",
                 type: "page",
                 schema: z.object({
-                    date: z.date(),
                     title: z.string(),
+                    date: z.date(),
+                    description: z.string(),
+                    tags: z.optional(z.array(z.string())),
+                    author: z.string(),
+                    author_avatar: z.string(),
+                    author_description: z.string(),
+                    thumbnail: z.string(),
                 }),
             })
         ),

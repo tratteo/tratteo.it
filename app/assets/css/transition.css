@@ -1,0 +1,13 @@
+/* CROSSFADE */
+.crossfade-enter-from,
+.crossfade-leave-to {
+    @apply opacity-0;
+}
+.crossfade-enter-active {
+    @apply transition-none absolute hidden;
+}
+.crossfade-leave-active {
+    transition: opacity var(--duration-tr, 150ms) cubic-bezier(0.25, 1, 0.5, 1);
+    transition-delay: var(--delay-tr, 0ms);
+    @apply absolute inset-0;
+}

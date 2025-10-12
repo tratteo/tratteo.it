@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { definePerson } from "nuxt-schema-org/schema";
 
-import sleekConfig from "./sleek.config";
+import { appMeta } from "./app/app.meta";
 
 export default defineNuxtConfig({
     devtools: { enabled: true },
@@ -28,7 +28,7 @@ export default defineNuxtConfig({
                 { charset: "utf-8" },
                 {
                     name: "apple-mobile-web-app-title",
-                    content: sleekConfig.name,
+                    content: appMeta.name,
                 },
             ],
             link: [
@@ -45,18 +45,17 @@ export default defineNuxtConfig({
         disallow: ["/app/**", "/api/**"],
     },
     site: {
-        url: sleekConfig.url,
-        name: sleekConfig.name,
+        url: appMeta.url,
+        name: appMeta.name,
         defaultLocale: "en",
     },
     schemaOrg: {
-        identity: definePerson(sleekConfig.author),
+        identity: definePerson(appMeta.author),
     },
     router: {
         options: { scrollBehaviorType: "smooth" },
     },
     icon: {
-        size: "24px",
         fetchTimeout: 4000,
         clientBundle: {
             scan: true,
@@ -65,16 +64,13 @@ export default defineNuxtConfig({
     vite: {},
     build: { transpile: ["@vuepic/vue-datepicker"] },
 
-    css: [],
-    tailwindcss: {
-        exposeConfig: true,
-    },
+    css: ["~/assets/css/main.css"],
 
     imports: {
         dirs: ["src/**/*", "composables/**/*"],
         global: true,
     },
-    watch: ["sleek.config.ts"],
+
     appConfig: {},
     runtimeConfig: {},
     routeRules: {
@@ -108,15 +104,7 @@ export default defineNuxtConfig({
             weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
         },
     },
-    // googleFonts: {
-    //     preload: true,
-    //     families: {
-    //         Poppins: true,
-    //         Inconsolata: true,
-    //     },
-    // },
-
-    modules: ["@nuxtjs/tailwindcss", "@nuxt/fonts", "@nuxt/icon", "@vueuse/nuxt", "@pinia/nuxt", "@nuxt/content", "@nuxt/image", "@nuxtjs/seo", "@nuxt/scripts"],
+    modules: ["@nuxt/ui", "@vueuse/nuxt", "@pinia/nuxt", "@nuxt/content", "@nuxtjs/seo", "@nuxt/scripts"],
 
     compatibilityDate: "2024-07-25",
 });
