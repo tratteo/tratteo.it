@@ -4,7 +4,7 @@
         while-in-view="show"
         :variants="containerVariants"
         :transition="{ duration: 0.6, type: 'spring', bounce: 0.25, staggerChildren: staggerChildren, delayChildren: delayChildren }"
-        :in-view-options="{ once: true, amount: 0.75 }"
+        :in-view-options="{ once: true, amount: 0.35 }"
         class="w-full"
     >
         <slot></slot>

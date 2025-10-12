@@ -1,11 +1,11 @@
 <template>
-    <div v-if="mounted" class="flex flex-col items-stretch justify-start w-full">
+    <div v-if="mounted" class="flex flex-col items-stretch justify-start gap-2 w-full">
         <div class="fixed inset-0 overflow-clip z-[-1]">
-            <img src="/thumbnails/minecraft.webp" alt="minecraft background" width="2048px" height="1170px" class="w-full" />
+            <img src="/thumbnails/minecraft.webp" alt="minecraft background" width="2048px" height="1170px" class="object-cover h-full" />
             <div class="gradient-overlay"></div>
         </div>
+        <u-button icon="material-symbols-light:home-rounded" to="/" label="Home" color="neutral" variant="subtle" class="w-fit"> </u-button>
         <div class="flex flex-row items-start flex-wrap gap-4">
-            <u-button icon="material-symbols-light:home-rounded" to="/" label="Home" color="neutral" variant="subtle"> </u-button>
             <div class="self-end hidden sm:flex ml-12 relative flex-col items-end gap-4">
                 <SvgDrawnArrow class="mr-8 lg:hidden w-auto h-[6rem] fill-primary scale-x-[-1] rotate-90"></SvgDrawnArrow>
                 <img src="/icons/steve.png" alt="Trat steve" class="w-[12rem] lg:w-[16rem]" width="1750" height="1010" />
@@ -78,8 +78,8 @@
                                 </div>
                             </label>
                         </div>
-                        <div class="flex items-center gap-2 justify-end">
-                            <u-badge v-for="t in mod.tags" color="primary" :label="t"></u-badge>
+                        <div class="flex items-center gap-2 justify-end flex-wrap">
+                            <u-badge v-for="t in mod.tags" size="sm" variant="soft" color="primary" :label="t"></u-badge>
                         </div>
                     </u-card>
                     <div class="absolute top-4 right-4">
