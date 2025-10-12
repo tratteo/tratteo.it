@@ -2,7 +2,7 @@
     <div class="flex flex-col items-center w-full gap-32 self-center mb-16">
         <header class="flex flex-row flex-wrap items-start justify-center w-full gap-16">
             <div class="relative overflow-visible">
-                <p class="absolute font-bold text-5xl left-0 top-0">I solve problems.</p>
+                <p class="absolute font-bold text-5xl left-0 top-0 text-highlighted!">I solve problems.</p>
                 <div class="relative">
                     <img src="/bg.webp" alt="" class="z-[-1] mt-8 w-[32rem]" />
                     <div class="absolute inset-0 mask z-[10]"></div>
