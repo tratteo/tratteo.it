@@ -32,7 +32,20 @@
                 </div>
                 <u-card variant="subtle">
                     <u-form class="w-full flex flex-col gap-2">
-                        <u-input placeholder="Describe your need, I am sure i will help you!" v-model="query" aria-label="Input query" :maxlength="100"></u-input>
+                        <TypewriterInput v-model="query" aria-label="Input query" :maxlength="100" :messages="placeholders"></TypewriterInput>
+                        <!-- <u-input
+                            
+                            
+                            :ui="{ base: 'group ' }"
+                            @focus="() => console.log('focus')"
+                            @blur="() => console.log('blur')"
+                        >
+                            <template #default>
+                                <div class="absolute inset-0 group-focus-visible:bg-red-300/10 typ-label flex items-center px-2 pointer-events-none">
+                                    <Typewriter :text="currentPlaceholder!"></Typewriter>
+                                </div>
+                            </template>
+                        </u-input> -->
                         <StickyElement :amplitude="16" class="ml-auto">
                             <u-button @click="askNeed" class="group" type="submit"><AnimatedArrow>Ask!</AnimatedArrow> </u-button>
                         </StickyElement>
@@ -391,6 +404,16 @@ const actions = [
     { name: "Training 🤸‍♂️", src: "/avatar/trat_train.webp" },
 ];
 const currentAction = ref<{ action: any; date: Date; index: number }>({ action: actions[0], date: new Date(), index: 0 });
+
+const placeholders = [
+    "I need to create the MVP for my product",
+    "I want to learn programming",
+    "I want a new website",
+    "I need help growing my SaaS",
+    "I need to code a very specific thing!",
+];
+const placeholderIndex = ref(0);
+const currentPlaceholder = computed(() => placeholders[placeholderIndex.value]);
 
 const fuse = new Fuse(services, {
     keys: ["keywords"],
