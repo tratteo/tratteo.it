@@ -5,8 +5,8 @@
                 <u-user name="Matteo Beltrame" to="/" :avatar="{ src: '/favicon.svg' }"></u-user>
             </template>
             <template #right>
-                <u-button color="neutral" variant="ghost" to="/articles" aria-label="Blog" class="group">
-                    <AnimatedArrow>Go to blog</AnimatedArrow>
+                <u-button color="neutral" variant="ghost" to="/" aria-label="Home" class="group">
+                    <AnimatedArrow>Back to home</AnimatedArrow>
                 </u-button>
             </template>
         </u-header>
@@ -19,10 +19,6 @@
     </u-app>
 </template>
 
-<script lang="ts" setup>
-import type { FooterColumnLink } from "@nuxt/ui";
-import { appMeta } from "~/app.meta";
-import sources from "~/assets/sources.json";
-</script>
+<script lang="ts" setup></script>
 
 <style></style>

@@ -4,8 +4,8 @@
             <div class="relative overflow-visible">
                 <p class="absolute font-bold text-5xl left-0 top-0 text-highlighted!">I solve problems.</p>
                 <div class="relative">
-                    <img src="/bg.webp" alt="" class="z-[-1] mt-20 md:mt-8 w-[32rem]" />
-                    <div class="absolute inset-0 mask z-[10]"></div>
+                    <img src="/bg.webp" alt="" class="z-[-1] mt-20 md:mt-8 w-lg" />
+                    <div class="absolute inset-0 mask z-10"></div>
                 </div>
             </div>
             <div class="flex-1 flex flex-col items-stretch gap-6">
@@ -253,10 +253,10 @@
                             <img
                                 v-if="p.thumbnail"
                                 :src="p.thumbnail"
-                                class="z-[0] left-0 top-0 group-hover:scale-[106%] ease-out transition-transform duration-[300ms] object-cover absolute w-full h-full opacity-15"
+                                class="z-0 left-0 top-0 group-hover:scale-[106%] ease-out transition-transform duration-300 object-cover absolute w-full h-full opacity-15"
                                 :alt="p.title"
                             />
-                            <div class="flex-1 z-[1] flex flex-col gap-2">
+                            <div class="flex-1 z-1 flex flex-col gap-2">
                                 <div class="flex items-center gap-2 mb-4">
                                     <u-avatar :src="p.icon" :alt="p.title" size="xl"></u-avatar>
                                     <div class="flex flex-col items-start gap-1">
@@ -279,7 +279,7 @@
                             <div class="absolute top-4 right-4">
                                 <icon
                                     name="material-symbols:arrow-outward-rounded"
-                                    class="group-hover:translate-x-2 group-hover:-translate-y-2 duration-[300ms] ease-out transition-transform"
+                                    class="group-hover:translate-x-2 group-hover:-translate-y-2 duration-300 ease-out transition-transform"
                                 ></icon>
                             </div>
                         </u-card>
@@ -293,8 +293,8 @@
                 <motion.img :variants="itemVertical" src="/icons/minecraft_logo.svg" alt="Minecraft logo" class="h-40 self-center" />
                 <motion.div :variants="itemVertical" ref="minecraftCardEl" class="relative h-fit w-full max-w-2xl self-center">
                     <img src="/icons/creeper.png" class="creeper" :style="{ '--x-tr': creeperTrs.x, '--y-tr': creeperTrs.y }" alt="Minecraft creeper" />
-                    <NuxtLink class="z-[4] relative min-h-[12rem] border border-default rounded-lg flex flex-col items-stretch gap-4 w-full rounded-box overflow-clip">
-                        <div class="flex-1 z-[0] flex flex-col gap-2 p-4">
+                    <NuxtLink class="z-4 relative min-h-48 border border-default rounded-lg flex flex-col items-stretch gap-4 w-full rounded-box overflow-clip">
+                        <div class="flex-1 z-0 flex flex-col gap-2 p-4">
                             <h3 class="font-semibold">Are you here for my Minecraft mods?</h3>
                             <p>Got a dedicated page for that 😎</p>
                             <u-button to="/minecraft-mods" class="w-fit mt-auto" color="neutral">
@@ -345,7 +345,7 @@ const statusPriority: Record<string, number> = {
     archived: 3,
 };
 const query = ref("");
-const minecraftCardEl = ref();
+const minecraftCardEl = useTemplateRef("minecraftCardEl");
 const creeperTrs = ref<{ x: number | string; y: number | string }>({ x: 0, y: 0 });
 
 const services = [
@@ -436,7 +436,7 @@ function updateAction() {
     setTimeout(updateAction, Math.random() * 2000 + 3000);
 }
 function creeperPeak() {
-    const width = (minecraftCardEl.value?.getBoundingClientRect()?.width ?? 128) - 64;
+    const width = (minecraftCardEl.value?.$el?.getBoundingClientRect()?.width ?? 128) - 64;
     creeperTrs.value = { x: `${Math.random() * width}px`, y: "-64px" };
     setTimeout(
         () => {
@@ -513,7 +513,7 @@ section {
 }
 
 .creeper {
-    @apply z-[3] absolute w-16 left-[var(--x-tr)] top-[8px] cursor-grab transition-transform duration-[500ms] ease-out  translate-y-[var(--y-tr)];
+    @apply z-3 absolute w-16 left-(--x-tr) top-2 cursor-grab transition-transform duration-500 ease-out  translate-y-(--y-tr);
 }
 
 .creeper:hover {

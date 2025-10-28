@@ -16,6 +16,7 @@ export default defineContentConfig({
                     author_avatar: z.string(),
                     author_description: z.string(),
                     thumbnail: z.string(),
+                    youtube_tutorial: z.optional(z.string()),
                 }),
             })
         ),

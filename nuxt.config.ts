@@ -11,7 +11,6 @@ export default defineNuxtConfig({
         discoverImages: true,
         exclude: ["/app/**", "/api/**", "/_nuxt/**", "/__nuxt_content/**"],
         debug: false,
-
         xslColumns: [
             { label: "URL", width: "60%" },
             {
@@ -21,6 +20,19 @@ export default defineNuxtConfig({
             },
             { label: "Last Modified", select: "sitemap:lastmod", width: "20%" },
         ],
+    },
+    content: {
+        build: {
+            markdown: {
+                toc: {
+                    depth: 3,
+                    searchDepth: 3,
+                },
+                remarkPlugins: {
+                    "remark-reading-time": {},
+                },
+            },
+        },
     },
     app: {
         head: {
