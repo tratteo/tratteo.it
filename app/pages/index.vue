@@ -291,7 +291,7 @@
         <AnimateEnter>
             <section>
                 <motion.img :variants="itemVertical" src="/icons/minecraft_logo.svg" alt="Minecraft logo" class="h-40 self-center" />
-                <motion.div :variants="itemVertical" ref="minecraftCardEl" class="relative h-fit w-full max-w-2xl self-center">
+                <motion.div v-if="mounted" :variants="itemVertical" ref="minecraftCardEl" class="relative h-fit w-full max-w-2xl self-center">
                     <img src="/icons/creeper.png" class="creeper" :style="{ '--x-tr': creeperTrs.x, '--y-tr': creeperTrs.y }" alt="Minecraft creeper" />
                     <NuxtLink class="z-4 relative min-h-48 border border-default rounded-lg flex flex-col items-stretch gap-4 w-full rounded-box overflow-clip">
                         <div class="flex-1 z-0 flex flex-col gap-2 p-4">

@@ -3,7 +3,6 @@
         <template #right>
             <u-page-aside :ui="{ root: 'lg:col-span-3!' }">
                 <u-page-anchors :links="anchorLinks"></u-page-anchors>
-
                 <u-content-toc v-if="data" :links="data.body.toc?.links" highlight></u-content-toc>
                 <div class="w-full flex items-center flex-wrap gap-1">
                     <u-button @click="scrollTop" label="Scroll top" class="grow" icon="material-symbols:keyboard-arrow-up-rounded" variant="soft" color="neutral"> </u-button>
@@ -45,19 +44,6 @@
             </div>
         </u-page-header>
 
-        <div class="lg:hidden w-fit flex items-center flex-wrap gap-2 my-2">
-            <u-button @click="share" label="Share this article" class="grow" icon="material-symbols:share" variant="subtle" color="neutral"> </u-button>
-            <u-button label="All articles" class="grow" icon="material-symbols:article-rounded" to="/articles" variant="subtle" color="neutral"> </u-button>
-            <u-button
-                @click="() => relatedArticlesEl?.scrollIntoView()"
-                label="Related articles"
-                class="grow"
-                icon="material-symbols:keyboard-arrow-down-rounded"
-                variant="subtle"
-                color="neutral"
-            >
-            </u-button>
-        </div>
         <u-content-toc v-if="data" :links="data.body.toc?.links" highlight class="lg:hidden"> </u-content-toc>
         <u-page-body>
             <ContentRenderer v-if="data" id="content" :value="data" class="markdown-content flex-1" />
