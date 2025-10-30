@@ -1,17 +1,21 @@
 <template>
     <u-page>
-        <u-page-header title="Welcome to my yapping place" description="Here you will find articles in which I yap about different stuff." headline="I talk about stuff.">
+        <u-page-header
+            title="An actually useful blog, no yapping."
+            description="Coding tutorials, tech news and much more: here you will find cool articles that just gives you useful information without yapping."
+            headline="I talk and teach you about stuff."
+        >
             <template #links>
                 <u-field-group class="">
-                    <u-input type="text" placeholder="Search by title" class="w-full" v-model.trim="query">
-                        <template #trailing>
+                    <u-content-search-button variant="outline">
+                        <div class="flex items-center gap-4">
+                            Search
                             <div class="flex gap-1 items-center">
                                 <u-kbd variant="soft">CTRL</u-kbd>
                                 <u-kbd variant="soft">K</u-kbd>
                             </div>
-                        </template>
-                    </u-input>
-                    <u-content-search-button variant="subtle"></u-content-search-button>
+                        </div>
+                    </u-content-search-button>
                 </u-field-group>
             </template>
         </u-page-header>
@@ -40,7 +44,7 @@
                     :badge="Math.abs(new Date().getTime() - new Date(article?.date).getTime()) < 8.64e7 * 7 ? { label: 'New', color: 'primary' } : undefined"
                     :date="article.date"
                     :to="article.path"
-                    variant="subtle"
+                    variant="naked"
                 ></u-blog-post>
             </u-blog-posts>
         </u-page-body>
@@ -55,7 +59,13 @@ const { data: files } = useLazyAsyncData("search", () => queryCollectionSearchSe
 });
 const query = ref("");
 const toast = useToast();
-setPageLayout("blog");
+definePageMeta({
+    layout: "blog",
+});
+useSeoMeta({
+    title: "The safe spot for nerds and devs",
+    description: "Coding tutorials, tech news, projects of any kind and some occasional yapping.",
+});
 function complain() {
     toast.add({ title: "Are you serious?", description: "Are you really complaining because there is no content yet? Get a life!" });
 }

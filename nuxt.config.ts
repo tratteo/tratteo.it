@@ -30,7 +30,9 @@ export default defineNuxtConfig({
                 },
                 remarkPlugins: {
                     "remark-reading-time": {},
+                    "remark-math": {},
                 },
+                rehypePlugins: { "rehype-katex": {} },
             },
         },
     },
@@ -75,9 +77,7 @@ export default defineNuxtConfig({
     },
     vite: {},
     build: { transpile: ["@vuepic/vue-datepicker"] },
-
-    css: ["~/assets/css/main.css"],
-
+    css: ["katex/dist/katex.min.css", "~/assets/css/main.css"],
     imports: {
         dirs: ["src/**/*", "composables/**/*"],
         global: true,

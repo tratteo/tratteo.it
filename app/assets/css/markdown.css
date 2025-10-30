@@ -33,34 +33,7 @@
         @apply text-default;
     }
 
-    .alert {
-        @apply my-2;
-    }
-
-    blockquote {
-        @apply relative py-2 px-4 my-2 bg-neutral-800 rounded-r-md text-start indent-0;
-    }
-
-    blockquote::before {
-        content: "";
-        @apply w-1 rounded-l-md bg-primary absolute left-0 top-0 h-full;
-    }
     img {
         @apply shrink-0! max-w-none!;
-    }
-
-    code {
-        word-break: normal;
-        overflow-wrap: anywhere;
-        @apply bg-neutral-800 px-[5px] py-px rounded-md text-sm;
-    }
-
-    div:has(> table) {
-        scrollbar-width: thin;
-        @apply overflow-x-auto overflow-y-auto w-full contain-inline-size;
-    }
-
-    pre {
-        @apply px-4 bg-neutral-900 rounded-lg my-4 text-wrap;
     }
 }

@@ -2,17 +2,13 @@
     <u-page :ui="{ center: 'lg:col-span-7!' }">
         <template #right>
             <u-page-aside :ui="{ root: 'lg:col-span-3!' }">
-                <u-page-anchors
-                    :links="[
-                        { label: 'YouTube', icon: 'mdi:youtube', to: 'https://www.youtube.com/@matteo-beltrame', target: '_blank' },
-                        { label: 'All articles', icon: 'material-symbols:article-rounded', to: '/c:\Users\matteo\Documents\Progetti\Dev\saas\reviy-app\app\error.vuearticles/' },
-                    ]"
-                ></u-page-anchors>
-                <u-separator type="dotted"></u-separator>
+                <u-page-anchors :links="anchorLinks"></u-page-anchors>
+
                 <u-content-toc v-if="data" :links="data.body.toc?.links" highlight></u-content-toc>
                 <div class="w-full flex items-center flex-wrap gap-1">
                     <u-button @click="scrollTop" label="Scroll top" class="grow" icon="material-symbols:keyboard-arrow-up-rounded" variant="soft" color="neutral"> </u-button>
                     <u-button @click="share" label="Share this article" class="grow" icon="material-symbols:share" variant="soft" color="neutral"> </u-button>
+                    <u-button label="All articles" class="grow" icon="material-symbols:article-rounded" to="/articles" variant="soft" color="neutral"> </u-button>
                     <u-button
                         v-if="(links?.length ?? 0) > 0"
                         @click="() => relatedArticlesEl?.scrollIntoView()"
@@ -26,7 +22,7 @@
                 </div>
             </u-page-aside>
         </template>
-        <u-page-header :title="data?.title" :description="data?.description" headline="Blog">
+        <u-page-header :title="data?.title" :description="data?.description" :headline="data?.headline ?? 'Blog'">
             <div class="flex items-end gap-4 justify-between mt-4">
                 <div class="flex flex-col gap-4">
                     <u-user
@@ -49,8 +45,9 @@
             </div>
         </u-page-header>
 
-        <div class="w-fit flex items-center flex-wrap gap-2 my-2">
+        <div class="lg:hidden w-fit flex items-center flex-wrap gap-2 my-2">
             <u-button @click="share" label="Share this article" class="grow" icon="material-symbols:share" variant="subtle" color="neutral"> </u-button>
+            <u-button label="All articles" class="grow" icon="material-symbols:article-rounded" to="/articles" variant="subtle" color="neutral"> </u-button>
             <u-button
                 @click="() => relatedArticlesEl?.scrollIntoView()"
                 label="Related articles"
@@ -86,6 +83,7 @@
 </template>
 
 <script lang="ts" setup>
+import type { PageAnchor } from "@nuxt/ui";
 import dayjs from "dayjs";
 import l from "lodash";
 import { appMeta } from "~/app.meta";
@@ -94,7 +92,9 @@ const route = useRoute();
 const authorEl = ref<HTMLElement | null>();
 const relatedArticlesEl = ref<HTMLElement | null>();
 const readingTimeText = computed(() => (data.value?.meta as any).readingTime?.text);
-
+definePageMeta({
+    layout: "blog",
+});
 const { data } = await useAsyncData(route.path, () => queryCollection("articles").path(route.path).first());
 const { data: links } = await useAsyncData(`linked-${route.path}`, async () => {
     const res = await queryCollection("articles").where("path", "NOT LIKE", data.value?.path).all();
@@ -107,6 +107,17 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
 });
 
 updateMeta();
+
+const anchorLinks = computed(() => {
+    const links: PageAnchor[] = [];
+    if (data.value?.youtube_tutorial) {
+        links.push({ label: "YouTube video", to: data.value?.youtube_tutorial, icon: "mdi:youtube", target: "_blank" });
+    }
+    if (data.value?.github_repo) {
+        links.push({ label: "Repository", to: data.value?.github_repo, icon: "mdi:github", target: "_blank" });
+    }
+    return links;
+});
 
 function scrollTop() {
     document.documentElement.scrollTo({ top: 0 });
@@ -146,6 +157,7 @@ function updateMeta() {
     defineOgImageComponent("Article", {
         thumbnail: data.value?.thumbnail,
         title: data.value?.title,
+        tags: data.value?.tags,
         author: {
             name: data.value?.author,
             image: data.value?.author_avatar,

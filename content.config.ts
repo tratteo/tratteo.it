@@ -9,14 +9,16 @@ export default defineContentConfig({
                 type: "page",
                 schema: z.object({
                     title: z.string(),
+                    headline: z.optional(z.string()),
                     date: z.date(),
                     description: z.string(),
+                    thumbnail: z.string(),
                     tags: z.optional(z.array(z.string())),
                     author: z.string(),
                     author_avatar: z.string(),
-                    author_description: z.string(),
-                    thumbnail: z.string(),
+                    author_description: z.optional(z.string()),
                     youtube_tutorial: z.optional(z.string()),
+                    github_repo: z.optional(z.string()),
                 }),
             })
         ),
