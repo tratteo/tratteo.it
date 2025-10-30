@@ -81,7 +81,7 @@ watch(() => props.text, startTyping);
 }
 
 .typewriter-caret {
-    @apply ml-2px text-current;
+    @apply ml-[2px] text-current;
 }
 
 .typewriter-caret.blink {
