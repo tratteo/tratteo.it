@@ -223,6 +223,18 @@ Putting everything togheter, you now have a very cool component that can be used
 Be sure to give a star to my **free Nuxt** template for other very cool components and implemented features.
 ::
 
+
+::card-group
+::card{icon="mdi:github" title="Free Nuxt 4 template" to="https://github.com/tratteo/nuxt_template" target="_blank" }
+A dashboard with multi-column layout.
+::
+
+::card{icon="logos:youtube-icon" title="YouTube Tutorials" to="https://www.youtube.com/@matteo-beltrame" target="_blank" color="error" variant="solid"}
+I post cool stuff and tutorials on my YouTube channel!
+::
+
+::
+
 Here is the final code, cheers!
 
 ::code-collapse

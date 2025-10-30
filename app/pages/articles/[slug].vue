@@ -4,25 +4,17 @@
             <u-page-aside :ui="{ root: 'lg:col-span-3!' }">
                 <u-page-anchors :links="anchorLinks"></u-page-anchors>
                 <u-content-toc v-if="data" :links="data.body.toc?.links" highlight></u-content-toc>
-                <div class="w-full flex items-center flex-wrap gap-1">
-                    <u-button @click="scrollTop" label="Scroll top" class="grow" icon="material-symbols:keyboard-arrow-up-rounded" variant="soft" color="neutral"> </u-button>
-                    <u-button @click="share" label="Share this article" class="grow" icon="material-symbols:share" variant="soft" color="neutral"> </u-button>
-                    <u-button label="All articles" class="grow" icon="material-symbols:article-rounded" to="/articles" variant="soft" color="neutral"> </u-button>
-                    <u-button
-                        v-if="(links?.length ?? 0) > 0"
-                        @click="() => relatedArticlesEl?.scrollIntoView()"
-                        label="Related articles"
-                        class="grow"
-                        icon="material-symbols:keyboard-arrow-down-rounded"
-                        variant="soft"
-                        color="neutral"
-                    >
-                    </u-button>
-                </div>
+
+                <u-field-group class="w-full">
+                    <u-button @click="share" label="Share this article" icon="material-symbols:share" variant="outline" color="neutral" class="grow"> </u-button>
+                    <u-dropdown-menu :items="[{ label: 'Copy URL', icon: 'mdi:link-variant', onSelect: copyLink }]">
+                        <u-button icon="i-lucide-chevron-down" variant="outline" color="neutral"></u-button>
+                    </u-dropdown-menu>
+                </u-field-group>
             </u-page-aside>
         </template>
         <u-page-header :title="data?.title" :description="data?.description" :headline="data?.headline ?? 'Blog'">
-            <div class="flex items-end gap-4 justify-between mt-4">
+            <div class="flex items-end gap-4 justify-between mt-4 flex-wrap">
                 <div class="flex flex-col gap-4">
                     <u-user
                         :name="data?.author"
@@ -36,10 +28,10 @@
                     </div>
                 </div>
                 <div class="flex flex-row items-center gap-4">
-                    <p class="flex flex-row items-center gap-1 typ-sublabel">
+                    <p class="flex flex-row items-center gap-1 typ-label">
                         <icon name="material-symbols:calendar-today-rounded" class="text-primary"></icon> {{ dayjs(data?.date).format("DD MMM YYYY") }}
                     </p>
-                    <p class="flex flex-row items-center gap-1 typ-sublabel"><icon name="material-symbols:alarm-rounded" class="text-primary"></icon> {{ readingTimeText }}</p>
+                    <p class="flex flex-row items-center gap-1 typ-label"><icon name="material-symbols:alarm-rounded" class="text-primary"></icon> {{ readingTimeText }}</p>
                 </div>
             </div>
         </u-page-header>
@@ -77,7 +69,10 @@ import { appMeta } from "~/app.meta";
 const route = useRoute();
 const authorEl = ref<HTMLElement | null>();
 const relatedArticlesEl = ref<HTMLElement | null>();
+const clipboard = useClipboard();
+const toast = useToast();
 const readingTimeText = computed(() => (data.value?.meta as any).readingTime?.text);
+
 definePageMeta({
     layout: "blog",
 });
@@ -102,12 +97,19 @@ const anchorLinks = computed(() => {
     if (data.value?.github_repo) {
         links.push({ label: "Repository", to: data.value?.github_repo, icon: "mdi:github", target: "_blank" });
     }
+    links.push({ label: "All articles", to: "/", icon: "material-symbols:article-rounded" });
+
     return links;
 });
 
 function scrollTop() {
     document.documentElement.scrollTo({ top: 0 });
     navigateTo(route.path, { replace: true });
+}
+
+async function copyLink() {
+    await clipboard.copy(window.location.href);
+    toast.add({ title: "Copied to clipboad", icon: "material-symbols:check-circle-rounded", color: "success" });
 }
 async function share() {
     await navigator.share({ url: route.fullPath });
@@ -160,4 +162,10 @@ onMounted(() => {
 
 <style lang="css">
 @reference "~/assets/css/main.css";
+
+@variant max-lg {
+    * {
+        scroll-margin-top: calc(var(--ui-header-height) + 4rem) !important;
+    }
+}
 </style>

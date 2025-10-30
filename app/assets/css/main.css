@@ -94,9 +94,7 @@
 * {
     scrollbar-width: thin !important;
     scroll-behavior: smooth;
-    --content-width: 80rem;
-    --headline-height: 72px;
-    scroll-margin-top: calc(var(--headline-height) + 1rem) !important;
+    scroll-margin-top: calc(var(--ui-header-height) + 1rem) !important;
 }
 :root {
     --ui-text-dimmed: var(--ui-color-neutral-500);
