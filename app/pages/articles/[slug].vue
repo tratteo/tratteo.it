@@ -4,7 +4,6 @@
             <u-page-aside :ui="{ root: 'lg:col-span-3!' }">
                 <u-page-anchors :links="anchorLinks"></u-page-anchors>
                 <u-content-toc v-if="data" :links="data.body.toc?.links" highlight></u-content-toc>
-
                 <u-field-group class="w-full">
                     <u-button @click="share" label="Share this article" icon="material-symbols:share" variant="outline" color="neutral" class="grow"> </u-button>
                     <u-dropdown-menu :items="[{ label: 'Copy URL', icon: 'mdi:link-variant', onSelect: copyLink }]">
@@ -97,7 +96,7 @@ const anchorLinks = computed(() => {
     if (data.value?.github_repo) {
         links.push({ label: "Repository", to: data.value?.github_repo, icon: "mdi:github", target: "_blank" });
     }
-    links.push({ label: "All articles", to: "/", icon: "material-symbols:article-rounded" });
+    links.push({ label: "All articles", to: "/articles", icon: "material-symbols:article-rounded" });
 
     return links;
 });

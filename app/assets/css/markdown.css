@@ -1,42 +1,4 @@
 .markdown-content {
-    @apply text-start;
-
-    h1,
-    h2,
-    h2,
-    h3,
-    h4 {
-        @apply text-start! font-bold!;
-    }
-
-    h1 {
-        line-height: 1.5em !important;
-        @apply md:text-5xl text-4xl font-bold text-highlighted;
-    }
-    h2 {
-        line-height: 1.25em !important;
-        @apply text-2xl font-bold text-highlighted;
-    }
-    ul {
-        @apply my-2;
-    }
-
-    h2 {
-        @apply mt-10 mb-4;
-    }
-
-    h3 {
-        @apply mt-4 mb-2 text-highlighted font-semibold text-lg;
-    }
-
-    h4 {
-        @apply text-default;
-    }
-
-    img {
-        @apply shrink-0! max-w-none!;
-    }
-
     pre {
         @apply overflow-x-auto text-nowrap;
     }

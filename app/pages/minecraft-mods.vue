@@ -4,15 +4,14 @@
             <img src="/thumbnails/minecraft.webp" alt="minecraft background" width="2048px" height="1170px" class="object-cover h-full" />
             <div class="gradient-overlay"></div>
         </div>
-        <u-button icon="material-symbols-light:home-rounded" to="/" label="Home" color="neutral" variant="subtle" class="w-fit"> </u-button>
         <div class="flex flex-row items-start flex-wrap gap-4">
             <div class="self-end hidden sm:flex ml-12 relative flex-col items-end gap-4">
-                <SvgDrawnArrow class="mr-8 lg:hidden w-auto h-[6rem] fill-primary scale-x-[-1] rotate-90"></SvgDrawnArrow>
-                <img src="/icons/steve.png" alt="Trat steve" class="w-[12rem] lg:w-[16rem]" width="1750" height="1010" />
+                <SvgDrawnArrow class="mr-8 lg:hidden w-auto h-24 fill-primary scale-x-[-1] rotate-90"></SvgDrawnArrow>
+                <img src="/icons/steve.png" alt="Trat steve" class="w-48 lg:w-[16rem]" width="1750" height="1010" />
             </div>
 
             <div class="flex-1 flex items-end gap-4 mb-4">
-                <SvgDrawnArrowTwist class="hidden lg:block w-auto h-[8rem] fill-primary"></SvgDrawnArrowTwist>
+                <SvgDrawnArrowTwist class="hidden lg:block w-auto h-32 fill-primary"></SvgDrawnArrowTwist>
                 <u-card class="min-w-[12rem] w-full border border-default">
                     <div class="flex flex-col gap-2">
                         <div class="flex items-center gap-2 justify-between flex-wrap">

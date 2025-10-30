@@ -19,10 +19,6 @@
     </u-app>
 </template>
 
-<script lang="ts" setup>
-import type { FooterColumnLink } from "@nuxt/ui";
-import { appMeta } from "~/app.meta";
-import sources from "~/assets/sources.json";
-</script>
+<script lang="ts" setup></script>
 
 <style></style>
