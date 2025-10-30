@@ -12,7 +12,7 @@
 
             <div class="flex-1 flex items-end gap-4 mb-4">
                 <SvgDrawnArrowTwist class="hidden lg:block w-auto h-32 fill-primary"></SvgDrawnArrowTwist>
-                <u-card class="min-w-[12rem] w-full border border-default">
+                <u-card class="min-w-48 w-full border border-default">
                     <div class="flex flex-col gap-2">
                         <div class="flex items-center gap-2 justify-between flex-wrap">
                             <p class="typ-label">Among all the stuff, I do also cool Minecraft mods. <br />If you want to support me 👉👈</p>
@@ -55,7 +55,7 @@
                                 <div class="flex flex-row flex-wrap items-center gap-2">
                                     <u-button
                                         icon="mdi:github"
-                                        class="z-[100]"
+                                        class="z-100"
                                         size="sm"
                                         variant="ghost"
                                         color="neutral"
@@ -84,7 +84,7 @@
                     <div class="absolute top-4 right-4">
                         <icon
                             name="material-symbols:arrow-outward-rounded"
-                            class="group-hover:translate-x-2 group-hover:-translate-y-2 duration-[300ms] ease-out transition-transform"
+                            class="group-hover:translate-x-2 group-hover:-translate-y-2 duration-300 ease-out transition-transform"
                         ></icon>
                     </div>
                 </a>
