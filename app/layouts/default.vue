@@ -11,9 +11,7 @@
             </template>
         </u-header>
         <u-main as="main">
-            <u-container>
-                <NuxtPage></NuxtPage>
-            </u-container>
+            <NuxtPage></NuxtPage>
         </u-main>
         <Footer></Footer>
     </u-app>

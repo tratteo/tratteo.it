@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center w-full mt-8 gap-32 self-center mb-16">
+    <u-container class="flex flex-col items-center w-full mt-8 gap-32 self-center mb-16">
         <div class="flex flex-row flex-wrap items-start justify-center w-full gap-16">
             <div class="relative overflow-visible">
                 <p class="absolute font-bold text-5xl left-0 top-0 text-highlighted!">I solve problems.</p>
@@ -305,7 +305,7 @@
                 </motion.div>
             </section>
         </AnimateEnter>
-    </div>
+    </u-container>
 </template>
 
 <script lang="ts" setup>

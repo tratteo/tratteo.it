@@ -1,11 +1,11 @@
 <template>
     <u-page>
+        <div class="fixed overflow-clip z-[-1] w-full">
+            <img src="/thumbnails/minecraft.webp" alt="minecraft background" class="object-cover w-full" />
+            <div class="gradient-overlay"></div>
+        </div>
         <u-page-body>
-            <div class="fixed inset-0 overflow-clip z-[-1]">
-                <img src="/thumbnails/minecraft.webp" alt="minecraft background" width="2048px" height="1170px" class="object-cover h-full" />
-                <div class="gradient-overlay"></div>
-            </div>
-            <div class="flex flex-col gap-0">
+            <u-container class="flex flex-col gap-0">
                 <div class="flex flex-row items-start flex-wrap gap-4">
                     <div class="self-end hidden sm:flex ml-12 relative flex-col items-end gap-4">
                         <SvgDrawnArrow class="mr-8 lg:hidden w-auto h-24 fill-primary scale-x-[-1] rotate-90"></SvgDrawnArrow>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <!-- <img src="/icons/minecraft_logo.svg" alt="Minecraft logo" class="h-64" /> -->
-                <div class="bg-transparent rounded-lg shadow">
+                <div class="bg-transparent rounded-lg">
                     <u-page-grid class="gap-4">
                         <u-page-card v-for="(mod, i) in mods" spotlight variant="outline" :ui="{ footer: 'w-full' }" :to="mod.url" target="_blank">
                             <template #header>
@@ -81,7 +81,7 @@
                         </u-page-card>
                     </u-page-grid>
                 </div>
-            </div>
+            </u-container>
         </u-page-body>
         <!-- <img src="/thumbnails/minecraft.jpeg" alt="Minecraft background" class="absolute w-full top-0 left-0 right-0 bottom-0 z-[-1]" /> -->
     </u-page>
