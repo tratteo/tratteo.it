@@ -27,7 +27,7 @@ This tutorial uses [Nuxt](https://nuxt.com/) as a web metaframework. However the
 
 
 ## Installing the required dependencies
-To begin with, we need to install some deps. Specifically we are going to install [Nuxt Content](!https://content.nuxt.com/docs/getting-started/installation) and two plugins `remark-math` and `rehype-katex` to handle the rendering.
+To begin with, we need to install some deps. Specifically we are going to install [Nuxt Content](https://content.nuxt.com/docs/getting-started/installation) and two plugins `remark-math` and `rehype-katex` to handle the rendering.
 
 
 Install the dependencies with your package manager:
