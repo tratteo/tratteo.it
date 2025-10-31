@@ -8,7 +8,7 @@ author:
     name: Matteo Beltrame
     avatar: /trat.jpg
     url: https://tratteo.it
-thumbnail: /articles/addicted.jpg
+thumbnail: /articles/create-an-addicting-sticky-button-in-nuxt/thumbnail.jpg
 github_repo: https://github.com/tratteo/nuxt_template
 youtube_tutorial: https://www.youtube.com/watch?v=LKjLeUI7_V0
 ---

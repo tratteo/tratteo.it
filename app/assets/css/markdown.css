@@ -1,4 +1,7 @@
 .markdown-content {
+    .katex-display {
+        @apply overflow-x-auto overflow-y-hidden text-nowrap;
+    }
     pre {
         @apply overflow-x-auto text-nowrap;
     }
