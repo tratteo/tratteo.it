@@ -16,9 +16,11 @@
             <div class="flex items-end gap-4 justify-between mt-4 flex-wrap">
                 <div class="flex flex-col gap-4">
                     <u-user
-                        :name="data?.author"
-                        :description="data?.author_description"
-                        :avatar="{ src: data?.author_avatar }"
+                        :name="data?.author.name"
+                        :description="data?.author.description"
+                        :avatar="{ src: data?.author.avatar }"
+                        :to="data?.author.url"
+                        target="_blank"
                         class="cursor-default"
                         @click="() => authorEl?.scrollIntoView()"
                     ></u-user>
@@ -46,7 +48,15 @@
                         v-for="article in links"
                         :title="article.title"
                         :image="article.thumbnail"
-                        :authors="[{ name: article.author, avatar: { src: article.author_avatar }, description: article.author_description }]"
+                        :authors="[
+                            {
+                                name: article.author.name,
+                                avatar: { src: article.author.avatar },
+                                description: article.author.description,
+                                to: article.author.url,
+                                target: '_blank',
+                            },
+                        ]"
                         :badge="Math.abs(new Date().getTime() - new Date(article?.date).getTime()) < 8.64e7 * 7 ? { label: 'New', color: 'primary' } : undefined"
                         :date="article.date"
                         :to="article.path"
@@ -116,6 +126,21 @@ async function share() {
 
 function updateMeta() {
     useSchemaOrg([
+        defineBreadcrumb({
+            itemListElement: [
+                {
+                    name: "Home",
+                    item: "/",
+                },
+                {
+                    name: "Articles",
+                    item: "/articles",
+                },
+                {
+                    name: data.value?.title,
+                },
+            ],
+        }),
         defineArticle({
             headline: data.value?.title,
             description: data.value?.description,
@@ -123,9 +148,10 @@ function updateMeta() {
             datePublished: dayjs(data.value?.date, "YYYY-MM-DD").toDate().toString(),
             keywords: data.value?.tags,
             author: {
-                name: data.value?.author,
-                description: data.value?.author_description,
-                image: data.value?.author_avatar,
+                url: data.value?.author.url,
+                name: data.value?.author.name,
+                description: data.value?.author.description,
+                image: data.value?.author.avatar,
             },
             publisher: definePerson({
                 name: appMeta.author.name,
@@ -147,7 +173,7 @@ function updateMeta() {
         tags: data.value?.tags,
         author: {
             name: data.value?.author,
-            image: data.value?.author_avatar,
+            image: data.value?.author.avatar,
         },
     });
 }

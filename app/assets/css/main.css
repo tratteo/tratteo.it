@@ -6,17 +6,17 @@
 @theme static {
     --font-sans: "Inter", sans-serif;
 
-    --ui-color-neutral-50: #f1f1f1;
-    --ui-color-neutral-100: #e2e2e3;
-    --ui-color-neutral-200: #c6c6c8;
-    --ui-color-neutral-300: #ababad;
-    --ui-color-neutral-400: #909093;
-    --ui-color-neutral-500: #77777a;
-    --ui-color-neutral-600: #606064;
-    --ui-color-neutral-700: #49494d;
-    --ui-color-neutral-800: #323235;
-    --ui-color-neutral-900: #1d1d1f;
-    --ui-color-neutral-950: #111112;
+    --color-neutral-50: #eeeeee;
+    --color-neutral-100: #dfdfe0;
+    --color-neutral-200: #c1c1c2;
+    --color-neutral-300: #a3a3a5;
+    --color-neutral-400: #838387;
+    --color-neutral-500: #68686c;
+    --color-neutral-600: #4d4d51;
+    --color-neutral-700: #343438;
+    --color-neutral-800: #1d1d1f;
+    --color-neutral-900: #111112;
+    --color-neutral-950: #0b0b0c;
 
     --color-primary-50: #fff4ef;
     --color-primary-100: #ffeadf;

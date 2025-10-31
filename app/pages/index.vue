@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col items-center w-full mt-8 gap-32 self-center mb-16">
-        <header class="flex flex-row flex-wrap items-start justify-center w-full gap-16">
+        <div class="flex flex-row flex-wrap items-start justify-center w-full gap-16">
             <div class="relative overflow-visible">
                 <p class="absolute font-bold text-5xl left-0 top-0 text-highlighted!">I solve problems.</p>
                 <div class="relative">
@@ -122,7 +122,7 @@
                     </template>
                 </Modal>
             </div>
-        </header>
+        </div>
 
         <AnimateEnter :stagger-children="0">
             <section>
@@ -226,23 +226,19 @@
         <AnimateEnter>
             <section>
                 <h3 class="typ-subtitle">My Services</h3>
-                <div class="services-grid">
+                <u-page-grid class="lg:grid-cols-2">
                     <motion.div :variants="itemVertical" v-for="s in services">
-                        <div class="flex flex-col gap-2">
-                            <div class="flex items-center gap-2"><OutlinedIcon :icon-name="s.icon" class="text-primary"></OutlinedIcon> {{ s.title }}</div>
-                            <p class="typ-label">
-                                {{ s.description }}
-                            </p>
-                        </div>
+                        <u-page-card :icon="s.icon" :title="s.title" :description="s.description" class="w-full h-full"></u-page-card>
                     </motion.div>
-                </div>
+                </u-page-grid>
             </section>
         </AnimateEnter>
 
         <AnimateEnter>
             <section>
                 <h3 class="typ-subtitle">These are my creations, my products</h3>
-                <div class="services-grid">
+
+                <u-page-grid class="lg:grid-cols-2">
                     <motion.a :variants="itemVertical" :href="p.url ?? '/'" v-for="p in sortedProjects">
                         <u-card
                             class="cursor-pointer image-full select-none group relative w-full overflow-clip h-full"
@@ -284,7 +280,7 @@
                             </div>
                         </u-card>
                     </motion.a>
-                </div>
+                </u-page-grid>
             </section>
         </AnimateEnter>
 
@@ -293,7 +289,7 @@
                 <motion.img :variants="itemVertical" src="/icons/minecraft_logo.svg" alt="Minecraft logo" class="h-40 self-center" />
                 <motion.div v-if="mounted" :variants="itemVertical" ref="minecraftCardEl" class="relative h-fit w-full max-w-2xl self-center">
                     <img src="/icons/creeper.png" class="creeper" :style="{ '--x-tr': creeperTrs.x, '--y-tr': creeperTrs.y }" alt="Minecraft creeper" />
-                    <NuxtLink class="z-4 relative min-h-48 border border-default rounded-lg flex flex-col items-stretch gap-4 w-full rounded-box overflow-clip">
+                    <div class="z-4 relative min-h-48 border border-default rounded-lg flex flex-col items-stretch gap-4 w-full rounded-box overflow-clip">
                         <div class="flex-1 z-0 flex flex-col gap-2 p-4">
                             <h3 class="font-semibold">Are you here for my Minecraft mods?</h3>
                             <p>Got a dedicated page for that 😎</p>
@@ -305,7 +301,7 @@
                         <div class="absolute w-full h-full opacity-75 bg-default z-[-1]"></div>
 
                         <img src="/thumbnails/minecraft.jpeg" class="z-[-2] object-cover absolute w-full h-full" alt="Minecraft thumbnail" />
-                    </NuxtLink>
+                    </div>
                 </motion.div>
             </section>
         </AnimateEnter>
@@ -321,7 +317,6 @@ import { appMeta } from "~/app.meta";
 import sources from "~/assets/sources.json";
 import type { ModalElement } from "~/components/modal.vue";
 import projects from "~/data/projects.json";
-
 const item = {
     hidden: { opacity: 0, transform: "translateX(-10px)" },
     show: { opacity: 1, transform: "translateX(0px)" },

@@ -19,7 +19,7 @@
     "@vuepic/vue-datepicker": "^11.0.3",
     "better-sqlite3": "^12.4.1",
     "culori": "^4.0.2",
-    "dayjs": "^1.11.18",
+    "dayjs": "^1.11.19",
     "fuse.js": "^7.1.0",
     "lodash": "^4.17.21",
     "motion-v": "^1.7.4",

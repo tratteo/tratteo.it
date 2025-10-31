@@ -10,7 +10,7 @@
                 </u-button>
             </template>
         </u-header>
-        <u-main>
+        <u-main as="main">
             <u-container>
                 <NuxtPage></NuxtPage>
             </u-container>

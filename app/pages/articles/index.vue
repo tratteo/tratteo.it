@@ -40,7 +40,9 @@
                     :title="article.title"
                     :description="article.description"
                     :image="article.thumbnail"
-                    :authors="[{ name: article.author, avatar: { src: article.author_avatar }, description: article.author_description }]"
+                    :authors="[
+                        { name: article.author.name, avatar: { src: article.author.avatar }, description: article.author.description, to: article.author.url, target: '_blank' },
+                    ]"
                     :badge="Math.abs(new Date().getTime() - new Date(article?.date).getTime()) < 8.64e7 * 7 ? { label: 'New', color: 'primary' } : undefined"
                     :date="article.date"
                     :to="article.path"
@@ -66,6 +68,20 @@ useSeoMeta({
     title: "The safe spot for nerds and devs",
     description: "Coding tutorials, tech news, projects of any kind and some occasional yapping.",
 });
+useSchemaOrg([
+    defineBreadcrumb({
+        itemListElement: [
+            {
+                name: "Home",
+                item: "/",
+            },
+            {
+                name: "Articles",
+                item: "/articles",
+            },
+        ],
+    }),
+]);
 function complain() {
     toast.add({ title: "Are you serious?", description: "Are you really complaining because there is no content yet? Get a life!" });
 }

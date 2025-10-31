@@ -1,11 +1,13 @@
 ---
 title: "Create an addicting button for your Nuxt projects"
-headline: Coding
+headline: Web Dev
 date: 2025-10-29
 description: Learn how to create a button with a very cool sticky microinteraction with Nuxt 4.
 tags: [tutorial, nuxt, microinteraction]
-author: Matteo Beltrame
-author_avatar: /trat.jpg
+author:
+    name: Matteo Beltrame
+    avatar: /trat.jpg
+    url: https://tratteo.it
 thumbnail: /articles/addicted.jpg
 github_repo: https://github.com/tratteo/nuxt_template
 youtube_tutorial: https://www.youtube.com/watch?v=LKjLeUI7_V0
