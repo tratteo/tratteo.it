@@ -3,7 +3,7 @@ title: "How to display LateX math formulas in Nuxt Content"
 headline: Web Dev
 date: 2025-10-31
 description: Learn how to aesthetically display math formulas using LateX synthax inside your documents with Nuxt Content, Remark and Rehype.
-tags: [tutorial, nuxt]
+tags: [nuxt, ui]
 author:
     name: Matteo Beltrame
     avatar: /trat.jpg

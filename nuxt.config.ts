@@ -24,6 +24,9 @@ export default defineNuxtConfig({
     content: {
         build: {
             markdown: {
+                highlight: {
+                    langs: ["js", "jsx", "json", "ts", "tsx", "vue", "css", "html", "vue", "bash", "md", "mdc", "yaml", "cpp", "c", "py"],
+                },
                 toc: {
                     depth: 3,
                     searchDepth: 3,
