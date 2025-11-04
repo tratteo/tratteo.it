@@ -43,26 +43,34 @@
             <div v-if="(links?.length ?? 0) > 0" class="flex flex-col gap-4 items-stretch">
                 <u-separator></u-separator>
                 <p class="font-semibold">Related articles</p>
-                <u-blog-posts id="related-articles">
+                <u-carousel id="related-articles" v-slot="{ item, index }" :items="links!" dots :ui="{ item: 'md:basis-1/2 ' }" :autoplay="{ delay: 3000 }" class="mb-4">
                     <u-blog-post
-                        v-for="article in links"
-                        :title="article.title"
-                        :image="article.thumbnail"
+                        :title="item.title"
+                        :image="item.thumbnail"
                         :authors="[
                             {
-                                name: article.author.name,
-                                avatar: { src: article.author.avatar },
-                                description: article.author.description,
-                                to: article.author.url,
+                                name: item.author.name,
+                                avatar: { src: item.author.avatar },
+                                description: item.author.description,
+                                to: item.author.url,
                                 target: '_blank',
                             },
                         ]"
-                        :badge="Math.abs(new Date().getTime() - new Date(article?.date).getTime()) < 8.64e7 * 7 ? { label: 'New', color: 'primary' } : undefined"
-                        :date="article.date"
-                        :to="article.path"
+                        :badge="Math.abs(new Date().getTime() - new Date(item?.date).getTime()) < 8.64e7 * 7 ? { label: 'New', color: 'success' } : undefined"
+                        :date="item.date"
+                        :to="item.path"
                         variant="naked"
-                    ></u-blog-post>
-                </u-blog-posts>
+                    >
+                        <template #description>
+                            <div class="flex flex-col gap-2">
+                                <p>{{ item.description }}</p>
+                                <div class="flex flex-row gap-2 items-center flex-wrap">
+                                    <u-badge v-for="k in item?.tags" color="primary" variant="soft">{{ k }}</u-badge>
+                                </div>
+                            </div>
+                        </template></u-blog-post
+                    >
+                </u-carousel>
             </div>
             <u-content-surround :surround="surround"></u-content-surround>
         </u-page-body>
@@ -86,9 +94,10 @@ definePageMeta({
     layout: "blog",
 });
 const { data } = await useAsyncData(route.path, () => queryCollection("articles").path(route.path).first());
+
 const { data: links } = await useAsyncData(`linked-${route.path}`, async () => {
     const res = await queryCollection("articles").where("path", "NOT LIKE", data.value?.path).all();
-    return l.orderBy(res, (a) => l.intersection(a.tags, data.value?.tags).length, "desc").slice(0, 5);
+    return l.filter(l.orderBy(res, (a) => l.intersection(a.tags, data.value?.tags).length, "desc").slice(0, 5), (a) => l.intersection(a.tags, data.value?.tags).length > 0);
 });
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
     return queryCollectionItemSurroundings("articles", route.path, {

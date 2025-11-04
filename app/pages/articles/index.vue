@@ -43,11 +43,20 @@
                     :authors="[
                         { name: article.author.name, avatar: { src: article.author.avatar }, description: article.author.description, to: article.author.url, target: '_blank' },
                     ]"
-                    :badge="Math.abs(new Date().getTime() - new Date(article?.date).getTime()) < 8.64e7 * 7 ? { label: 'New', color: 'primary' } : undefined"
+                    :badge="Math.abs(new Date().getTime() - new Date(article?.date).getTime()) < 8.64e7 * 7 ? { label: 'New', color: 'success' } : undefined"
                     :date="article.date"
                     :to="article.path"
                     variant="naked"
-                ></u-blog-post>
+                >
+                    <template #description>
+                        <div class="flex flex-col gap-2">
+                            <p>{{ article.description }}</p>
+                            <div class="flex flex-row gap-2 items-center flex-wrap">
+                                <u-badge v-for="k in article?.tags" color="primary" variant="soft">{{ k }}</u-badge>
+                            </div>
+                        </div>
+                    </template>
+                </u-blog-post>
             </u-blog-posts>
         </u-page-body>
     </u-page>

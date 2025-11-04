@@ -1,6 +1,6 @@
 <template>
     <div v-if="mounted" class="relative flex justify-center items-start pointer-events-none z-[-100]">
-        <motion.div ref="blobEl" class="blob" :animate="{ rotate: `${smoothAngle}rad`, transition: { duration: 2 } }"></motion.div>
+        <motion.div ref="blobEl" class="blob" :animate="{ rotate: `${angle}rad`, transition: { duration: 2 } }"></motion.div>
     </div>
 </template>
 
@@ -11,7 +11,7 @@ const blobEl = useTemplateRef("blobEl");
 const mounted = useMounted();
 const previousAngle = ref(0);
 const totalRotation = ref(0);
-const smoothAngle = ref(0);
+const angle = ref(0);
 const props = withDefaults(defineProps<{ size?: string; blur?: number; scaleAmplitude?: number }>(), {
     size: "200px",
     scaleAmplitude: 0.2,
@@ -41,12 +41,13 @@ function getSmoothAngle(angle: number) {
     previousAngle.value = angle;
     return totalRotation.value;
 }
+
 function mouseMove(ev: MouseEvent) {
     if (!blobEl.value?.$el) return;
     const rect = blobEl.value.$el.getBoundingClientRect();
     const deltaX = ev.clientX - (rect.left + rect.width / 2);
     const deltaY = ev.clientY - (rect.top + rect.height / 2);
-    smoothAngle.value = getSmoothAngle(Math.atan2(deltaY, deltaX));
+    angle.value = getSmoothAngle(Math.atan2(deltaY, deltaX));
 }
 
 function randomScale(): string {
@@ -57,10 +58,6 @@ function randomScale(): string {
         [0, 1],
         [1 - magnitude, 1 + magnitude]
     )}`;
-}
-
-function randomRotation(): string {
-    return `${Math.random() * 360}deg`;
 }
 
 function randomBorderRadius(): string {

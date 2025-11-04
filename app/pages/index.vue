@@ -33,9 +33,7 @@
                 <u-card variant="subtle">
                     <u-form class="w-full flex flex-col gap-2">
                         <TypewriterInput v-model="query" aria-label="Input query" :maxlength="100" :messages="placeholders"></TypewriterInput>
-                        <!-- <u-input
-                            
-                            
+                        <!-- <u-input                                                      
                             :ui="{ base: 'group ' }"
                             @focus="() => console.log('focus')"
                             @blur="() => console.log('blur')"
@@ -56,7 +54,7 @@
                         <CopyableText class="text-sm text-nowrap" :content="appMeta.author.email"></CopyableText>
                     </div>
                     <div class="flex flex-row items-start gap-2">
-                        <u-button :to="s.url" target="_blank" :icon="s.icon.name" color="neutral" v-for="s in sources.socials ?? []" class="" variant="ghost" :title="s.name">
+                        <u-button :to="s.url" target="_blank" :icon="s.icon.name" color="neutral" v-for="s in sources.socials ?? []" class="" variant="link" :title="s.name">
                         </u-button>
                     </div>
                 </u-card>

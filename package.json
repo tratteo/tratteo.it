@@ -16,7 +16,7 @@
     "@nuxt/ui": "^4.1.0",
     "@nuxtjs/seo": "^3.2.2",
     "@pinia/nuxt": "^0.11.2",
-    "@vuepic/vue-datepicker": "^12.0.0",
+    "@vuepic/vue-datepicker": "^12.0.1",
     "better-sqlite3": "^12.4.1",
     "culori": "^4.0.2",
     "dayjs": "^1.11.19",
