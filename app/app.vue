@@ -5,10 +5,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { FooterColumnLink } from "@nuxt/ui";
-import sources from "~/assets/sources.json";
-import { appMeta } from "./app.meta";
-
 defineOgImage();
 let removeScript: () => boolean;
 onMounted(() => {

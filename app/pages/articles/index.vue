@@ -35,28 +35,7 @@
             >
             </u-empty>
             <u-blog-posts v-else>
-                <u-blog-post
-                    v-for="article in articles"
-                    :title="article.title"
-                    :description="article.description"
-                    :image="article.thumbnail"
-                    :authors="[
-                        { name: article.author.name, avatar: { src: article.author.avatar }, description: article.author.description, to: article.author.url, target: '_blank' },
-                    ]"
-                    :badge="Math.abs(new Date().getTime() - new Date(article?.date).getTime()) < 8.64e7 * 7 ? { label: 'New', color: 'success' } : undefined"
-                    :date="article.date"
-                    :to="article.path"
-                    variant="naked"
-                >
-                    <template #description>
-                        <div class="flex flex-col gap-2">
-                            <p>{{ article.description }}</p>
-                            <div class="flex flex-row gap-2 items-center flex-wrap">
-                                <u-badge v-for="k in article?.tags" color="primary" variant="soft">{{ k }}</u-badge>
-                            </div>
-                        </div>
-                    </template>
-                </u-blog-post>
+                <BlogPost v-for="article in articles" :article="article"> </BlogPost>
             </u-blog-posts>
         </u-page-body>
     </u-page>

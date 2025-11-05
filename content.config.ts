@@ -22,6 +22,7 @@ export default defineContentConfig({
                     }),
                     youtube_tutorial: z.optional(z.string()),
                     github_repo: z.optional(z.string()),
+                    techstack: z.optional(z.array(z.string())),
                 }),
             })
         ),

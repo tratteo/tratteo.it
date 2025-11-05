@@ -10,6 +10,7 @@ author:
     url: https://tratteo.it
 thumbnail: /articles/universal-pin-driver-esp32/esp32_pinout.jpg
 github_repo: https://github.com/tratteo/esp32_pin_driver
+techstack: [cplusplus]
 ---
 
 ::callout{icon="ri:target-fill" }
@@ -82,7 +83,7 @@ The following image shows the Pinout for ESP32 Dev Modules:
 
 ![ESP32 Pinout](/articles/universal-pin-driver-esp32/esp32_pinout.jpg){:zoom="false"}
 
-There are different versions of Dev Modules, to be sure about their Pinout, be sure to always reference the sheet from your vendors. 
+There are different versions of Dev Modules, be sure to always reference the sheet from your vendors for the correct pinout. 
 Check out the official [Espressif Documentation](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/index.html){target=\_blank}.
 ::tip
 Usually boards have pin acronyms directly printed near the pins.
@@ -91,14 +92,23 @@ Usually boards have pin acronyms directly printed near the pins.
 
 We are going to develop a very simple pin mapping that will allow us to very easily detect whether an incoming command can be executed or not. 
 
-Create a file at the following path `include/esp32_gpio_mapping.cpp` with the following content:
+To make everything more clear, let's create a file that contains some constants:
+
+```cpp [include/defines.h]
+#define OP_READ "read"
+#define OP_WRITE "write"
+#define OP_MODE_DIGITAL "digital"
+#define OP_MODE_ANALOG "analog"
+```
+
+Now we can create a file at the following path `include/esp32_gpio_mapping.h` with the following content:
 
 ::code-collapse
-```cpp [include/esp32_gpio_mapping.cpp]
+```cpp [include/esp32_gpio_mapping.h]
 #include <Arduino.h>
 #include <map>
 #include <vector>
-#include "../include/defines.cpp"
+#include "../include/defines.h"
 enum class PinEntitlement { adc, dac, touch, i2c, spi, uart, pwm, rtc};
 const std::vector<int> safePins = {4, 13, 14, 16, 17, 18, 19, 21, 22, 23, 25, 26, 27, 32, 33, 34, 35, 36, 39};
 
@@ -135,27 +145,23 @@ bool esp32GpioEntitled(PinEntitlement function, int pin)
 
 This file will contain the code that we will use to check for pin entitlements. The `esp32GpioEntitled` function allow us to see if a certain pin has the specified entitlement, while the `esp32GpioSafe` method will detect whether the pin is indeed an available one.
 
-To make everything more clear, let's create another file that contains some constants:
+::warning
+Generally speaking it is good habit to divide function declaration and implementation in header `.h` files and source files `.cpp` to optimize compile and linking time. However in very small projects such as this one, it is fine to condense declarations and implementations in single files to keep the number of files low. 
+:: 
 
-```cpp [include/defines.cpp]
-#define OP_READ "read"
-#define OP_WRITE "write"
-#define OP_MODE_DIGITAL "digital"
-#define OP_MODE_ANALOG "analog"
-```
 
 ### Parsing the commands
 Now we will create the file that we will parse and execute the commands.
 
-Create a new file at the following path: `include/command.cpp` with the following content. The code seems pretty long but really all we are doing is creating two functions:
+Create a new file at the following path: `include/command.h` with the following content. The code seems pretty long but really all we are doing is creating two functions:
 - `bool parseCommand(String input, Command &cmd)`: this will try to parse and populate a `Command` struct (considering also the pin entitlements) and return whether the command is valid or not.
 - `String executeCommand(Command &cmd)`: execute a command and if present, returns the execution results.
 
 ::code-collapse
-```cpp [include/command.cpp]
+```cpp [include/command.h]
 #include <Arduino.h>
-#include "../include/esp32_gpio_mapping.cpp"
-#include "../include/defines.cpp"
+#include "../include/esp32_gpio_mapping.h"
+#include "../include/defines.h"
 
 struct Command
 {
@@ -266,11 +272,11 @@ bool parseCommand(String input, Command &cmd)
 
 ### Coding our main loop
 
-Now the last thing we need to code is our main file. Since we wrapped all the functionality inside the `include/command.cpp` file, our main is going to be very simple:
+Now the last thing we need to code is our main file. Since we wrapped all the functionality inside the `include/command.h` file, our main is going to be very simple:
 
 ```cpp [src/main.cpp]
 #include <Arduino.h>
-#include "../include/command.cpp"
+#include "../include/command.h"
 
 void setup()
 {

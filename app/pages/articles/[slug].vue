@@ -28,11 +28,18 @@
                         <u-badge v-for="k in data?.tags" color="primary" variant="soft">{{ k }}</u-badge>
                     </div>
                 </div>
-                <div class="flex flex-row items-center gap-4">
-                    <p class="flex flex-row items-center gap-1 typ-label">
-                        <icon name="material-symbols:calendar-today-rounded" class="text-primary"></icon> {{ dayjs(data?.date).format("DD MMM YYYY") }}
-                    </p>
-                    <p class="flex flex-row items-center gap-1 typ-label"><icon name="material-symbols:alarm-rounded" class="text-primary"></icon> {{ readingTimeText }}</p>
+                <div class="flex flex-col items-end gap-2">
+                    <div class="flex items-center gap-2" v-if="data?.techstack">
+                        <u-tooltip v-for="l in data.techstack" :text="l" :delay-duration="200">
+                            <icon :name="`devicon:${l}`" class="size-6"></icon>
+                        </u-tooltip>
+                    </div>
+                    <div class="flex flex-row items-center gap-4">
+                        <p class="flex flex-row items-center gap-1 typ-label">
+                            <icon name="material-symbols:calendar-today-rounded" class="text-primary"></icon> {{ dayjs(data?.date).format("DD MMM YYYY") }}
+                        </p>
+                        <p class="flex flex-row items-center gap-1 typ-label"><icon name="material-symbols:alarm-rounded" class="text-primary"></icon> {{ readingTimeText }}</p>
+                    </div>
                 </div>
             </div>
         </u-page-header>
@@ -44,32 +51,7 @@
                 <u-separator></u-separator>
                 <p class="font-semibold">Related articles</p>
                 <u-carousel id="related-articles" v-slot="{ item, index }" :items="links!" dots :ui="{ item: 'md:basis-1/2 ' }" :autoplay="{ delay: 3000 }" class="mb-4">
-                    <u-blog-post
-                        :title="item.title"
-                        :image="item.thumbnail"
-                        :authors="[
-                            {
-                                name: item.author.name,
-                                avatar: { src: item.author.avatar },
-                                description: item.author.description,
-                                to: item.author.url,
-                                target: '_blank',
-                            },
-                        ]"
-                        :badge="Math.abs(new Date().getTime() - new Date(item?.date).getTime()) < 8.64e7 * 7 ? { label: 'New', color: 'success' } : undefined"
-                        :date="item.date"
-                        :to="item.path"
-                        variant="naked"
-                    >
-                        <template #description>
-                            <div class="flex flex-col gap-2">
-                                <p>{{ item.description }}</p>
-                                <div class="flex flex-row gap-2 items-center flex-wrap">
-                                    <u-badge v-for="k in item?.tags" color="primary" variant="soft">{{ k }}</u-badge>
-                                </div>
-                            </div>
-                        </template></u-blog-post
-                    >
+                    <BlogPost :article="item"></BlogPost>
                 </u-carousel>
             </div>
             <u-content-surround :surround="surround"></u-content-surround>

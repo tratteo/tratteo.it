@@ -11,6 +11,7 @@ author:
 thumbnail: /articles/how-to-render-latex-in-nuxt-content/thumbnail.jpg
 github_repo: https://github.com/tratteo/nuxt_template
 youtube_tutorial: https://www.youtube.com/watch?v=dElWGpSa0e8
+techstack: [nuxt, typescript, css3]
 ---
 
 ::callout{icon="ri:target-fill" }
@@ -154,9 +155,12 @@ $$
 You can actually go pretty crazy with it and everything will just be awesome!
 
 $$
-\big(2\ket{\phi}\bra{\phi}-I\big)\ket{\psi_1}=2\ket{\phi}\braket{\phi|\psi_1}-\ket{\psi_1}\\
-=\frac{1}{\sqrt{2}}\ket{\phi}\big(\bra{00}+\bra{01}+\bra{10}+\bra{11}\big)\big(\delta^{00}_s\alpha\ket{00}+\delta^{01}_s\alpha\ket{01}+\delta^{10}_s\beta\ket{10}+\delta^{11}_s\beta\ket{11}\big)-\ket{\psi_1}\\
-=\frac{1}{\sqrt{2}}\big(\delta^{00}_s\alpha\ket{00}+\delta^{01}_s\alpha\ket{01}+\delta^{10}_s\beta\ket{10}+\delta^{11}_s\beta\ket{11}\big)\ket{\phi}-\ket{\psi_1}\\
+\begin{aligned}
+&\big(2\ket{\phi}\bra{\phi}-I\big)\ket{\psi_1}\\
+&=2\ket{\phi}\braket{\phi|\psi_1}-\ket{\psi_1}\\
+&=\frac{1}{\sqrt{2}}\ket{\phi}\big(\bra{00}+\bra{01}+\bra{10}+\bra{11}\big)\big(\delta^{00}_s\alpha\ket{00}+\delta^{01}_s\alpha\ket{01}+\delta^{10}_s\beta\ket{10}+\delta^{11}_s\beta\ket{11}\big)-\ket{\psi_1}\\
+&=\frac{1}{\sqrt{2}}\big(\delta^{00}_s\alpha\ket{00}+\delta^{01}_s\alpha\ket{01}+\delta^{10}_s\beta\ket{10}+\delta^{11}_s\beta\ket{11}\big)\ket{\phi}-\ket{\psi_1}
+\end{aligned}
 $$
 
 ::warning

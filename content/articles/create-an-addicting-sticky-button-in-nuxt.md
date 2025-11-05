@@ -11,6 +11,7 @@ author:
 thumbnail: /articles/create-an-addicting-sticky-button-in-nuxt/thumbnail.jpg
 github_repo: https://github.com/tratteo/nuxt_template
 youtube_tutorial: https://www.youtube.com/watch?v=LKjLeUI7_V0
+techstack: [nuxt, typescript, css3]
 ---
 
 ::callout{icon="ri:target-fill" }
