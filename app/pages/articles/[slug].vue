@@ -28,7 +28,7 @@
                         <u-badge v-for="k in data?.tags" color="primary" variant="soft">{{ k }}</u-badge>
                     </div>
                 </div>
-                <div class="flex flex-col items-end gap-2">
+                <div class="w-full flex flex-col items-end gap-2">
                     <div class="flex items-center gap-2" v-if="data?.techstack">
                         <u-tooltip v-for="l in data.techstack" :text="l" :delay-duration="200">
                             <icon :name="`devicon:${l}`" class="size-6"></icon>

@@ -25,6 +25,7 @@ export default defineNuxtConfig({
         build: {
             markdown: {
                 highlight: {
+                    theme: "dark-plus",
                     langs: ["js", "jsx", "json", "ts", "tsx", "vue", "css", "html", "vue", "bash", "md", "mdc", "yaml", "cpp", "c", "py"],
                 },
                 toc: {
@@ -59,7 +60,7 @@ export default defineNuxtConfig({
         },
     },
     robots: {
-        disallow: ["/app/**", "/api/**"],
+        disallow: ["/app/**", "/api/**", "/_nuxt/**"],
     },
     site: {
         url: appMeta.url,
