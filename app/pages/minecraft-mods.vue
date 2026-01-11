@@ -88,8 +88,8 @@
 </template>
 
 <script lang="ts" setup>
-import sources from "~/assets/sources.json";
 import projects from "~/data/projects.json";
+import sources from "~/data/sources.json";
 
 const mods = projects.mods.projects;
 

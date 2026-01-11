@@ -1,6 +1,20 @@
 {
     "projects": [
         {
+            "title": "Reviy",
+            "role": "Founder & CTO",
+            "status": "shipped",
+            "thumbnail": "/thumbnails/reviy.webp",
+            "url": "https://reviy.app?utm_source=personal_site",
+            "description": "The ultimate AI-powered SaaS platform that creates and optimises content for your brand to make it the first recommendation on AI Search platforms.",
+            "links": [],
+            "icon": "https://reviy.app/logo_white.svg",
+            "tags": [
+                "ai",
+                "saas"
+            ]
+        },
+        {
             "title": "Bubblet",
             "role": "Creator",
             "status": "shipped",
@@ -31,7 +45,7 @@
         {
             "title": "Agendista",
             "role": "Founder & Creator",
-            "status": "shipped",
+            "status": "archived",
             "thumbnail": "/thumbnails/agendista.webp",
             "url": "https://agendista.it?utm_source=personal_site",
             "description": "Free your time by automatizing reservations.",

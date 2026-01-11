@@ -40,22 +40,6 @@
             }
         },
         {
-            "name": "Threads",
-            "url": "https://www.threads.net/@tratteo",
-            "icon": {
-                "name": "tabler:brand-threads",
-                "url": "https://api.iconify.design/tabler:brand-threads.svg"
-            }
-        },
-        {
-            "name": "TikTok",
-            "url": "https://www.tiktok.com/@t.rat.t",
-            "icon": {
-                "name": "ic:baseline-tiktok",
-                "url": "https://api.iconify.design/ic:baseline-tiktok.svg"
-            }
-        },
-        {
             "name": "Github",
             "url": "https://github.com/tratteo",
             "icon": {
@@ -82,12 +66,16 @@
     ],
     "projects": [
         {
+            "name": "Reviy",
+            "url": "https://reviy.app"
+        },
+        {
             "name": "Depthlog",
             "url": "https://depthlog.net"
         },
         {
-            "name": "Agendista",
-            "url": "https://agendista.it"
+            "name": "Bubblet",
+            "url": "https://bubblet.app"
         }
     ]
 }

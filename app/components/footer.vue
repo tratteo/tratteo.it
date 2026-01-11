@@ -30,7 +30,7 @@
 <script lang="ts" setup>
 import type { FooterColumnLink } from "@nuxt/ui";
 import { appMeta } from "~/app.meta";
-import sources from "~/assets/sources.json";
+import sources from "~/data/sources.json";
 </script>
 
 <style></style>

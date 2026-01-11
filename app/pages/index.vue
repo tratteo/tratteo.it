@@ -312,9 +312,10 @@ import * as fns from "date-fns";
 import Fuse, { type FuseResult } from "fuse.js";
 import { Motion, motion } from "motion-v";
 import { appMeta } from "~/app.meta";
-import sources from "~/assets/sources.json";
 import type { ModalElement } from "~/components/modal.vue";
 import projects from "~/data/projects.json";
+import sources from "~/data/sources.json";
+import { capitalize } from "~~/shared/utils/string";
 const item = {
     hidden: { opacity: 0, transform: "translateX(-10px)" },
     show: { opacity: 1, transform: "translateX(0px)" },
