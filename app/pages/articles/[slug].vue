@@ -51,7 +51,7 @@
                 <u-separator></u-separator>
                 <p class="font-semibold">Related articles</p>
                 <u-carousel id="related-articles" v-slot="{ item, index }" :items="links!" dots :ui="{ item: 'md:basis-1/2 ' }" :autoplay="{ delay: 3000 }" class="mb-4">
-                    <BlogPost :article="item"></BlogPost>
+                    <blog-post :article="item"></blog-post>
                 </u-carousel>
             </div>
             <u-content-surround :surround="surround"></u-content-surround>
@@ -72,9 +72,6 @@ const clipboard = useClipboard();
 const toast = useToast();
 const readingTimeText = computed(() => (data.value?.meta as any).readingTime?.text);
 
-definePageMeta({
-    layout: "blog",
-});
 const { data } = await useAsyncData(route.path, () => queryCollection("articles").path(route.path).first());
 
 const { data: links } = await useAsyncData(`linked-${route.path}`, async () => {

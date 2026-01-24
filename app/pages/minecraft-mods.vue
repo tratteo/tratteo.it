@@ -1,6 +1,6 @@
 <template>
     <u-page>
-        <div class="fixed overflow-clip z-[-1] w-full">
+        <div class="fixed overflow-clip top-0 z-[-1] w-full">
             <img src="/thumbnails/minecraft.webp" alt="minecraft background" class="object-cover w-full" />
             <div class="gradient-overlay"></div>
         </div>

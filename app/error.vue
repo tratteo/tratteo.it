@@ -16,7 +16,7 @@
                 />
             </u-container>
         </u-main>
-        <Footer></Footer>
+        <footer></footer>
     </u-app>
 </template>
 

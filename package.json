@@ -12,35 +12,32 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/content": "^3.8.0",
-    "@nuxt/ui": "^4.1.0",
-    "@nuxtjs/seo": "^3.2.2",
+    "@nuxt/content": "^3.11.0",
+    "@nuxt/ui": "^4.4.0",
+    "@nuxtjs/seo": "^3.3.0",
     "@pinia/nuxt": "^0.11.3",
-    "@vuepic/vue-datepicker": "^12.0.2",
-    "better-sqlite3": "^12.4.1",
+    "@vuepic/vue-datepicker": "^12.1.0",
+    "better-sqlite3": "^12.6.2",
     "culori": "^4.0.2",
     "dayjs": "^1.11.19",
     "fuse.js": "^7.1.0",
-    "lodash": "^4.17.21",
-    "motion-v": "^1.7.4",
+    "lodash": "^4.17.23",
+    "motion-v": "^1.10.0",
     "pinia": "^3.0.4",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "remark-reading-time": "^2.0.2",
     "uuid": "^13.0.0",
-    "vue": "^3.5.24"
-  },
-  "overrides": {
-    "nuxt:": "4.1.2"
+    "vue": "^3.5.27"
   },
   "devDependencies": {
-    "@nuxt/scripts": "^0.13.0",
+    "@nuxt/scripts": "^0.13.2",
     "@types/culori": "^4.0.1",
-    "@types/lodash": "^4.17.20",
-    "@unhead/vue": "^2.0.19",
-    "@vueuse/core": "^14.0.0",
-    "@vueuse/nuxt": "^14.0.0",
-    "nuxt": "^4.2.2"
+    "@types/lodash": "^4.17.23",
+    "@unhead/vue": "^2.1.2",
+    "@vueuse/core": "^14.1.0",
+    "@vueuse/nuxt": "^14.1.0",
+    "nuxt": "^4.3.0"
   },
   "optionalDependencies": {}
 }

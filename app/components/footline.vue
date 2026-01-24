@@ -17,7 +17,7 @@
                     <u-avatar src="/favicon.svg" alt="author, owner"></u-avatar>
                     <div class="typ-label text-start">All right reserved by {{ appMeta.author.name }}</div>
                 </div>
-                <CopyableText class="h-8 text-nowrap" :content="appMeta.author.email"></CopyableText>
+                <copyable-text class="h-8 text-nowrap" :content="appMeta.author.email"></copyable-text>
             </div>
         </template>
 

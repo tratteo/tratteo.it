@@ -20,9 +20,9 @@
             </template>
         </u-page-header>
         <u-page-body>
-            <ClientOnly>
+            <client-only>
                 <u-content-search v-model:search-term="query" shortcut="meta_k" :files="files" :navigation="navigation" :fuse="{ resultLimit: 42 }"></u-content-search>
-            </ClientOnly>
+            </client-only>
             <u-empty
                 v-if="(articles?.length ?? 0) <= 0"
                 title="No interesting material yet"
@@ -35,7 +35,7 @@
             >
             </u-empty>
             <u-blog-posts v-else>
-                <BlogPost v-for="article in articles" :article="article"> </BlogPost>
+                <blog-post v-for="article in articles" :article="article"> </blog-post>
             </u-blog-posts>
         </u-page-body>
     </u-page>
@@ -49,9 +49,7 @@ const { data: files } = useLazyAsyncData("search", () => queryCollectionSearchSe
 });
 const query = ref("");
 const toast = useToast();
-definePageMeta({
-    layout: "blog",
-});
+
 useSeoMeta({
     title: "The safe spot for nerds and devs",
     description: "Coding tutorials, tech news, projects of any kind and some occasional yapping.",

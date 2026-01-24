@@ -96,6 +96,9 @@ export default defineNuxtConfig({
                 staleMaxAge: 31536000,
             },
         },
+        "/minecraft-mods": {
+            appLayout: "fullwidth",
+        },
         "/sitemap.xml": {
             isr: 3600,
         },

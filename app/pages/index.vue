@@ -1,5 +1,5 @@
 <template>
-    <u-container class="flex flex-col items-center w-full mt-8 gap-32 self-center mb-16">
+    <u-container class="flex flex-col items-center w-full mt-16 gap-32 self-center mb-16">
         <div class="flex flex-row flex-wrap items-start justify-center w-full gap-16">
             <div class="relative overflow-visible">
                 <p class="absolute font-bold text-5xl left-0 top-0 text-highlighted!">I solve problems.</p>
@@ -24,9 +24,9 @@
                         </div>
 
                         <div>
-                            <ClientOnly>
+                            <client-only>
                                 <time class="text-xs opacity-50">{{ fns.format(currentAction.date, "HH:mm:ss") }}</time>
-                            </ClientOnly>
+                            </client-only>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                             </template>
                         </u-input> -->
                         <StickyElement :amplitude="16" class="ml-auto">
-                            <u-button @click="askNeed" class="group" type="submit"><AnimatedArrow>Ask!</AnimatedArrow> </u-button>
+                            <u-button @click="askNeed" class="group" type="submit"><animated-arrow>Ask!</animated-arrow> </u-button>
                         </StickyElement>
                     </u-form>
                     <u-separator> Need something more specific?</u-separator>
@@ -69,7 +69,7 @@
                                       description: string;
                                       icon: string;
                                   }>[]
-                                | undefined
+                                | undefined,
                         ) => (arg !== undefined && arg.length > 0 ? `I have found ${arg.length} services for you!` : `Let's talk about it!`)
                     "
                     :description="
@@ -80,7 +80,7 @@
                                       description: string;
                                       icon: string;
                                   }>[]
-                                | undefined
+                                | undefined,
                         ) =>
                             arg !== undefined && arg.length > 0
                                 ? 'You can write me indicating which service you are interested in.'
@@ -292,7 +292,7 @@
                             <h3 class="font-semibold">Are you here for my Minecraft mods?</h3>
                             <p>Got a dedicated page for that 😎</p>
                             <u-button to="/minecraft-mods" class="w-fit mt-auto" color="neutral">
-                                <AnimatedArrow> Check them out </AnimatedArrow>
+                                <animated-arrow> Check them out </animated-arrow>
                             </u-button>
                         </div>
 
@@ -437,7 +437,7 @@ function creeperPeak() {
             creeperTrs.value = { x: creeperTrs.value.x, y: 0 };
             setTimeout(creeperPeak, Math.random() * 3000 + 1500);
         },
-        Math.random() * 3000 + 1000
+        Math.random() * 3000 + 1000,
     );
 }
 onMounted(() => {

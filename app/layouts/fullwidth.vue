@@ -1,10 +1,8 @@
 <template>
-    <u-app>
+    <u-app class="flex flex-col gap-4">
         <headline></headline>
-        <u-main>
-            <u-container class="mt-4">
-                <nuxt-page></nuxt-page>
-            </u-container>
+        <u-main class="mt-4">
+            <nuxt-page></nuxt-page>
         </u-main>
         <footline></footline>
     </u-app>
