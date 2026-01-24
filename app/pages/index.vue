@@ -25,7 +25,7 @@
 
                         <div>
                             <client-only>
-                                <time class="text-xs opacity-50">{{ fns.format(currentAction.date, "HH:mm:ss") }}</time>
+                                <time class="text-xs opacity-50">{{ dayjs(currentAction.date).format("HH:mm:ss") }}</time>
                             </client-only>
                         </div>
                     </div>
@@ -308,7 +308,7 @@
 
 <script lang="ts" setup>
 import type { BadgeProps } from "@nuxt/ui";
-import * as fns from "date-fns";
+import dayjs from "dayjs";
 import Fuse, { type FuseResult } from "fuse.js";
 import { Motion, motion } from "motion-v";
 import { appMeta } from "~/app.meta";
