@@ -24,7 +24,7 @@
 const error = useError();
 
 useSeoMeta({
-    title: error.value?.statusCode.toString(),
+    title: error.value?.status?.toString(),
     description: error.value?.statusMessage,
 });
 
