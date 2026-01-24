@@ -80,7 +80,6 @@ export default defineNuxtConfig({
         },
     },
     vite: {},
-    build: { transpile: ["@vuepic/vue-datepicker"] },
     css: ["katex/dist/katex.min.css", "~/assets/css/main.css"],
     imports: {
         dirs: ["src/**/*", "composables/**/*"],
@@ -99,9 +98,6 @@ export default defineNuxtConfig({
         "/minecraft-mods": {
             appLayout: "fullwidth",
         },
-        "/sitemap.xml": {
-            isr: 3600,
-        },
     },
     ui: {
         colorMode: false,
@@ -115,7 +111,7 @@ export default defineNuxtConfig({
             crawlLinks: true,
             failOnError: true,
             ignore: ["/api", "/app"],
-            routes: ["/", "sitemap.xml"],
+            routes: ["/"],
         },
     },
     ogImage: {
@@ -128,5 +124,5 @@ export default defineNuxtConfig({
     },
     modules: ["@nuxt/ui", "@vueuse/nuxt", "@pinia/nuxt", "@nuxt/content", "@nuxtjs/seo", "@nuxt/scripts"],
 
-    compatibilityDate: "2024-07-25",
+    compatibilityDate: "2025-07-15",
 });
