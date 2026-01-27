@@ -1,8 +1,8 @@
 <template>
     <div class="relative h-full w-full flex flex-row items-start gap-2 bg-#1d1d1f text-white">
         <div class="w-[50%] h-full">
-            <div class="p-12 flex flex-col items-stretch h-full justify-start gap-10">
-                <div class="flex-1 flex flex-col gap-4">
+            <div class="p-10 flex flex-col items-stretch h-full justify-start gap-10">
+                <div class="flex-1 flex flex-col">
                     <p class="text-5xl font-bold">{{ title }}</p>
                     <p class="text-2xl opacity-75">{{ description }}</p>
                     <div v-if="tags" class="flex items-center flex-row gap-4 w-full">
@@ -10,7 +10,7 @@
                     </div>
                     <div class="mt-auto flex flex-col gap-8 w-full">
                         <div v-if="author" class="flex flex-row items-center justify-start gap-4">
-                            <img class="rounded-full" :src="author.image" width="80" height="80" alt="" />
+                            <img class="rounded-full size-16" :src="author.avatar" alt="" />
                             <p class="font-bold text-2xl">{{ author.name }}</p>
                         </div>
                     </div>
@@ -33,7 +33,7 @@ defineProps<{
     tags?: string[] | undefined;
     author?:
         | {
-              image: string;
+              avatar: string;
               name: string;
           }
         | undefined;

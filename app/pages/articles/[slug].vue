@@ -3,13 +3,16 @@
         <template #right>
             <u-page-aside :ui="{ root: 'lg:col-span-3!' }">
                 <u-page-anchors :links="anchorLinks"></u-page-anchors>
-                <u-content-toc v-if="data" :links="data.body.toc?.links" highlight></u-content-toc>
-                <u-field-group class="w-full">
-                    <u-button @click="share" label="Share this article" icon="material-symbols:share" variant="outline" color="neutral" class="grow"> </u-button>
-                    <u-dropdown-menu :items="[{ label: 'Copy URL', icon: 'mdi:link-variant', onSelect: copyLink }]">
-                        <u-button icon="i-lucide-chevron-down" variant="subtle" color="neutral"></u-button>
-                    </u-dropdown-menu>
-                </u-field-group>
+                <u-content-toc v-if="data" :links="data.body.toc?.links" highlight>
+                    <template #bottom>
+                        <u-field-group class="w-full">
+                            <u-button @click="share" label="Share this article" icon="material-symbols:share" variant="outline" color="neutral" class="grow"> </u-button>
+                            <u-dropdown-menu :items="[{ label: 'Copy URL', icon: 'mdi:link-variant', onSelect: copyLink }]">
+                                <u-button icon="i-lucide-chevron-down" variant="subtle" color="neutral"></u-button>
+                            </u-dropdown-menu>
+                        </u-field-group>
+                    </template>
+                </u-content-toc>
             </u-page-aside>
         </template>
         <u-page-header :title="data?.title" :description="data?.description" :headline="data?.headline ?? 'Blog'">
@@ -159,10 +162,7 @@ function updateMeta() {
         thumbnail: data.value?.thumbnail,
         title: data.value?.title,
         tags: data.value?.tags,
-        author: {
-            name: data.value?.author,
-            image: data.value?.author.avatar,
-        },
+        author: data.value?.author,
     });
 }
 
