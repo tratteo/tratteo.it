@@ -48,7 +48,7 @@ To enable providers in mobile apps you have to meet further requirements. Check 
 At this point we need to add our custom domain. We will have to add it in few different places: the Auth settings and the Hosting settings.
 
 #### Auth settings
-Head over the the `Settings` tab of the Authentication section and then in the `Authorized domains` section you can add your custom domain. 
+Head over the `Settings` tab of the Authentication section and then in the `Authorized domains` section you can add your custom domain. 
 You should have some default domains configured by Firebase.
 ::tip
 In the Auth settings, you will have to add the root domain. In the example below, I added the domain `depthlog.net` for my custom app [Depthlog](https://depthlog.net){target=\_blank} even if we will use a subdomain for the auth provider. 
@@ -122,8 +122,6 @@ Cheers!
 ::callout{icon="logos:youtube-icon" to="https://youtu.be/BSuBX_mt2aw" target="_blank"}
 If you want to learn how to build a **fullstack** web app in Nuxt using Firebase as backend, check out the complete tutorial on my YouTube channel! 
 ::
-
-
 
 
 ::card-group
