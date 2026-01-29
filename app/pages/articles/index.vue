@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts" setup>
-const { data: articles } = await useAsyncData("articles-home", () => queryCollection("articles").all());
+const { data: articles } = await useAsyncData("articles-home", () => queryCollection("articles").order("date", "DESC").all());
 const { data: navigation } = await useAsyncData("navigation", () => queryCollectionNavigation("articles"));
 const { data: files } = useLazyAsyncData("search", () => queryCollectionSearchSections("articles"), {
     server: false,

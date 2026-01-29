@@ -7,7 +7,7 @@
         :badge="Math.abs(new Date().getTime() - new Date(article?.date).getTime()) < 8.64e7 * 7 ? { label: 'New', color: 'success' } : undefined"
         :date="article.date"
         :to="article.path"
-        variant="naked"
+        variant="outline"
     >
         <template #description>
             <div class="flex flex-col gap-2">
@@ -24,6 +24,18 @@
                 </div>
             </div>
         </template>
+        <template #authors>
+            <div class="flex items-center gap-2 flex-wrap justify-between w-full">
+                <u-user
+                    :name="article.author.name"
+                    :avatar="{ src: article.author.avatar }"
+                    :description="article.author.description"
+                    :to="article.author.url"
+                    target="_blank"
+                ></u-user>
+                <p class="flex flex-row items-center gap-1 typ-label"><icon name="material-symbols:alarm-rounded" class="text-primary"></icon> {{ readingTimeText }}</p>
+            </div>
+        </template>
     </u-blog-post>
 </template>
 
@@ -31,6 +43,7 @@
 import type { ArticlesCollectionItem } from "@nuxt/content";
 
 const props = defineProps<{ article: ArticlesCollectionItem }>();
+const readingTimeText = computed(() => (props.article.meta as any).readingTime?.text);
 </script>
 
 <style></style>

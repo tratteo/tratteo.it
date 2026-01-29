@@ -10,7 +10,7 @@ author:
     url: https://tratteo.it
 thumbnail: /articles/custom-domain-in-firebase-auth/thumbnail.jpg
 github_repo: null
-youtube_tutorial: https://youtu.be/BSuBX_mt2aw
+youtube_tutorial: https://youtu.be/rwq_vLEfPMU
 techstack: [firebase, typescript]
 ---
 
