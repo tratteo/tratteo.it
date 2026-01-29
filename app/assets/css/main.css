@@ -94,6 +94,7 @@
 * {
     scrollbar-width: thin !important;
     scroll-behavior: smooth;
+    --ui-header-height: --spacing(20);
     scroll-margin-top: calc(var(--ui-header-height) + 2rem) !important;
 }
 :root {

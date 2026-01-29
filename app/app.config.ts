@@ -18,9 +18,12 @@ export default defineAppConfig({
                 },
             },
         },
+        container: {
+            base: "p-1! lg:p-4!",
+        },
         toaster: {
             slots: {
-                viewport: "z-[10001]",
+                viewport: "z-10001",
             },
         },
         colors: {

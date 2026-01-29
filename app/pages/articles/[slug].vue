@@ -3,7 +3,7 @@
         <template #right>
             <u-page-aside :ui="{ root: 'lg:col-span-3!' }">
                 <u-page-anchors :links="anchorLinks"></u-page-anchors>
-                <u-content-toc v-if="data" :links="data.body.toc?.links" highlight>
+                <u-content-toc v-if="data" :links="data.body.toc?.links" highlight :ui="{ root: '', container: 'mx-2!' }">
                     <template #bottom>
                         <u-field-group class="w-full">
                             <u-button @click="share" label="Share this article" icon="material-symbols:share" variant="outline" color="neutral" class="grow"> </u-button>

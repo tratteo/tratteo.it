@@ -1,9 +1,12 @@
 <template>
     <u-header
         mode="slideover"
+        :data-scroll="scroll.y.value > 0"
+        class="group"
         :ui="{
-            root: 'mx-2 top-4 border-none bg-transparent backdrop-blur-none',
-            container: 'max-w-[var(--ui-container)] rounded-xl border border-default shadow-xl rounded-2xl backdrop-blur-lg bg-default/50',
+            root: 'mx-2 border-none bg-transparent backdrop-blur-none pt-4',
+            container:
+                'max-w-[var(--ui-container)] rounded-xl group-data-[scroll=true]:shadow-xl border border-default rounded-2xl backdrop-blur-lg bg-default/50  transition-all duration-150 ease-out',
         }"
     >
         <template #left>
@@ -20,6 +23,8 @@
 
 <script lang="ts" setup>
 import type { NavigationMenuItem } from "@nuxt/ui";
+
+const scroll = useWindowScroll();
 
 const navItems = computed<NavigationMenuItem[]>(() => [
     { label: "Blog", to: "/articles" },

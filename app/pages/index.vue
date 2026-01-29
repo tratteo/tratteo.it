@@ -122,7 +122,7 @@
             </div>
         </div>
 
-        <AnimateEnter :stagger-children="0">
+        <animate-enter :stagger-children="0">
             <section>
                 <h3 class="typ-subtitle">My Experience</h3>
                 <div class="flex flex-col md:flex-row items-stretch gap-4 w-full justify-start">
@@ -219,9 +219,9 @@
                     </Motion>
                 </div>
             </section>
-        </AnimateEnter>
+        </animate-enter>
 
-        <AnimateEnter>
+        <animate-enter>
             <section>
                 <h3 class="typ-subtitle">My Services</h3>
                 <u-page-grid class="lg:grid-cols-2">
@@ -230,9 +230,9 @@
                     </motion.div>
                 </u-page-grid>
             </section>
-        </AnimateEnter>
+        </animate-enter>
 
-        <AnimateEnter>
+        <animate-enter>
             <section>
                 <h3 class="typ-subtitle">These are my creations, my products</h3>
 
@@ -280,9 +280,9 @@
                     </motion.a>
                 </u-page-grid>
             </section>
-        </AnimateEnter>
+        </animate-enter>
 
-        <AnimateEnter>
+        <animate-enter>
             <section>
                 <motion.img :variants="itemVertical" src="/icons/minecraft_logo.svg" alt="Minecraft logo" class="h-40 self-center" />
                 <motion.div v-if="mounted" :variants="itemVertical" ref="minecraftCardEl" class="relative h-fit w-full max-w-2xl self-center">
@@ -302,7 +302,7 @@
                     </div>
                 </motion.div>
             </section>
-        </AnimateEnter>
+        </animate-enter>
     </u-container>
 </template>
 
