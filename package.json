@@ -34,8 +34,8 @@
     "@types/culori": "^4.0.1",
     "@types/lodash": "^4.17.23",
     "@unhead/vue": "^2.1.2",
-    "@vueuse/core": "^14.1.0",
-    "@vueuse/nuxt": "^14.1.0",
+    "@vueuse/core": "^14.2.0",
+    "@vueuse/nuxt": "^14.2.0",
     "nuxt": "^4.3.0"
   },
   "optionalDependencies": {}

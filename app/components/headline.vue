@@ -6,7 +6,7 @@
         :ui="{
             root: 'mx-2 border-none bg-transparent backdrop-blur-none pt-4',
             container:
-                'max-w-[var(--ui-container)] rounded-xl group-data-[scroll=true]:shadow-xl border border-default rounded-2xl backdrop-blur-lg bg-default/50  transition-all duration-150 ease-out',
+                'max-w-[var(--ui-container)] rounded-xl group-data-[scroll=true]:shadow-xl border border-default rounded-2xl backdrop-blur-lg bg-default/50 transition-all duration-150 ease-out',
         }"
     >
         <template #left>
@@ -16,7 +16,7 @@
             <u-navigation-menu :items="navItems" orientation="vertical"></u-navigation-menu>
         </template>
         <template #right>
-            <u-navigation-menu :items="navItems" class="hidden lg:block"></u-navigation-menu>
+            <u-navigation-menu :items="navItems" class="hidden lg:flex"></u-navigation-menu>
         </template>
     </u-header>
 </template>

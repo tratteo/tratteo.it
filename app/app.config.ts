@@ -19,7 +19,7 @@ export default defineAppConfig({
             },
         },
         container: {
-            base: "p-1! lg:p-4!",
+            base: "",
         },
         toaster: {
             slots: {

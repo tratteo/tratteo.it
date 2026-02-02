@@ -2,7 +2,7 @@
     <u-app>
         <headline></headline>
         <u-main>
-            <u-container class="mt-4">
+            <u-container class="mt-4 px-2! lg:px-4!">
                 <nuxt-page></nuxt-page>
             </u-container>
         </u-main>
