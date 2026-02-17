@@ -1,33 +1,16 @@
 <template>
     <div v-if="mounted" class="typewriter-container">
-        <Transition name="fade" mode="out-in">
+        <transition name="fade" mode="out-in">
             <p :key="props.text">
                 <span class="typewriter-text">{{ displayedText }}</span>
                 <span class="typewriter-caret" :class="{ blink: isComplete }">|</span>
             </p>
-        </Transition>
+        </transition>
     </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-    text: {
-        type: String,
-        required: true,
-    },
-    typeByWord: {
-        type: Boolean,
-        default: false,
-    },
-    typingSpeed: {
-        type: Number,
-        default: 100,
-    },
-    startDelay: {
-        type: Number,
-        default: 200,
-    },
-});
+const props = withDefaults(defineProps<{ text: string; typeByWord?: boolean; typingDelay?: number; startDelay?: number }>(), { typingDelay: 100, startDelay: 200 });
 const mounted = useMounted();
 const displayedText = ref("");
 const isComplete = ref(false);
@@ -59,7 +42,7 @@ function startTyping() {
             }
 
             currentIndex.value++;
-            timeout = setTimeout(typeNextItem, props.typingSpeed);
+            timeout = setTimeout(typeNextItem, props.typingDelay);
         } else {
             isTyping.value = false;
             isComplete.value = true;
@@ -75,13 +58,15 @@ onMounted(() => {
 watch(() => props.text, startTyping);
 </script>
 
-<style scoped>
+<style scoped lang="css">
+@reference "~/assets/css/main.css";
+
 .typewriter-container {
     @apply inline-block;
 }
 
 .typewriter-caret {
-    @apply ml-[2px] text-current;
+    @apply ml-0.5 text-current;
 }
 
 .typewriter-caret.blink {

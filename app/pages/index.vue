@@ -9,27 +9,7 @@
                 </div>
             </div>
             <div class="flex-1 flex flex-col items-stretch gap-6">
-                <div class="flex items-center justify-center flex-row gap-4">
-                    <div class="flex flex-col items-center gap-2">
-                        <div class="relative size-18 rounded-full overflow-clip">
-                            <Transition name="crossfade" mode="in-out">
-                                <img :key="currentAction.index" :style="{ '--duration-tr': '800ms' }" alt="Trat" :src="currentAction.action.src" />
-                            </Transition>
-                        </div>
-                    </div>
-                    <div class="gap-1 w-full md:min-w-[20rem]">
-                        <div class="flex flex-row items-center gap-0">
-                            <p>But usually I'm&nbsp;</p>
-                            <Typewriter :text="currentAction.action.name" class="font-bold" :typing-speed="20"> </Typewriter>
-                        </div>
-
-                        <div>
-                            <client-only>
-                                <time class="text-xs opacity-50">{{ dayjs(currentAction.date).format("HH:mm:ss") }}</time>
-                            </client-only>
-                        </div>
-                    </div>
-                </div>
+                <crossfade-hero :items="actions"></crossfade-hero>
                 <u-card variant="subtle">
                     <u-form class="w-full flex flex-col gap-2">
                         <TypewriterInput v-model="query" aria-label="Input query" :maxlength="100" :messages="placeholders"></TypewriterInput>
@@ -310,7 +290,7 @@
 import type { BadgeProps } from "@nuxt/ui";
 import dayjs from "dayjs";
 import Fuse, { type FuseResult } from "fuse.js";
-import { Motion, motion } from "motion-v";
+import { AnimatePresence, Motion, motion } from "motion-v";
 import { appMeta } from "~/app.meta";
 import type { ModalElement } from "~/components/modal.vue";
 import projects from "~/data/projects.json";

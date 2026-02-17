@@ -12,7 +12,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/content": "^3.11.0",
+    "@nuxt/content": "^3.11.2",
     "@nuxt/ui": "^4.4.0",
     "@nuxtjs/seo": "^3.4.0",
     "@pinia/nuxt": "^0.11.3",
@@ -21,22 +21,22 @@
     "dayjs": "^1.11.19",
     "fuse.js": "^7.1.0",
     "lodash": "^4.17.23",
-    "motion-v": "^1.10.2",
+    "motion-v": "^1.10.3",
     "pinia": "^3.0.4",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "remark-reading-time": "^2.0.2",
     "uuid": "^13.0.0",
-    "vue": "^3.5.27"
+    "vue": "^3.5.28"
   },
   "devDependencies": {
     "@nuxt/scripts": "^0.13.2",
     "@types/culori": "^4.0.1",
     "@types/lodash": "^4.17.23",
-    "@unhead/vue": "^2.1.2",
-    "@vueuse/core": "^14.2.0",
-    "@vueuse/nuxt": "^14.2.0",
-    "nuxt": "^4.3.0"
+    "@unhead/vue": "^2.1.4",
+    "@vueuse/core": "^14.2.1",
+    "@vueuse/nuxt": "^14.2.1",
+    "nuxt": "^4.3.1"
   },
   "optionalDependencies": {}
 }
