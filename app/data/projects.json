@@ -22,7 +22,7 @@
             "url": "https://bubblet.vercel.app?utm_source=personal_site",
             "description": "Make your websites alive. A free customizable hub: add it to any website, display personal information, projects, news and affiliate links.",
             "links": [],
-            "icon": "https://bubblet.app/favicon.svg",
+            "icon": "https://bubblet.vercel.app/favicon.svg",
             "tags": [
                 "dev",
                 "tool"

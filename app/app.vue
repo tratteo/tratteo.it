@@ -10,7 +10,7 @@ defineOgImage();
 onMounted(() => {
     useScript(
         {
-            src: `https://bubblet.app/plugin.js`,
+            src: `https://bubblet.vercel.app/plugin.js`,
             "data-key": "rsndvYPirJY60jqZbQ7Bv4jh2Lb2",
             "data-primary": cssColor("--ui-primary", 1, "hex"),
             "data-neutral": cssColor("--ui-bg-toned", 0.1, "hex"),
