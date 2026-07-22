@@ -158,7 +158,7 @@ function updateMeta() {
         description: data.value?.description,
     });
 
-    defineOgImageComponent("Article", {
+    defineOgImage("Article.takumi", {
         thumbnail: data.value?.thumbnail,
         title: data.value?.title,
         tags: data.value?.tags,

@@ -22,6 +22,9 @@ export default defineNuxtConfig({
         ],
     },
     content: {
+        experimental: {
+            sqliteConnector: "native",
+        },
         build: {
             markdown: {
                 highlight: {
@@ -115,7 +118,7 @@ export default defineNuxtConfig({
         },
     },
     ogImage: {
-        defaults: { component: "OgImageDefault" },
+        defaults: {},
     },
     fonts: {
         defaults: {

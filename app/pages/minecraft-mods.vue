@@ -107,7 +107,7 @@ useSchemaOrg([
         ],
     }),
 ]);
-defineOgImageComponent("OgImageMinecraft", { avatarUrl: "/icon.png", subtitle: "Check out my awesome Minecraft mods 😎" });
+defineOgImage("Minecraft.takumi", { avatarUrl: "/icon.png", subtitle: "Check out my awesome Minecraft mods 😎" });
 </script>
 
 <style lang="css" scoped>
