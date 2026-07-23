@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-defineOgImage();
+defineOgImage("Default.takumi");
 
 onMounted(() => {
     useScript(

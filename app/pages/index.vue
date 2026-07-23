@@ -456,7 +456,7 @@ function colorFromStatus(status: string): BadgeProps["color"] {
 useSeoMeta({
     description: "I fired myself from everywhere to become my own boss and build stuff that I love.",
 });
-defineOgImage("Default.takumi", { avatarUrl: "/web-app-manifest-512x512.png", subtitle: "I am building cool stuff 😎" });
+defineOgImage("Default.takumi", { avatarUrl: "/web-app-manifest-512x512.png", subtitle: "I am building cool stuff" });
 </script>
 
 <style lang="css" scoped>

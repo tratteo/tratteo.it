@@ -54,6 +54,7 @@ useSeoMeta({
     title: "The safe spot for nerds and devs",
     description: "Coding tutorials, tech news, projects of any kind and some occasional yapping.",
 });
+defineOgImage("Default.takumi", { subtitle: "Blog for nerds" });
 useSchemaOrg([
     defineBreadcrumb({
         itemListElement: [
