@@ -8,7 +8,7 @@
             "url": "https://reviy.app?utm_source=personal_site",
             "description": "The ultimate AI-powered SaaS platform that creates and optimises content for your brand to make it the first recommendation on AI Search platforms.",
             "links": [],
-            "icon": "https://reviy.app/logo_white.svg",
+            "icon": "/logos/reviy-white.svg",
             "tags": [
                 "ai",
                 "saas"

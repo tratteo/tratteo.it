@@ -1,124 +1,171 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+@import "~/assets/css/design-system.css";
 @import "~/assets/css/typography.css";
 @import "~/assets/css/markdown.css";
 @import "~/assets/css/transition.css";
+
+/* ---------------------------------------------------------------------------
+   TYPE SYSTEM + PALETTE
+   Zinc-aligned neutrals. Display + body: Geist. Labels + data: Geist Mono.
+--------------------------------------------------------------------------- */
 @theme static {
-    --font-sans: "Inter", sans-serif;
+    --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
 
-    --color-neutral-50: #eeeeee;
-    --color-neutral-100: #dfdfe0;
-    --color-neutral-200: #c1c1c2;
-    --color-neutral-300: #a3a3a5;
-    --color-neutral-400: #838387;
-    --color-neutral-500: #68686c;
-    --color-neutral-600: #4d4d51;
-    --color-neutral-700: #343438;
-    --color-neutral-800: #1d1d1f;
-    --color-neutral-900: #111112;
-    --color-neutral-950: #0b0b0c;
+    --color-neutral-50: #fafafa;
+    --color-neutral-100: #f4f4f5;
+    --color-neutral-200: #e4e4e7;
+    --color-neutral-300: #d4d4d8;
+    --color-neutral-400: #a1a1aa;
+    --color-neutral-500: #71717a;
+    --color-neutral-600: #52525b;
+    --color-neutral-700: #3f3f46;
+    --color-neutral-800: #27272a;
+    --color-neutral-900: #18181b;
+    --color-neutral-950: #09090b;
 
-    --color-primary-50: #fff4ef;
-    --color-primary-100: #ffeadf;
-    --color-primary-200: #ffd8c1;
-    --color-primary-300: #ffc299;
-    --color-primary-400: #ffaf6e;
-    --color-primary-500: #fe9a00;
-    --color-primary-600: #c97900;
-    --color-primary-700: #945700;
-    --color-primary-800: #653a00;
-    --color-primary-900: #371e00;
-    --color-primary-950: #241100;
+    /* Primary is intentionally monochrome: contrast, not colour, drives action. */
+    --color-primary-50: #fafafa;
+    --color-primary-100: #f4f4f5;
+    --color-primary-200: #e4e4e7;
+    --color-primary-300: #d4d4d8;
+    --color-primary-400: #a1a1aa;
+    --color-primary-500: #71717a;
+    --color-primary-600: #52525b;
+    --color-primary-700: #3f3f46;
+    --color-primary-800: #27272a;
+    --color-primary-900: #18181b;
+    --color-primary-950: #09090b;
 
-    --color-secondary-50: #cdfdfd;
-    --color-secondary-100: #88fafb;
-    --color-secondary-200: #5be2e3;
-    --color-secondary-300: #50cacb;
-    --color-secondary-400: #45b0b1;
-    --color-secondary-500: #379091;
-    --color-secondary-600: #2a7273;
-    --color-secondary-700: #1e5656;
-    --color-secondary-800: #123a3b;
-    --color-secondary-900: #072122;
-    --color-secondary-950: #041616;
+    --color-secondary-50: #f0fdfa;
+    --color-secondary-100: #ccfbf1;
+    --color-secondary-200: #99f6e4;
+    --color-secondary-300: #5eead4;
+    --color-secondary-400: #2dd4bf;
+    --color-secondary-500: #14b8a6;
+    --color-secondary-600: #0d9488;
+    --color-secondary-700: #0f766e;
+    --color-secondary-800: #115e59;
+    --color-secondary-900: #134e4a;
+    --color-secondary-950: #042f2e;
 
-    --color-success-50: #ffffff;
-    --color-success-100: #ffffff;
-    --color-success-200: #d3fdea;
-    --color-success-300: #88fbce;
-    --color-success-400: #62efbd;
-    --color-success-500: #4fc49b;
-    --color-success-600: #3c9978;
-    --color-success-700: #2a7258;
-    --color-success-800: #1a4d3b;
-    --color-success-900: #0a291e;
-    --color-success-950: #051911;
+    --color-success-50: #ecfdf5;
+    --color-success-100: #d1fae5;
+    --color-success-200: #a7f3d0;
+    --color-success-300: #6ee7b7;
+    --color-success-400: #34d399;
+    --color-success-500: #10b981;
+    --color-success-600: #059669;
+    --color-success-700: #047857;
+    --color-success-800: #065f46;
+    --color-success-900: #064e3b;
+    --color-success-950: #022c22;
 
-    --color-warning-50: #ffffff;
-    --color-warning-100: #ffffff;
-    --color-warning-200: #fdf0cf;
-    --color-warning-300: #fbde7c;
-    --color-warning-400: #efd057;
-    --color-warning-500: #c3aa46;
-    --color-warning-600: #9a8535;
-    --color-warning-700: #726225;
-    --color-warning-800: #4d4116;
-    --color-warning-900: #2a2308;
-    --color-warning-950: #1a1504;
+    --color-warning-50: #fffbeb;
+    --color-warning-100: #fef3c7;
+    --color-warning-200: #fde68a;
+    --color-warning-300: #fcd34d;
+    --color-warning-400: #fbbf24;
+    --color-warning-500: #f59e0b;
+    --color-warning-600: #d97706;
+    --color-warning-700: #b45309;
+    --color-warning-800: #92400e;
+    --color-warning-900: #78350f;
+    --color-warning-950: #451a03;
 
-    --color-error-50: #ffffff;
-    --color-error-100: #ffe9e7;
-    --color-error-200: #ffc3be;
-    --color-error-300: #ff978b;
-    --color-error-400: #ff6549;
-    --color-error-500: #e34100;
-    --color-error-600: #b83300;
-    --color-error-700: #8a2400;
-    --color-error-800: #631700;
-    --color-error-900: #3b0a00;
-    --color-error-950: #280500;
+    --color-error-50: #fef2f2;
+    --color-error-100: #fee2e2;
+    --color-error-200: #fecaca;
+    --color-error-300: #fca5a5;
+    --color-error-400: #f87171;
+    --color-error-500: #ef4444;
+    --color-error-600: #dc2626;
+    --color-error-700: #b91c1c;
+    --color-error-800: #991b1b;
+    --color-error-900: #7f1d1d;
+    --color-error-950: #450a0a;
 
-    --color-info-50: #ffffff;
-    --color-info-100: #ffffff;
-    --color-info-200: #d0f8ff;
-    --color-info-300: #94f1ff;
-    --color-info-400: #28ebff;
-    --color-info-500: #00c0d1;
-    --color-info-600: #0097a5;
-    --color-info-700: #00717b;
-    --color-info-800: #004c54;
-    --color-info-900: #00282d;
-    --color-info-950: #00191c;
+    --color-info-50: #eff6ff;
+    --color-info-100: #dbeafe;
+    --color-info-200: #bfdbfe;
+    --color-info-300: #93c5fd;
+    --color-info-400: #60a5fa;
+    --color-info-500: #3b82f6;
+    --color-info-600: #2563eb;
+    --color-info-700: #1d4ed8;
+    --color-info-800: #1e40af;
+    --color-info-900: #1e3a8a;
+    --color-info-950: #172554;
 }
 
-* {
-    scrollbar-width: thin !important;
-    scroll-behavior: smooth;
-    --ui-header-height: --spacing(20);
-    scroll-margin-top: calc(var(--ui-header-height) + 2rem) !important;
-}
+/* ---------------------------------------------------------------------------
+   Nuxt UI bridge: every semantic token points at the design system, so Nuxt UI
+   components (and legacy pages) follow the theme automatically.
+--------------------------------------------------------------------------- */
 :root {
-    --ui-text-dimmed: var(--ui-color-neutral-500);
-    --ui-text-muted: var(--ui-color-neutral-400);
-    --ui-text-toned: var(--ui-color-neutral-300);
-    --ui-text: var(--ui-color-neutral-200);
-    --ui-text-highlighted: var(--color-white);
-    --ui-text-inverted: var(--ui-color-neutral-900);
+    --ui-radius: 0.75rem;
+    --ui-container: var(--ds-container);
 
-    --ui-bg: var(--ui-color-neutral-900);
-    --ui-bg-muted: var(--ui-color-neutral-950);
-    --ui-bg-elevated: var(--ui-color-neutral-950);
-    --ui-bg-accented: var(--ui-color-neutral-800);
-    --ui-bg-inverted: var(--color-white);
+    --ui-text-dimmed: var(--ds-text-faint);
+    --ui-text-muted: var(--ds-text-dim);
+    --ui-text-toned: var(--ds-text-muted);
+    --ui-text: var(--ds-text-muted);
+    --ui-text-highlighted: var(--ds-text);
+    --ui-text-inverted: var(--ds-bg);
 
-    --ui-border: var(--ui-color-neutral-800);
-    --ui-border-muted: var(--ui-color-neutral-700);
-    --ui-border-accented: var(--ui-color-neutral-700);
-    --ui-border-inverted: var(--color-white);
+    --ui-bg: var(--ds-bg);
+    --ui-bg-muted: var(--ds-bg-soft);
+    --ui-bg-elevated: var(--ds-bg-soft);
+    --ui-bg-accented: var(--ds-bg-deep);
+    --ui-bg-inverted: var(--ds-text);
+
+    --ui-border: var(--ds-hairline);
+    --ui-border-muted: var(--ds-hairline);
+    --ui-border-accented: var(--ds-hairline-strong);
+    --ui-border-inverted: var(--ds-text);
 }
 
-.dark {
-    --ui-primary: var(--ui-color-primary-500);
+/* ---------------------------------------------------------------------------
+   BASE
+--------------------------------------------------------------------------- */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ds-text-faint) transparent;
+    scroll-behavior: smooth;
+    --ui-header-height: var(--ds-nav-h);
+    scroll-margin-top: calc(var(--ds-nav-h) + 2rem);
+}
+
+html,
+body {
+    background-color: var(--ds-bg);
+    color: var(--ds-text);
+}
+
+html {
+    color-scheme: light;
+}
+html.dark {
+    color-scheme: dark;
+}
+
+body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        scroll-behavior: auto !important;
+    }
+}
+
+/* colour-mode switch should never feel abrupt */
+html {
+    transition: background-color 0.4s var(--ds-ease);
 }
 
 .iconify {
@@ -126,5 +173,5 @@
 }
 
 .bg-gradient {
-    background: linear-gradient(var(--color-fuchsia-400), var(--ui-primary));
+    background: linear-gradient(var(--color-secondary-400), var(--ui-primary));
 }

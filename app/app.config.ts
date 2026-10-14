@@ -27,7 +27,7 @@ export default defineAppConfig({
             },
         },
         colors: {
-            primary: "primary",
+            primary: "neutral",
             secondary: "secondary",
             neutral: "neutral",
             info: "info",

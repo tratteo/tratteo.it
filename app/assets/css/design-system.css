@@ -1,0 +1,322 @@
+/* ==========================================================================
+   tratteo design system
+   A monochrome, glass-first language. Dual theme. No brand accent color:
+   contrast does the work, colour only enters through content (logos, photos).
+   Every visual decision here is a token. Change it once, it changes everywhere.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. TOKENS
+   -------------------------------------------------------------------------- */
+
+:root {
+    /* surfaces */
+    --ds-bg: #f3f3f4;
+    --ds-bg-soft: #fbfbfc;
+    --ds-bg-deep: #e7e7ea;
+    --ds-ink: #09090b;
+
+    /* text hierarchy */
+    --ds-text: #0a0a0d;
+    --ds-text-muted: #55555e;
+    --ds-text-dim: #74747d;
+    --ds-text-faint: #a3a3ac;
+
+    /* glass */
+    --ds-glass: rgba(255, 255, 255, 0.62);
+    --ds-glass-strong: rgba(255, 255, 255, 0.82);
+    --ds-glass-faint: rgba(255, 255, 255, 0.38);
+    --ds-glass-border: rgba(9, 9, 11, 0.09);
+    --ds-glass-highlight: rgba(255, 255, 255, 0.9);
+    --ds-hairline: rgba(9, 9, 11, 0.08);
+    --ds-hairline-strong: rgba(9, 9, 11, 0.16);
+
+    /* depth */
+    --ds-shadow-soft: 0 28px 60px -34px rgba(9, 9, 11, 0.26);
+    --ds-shadow-lift: 0 44px 96px -46px rgba(9, 9, 11, 0.34);
+
+    /* status (the only colour in the UI, and only as a signal) */
+    --ds-live: #10b981;
+
+    /* ambient mesh */
+    --ds-orb-1: rgba(79, 70, 229, 0.09);
+    --ds-orb-2: rgba(13, 148, 136, 0.08);
+    --ds-orb-3: rgba(217, 70, 239, 0.055);
+    --ds-grid-line: rgba(9, 9, 11, 0.045);
+
+    /* texture */
+    --ds-grain-opacity: 0.4;
+
+    /* geometry */
+    --ds-r-xs: 0.625rem;
+    --ds-r-sm: 0.875rem;
+    --ds-r-md: 1.25rem;
+    --ds-r-lg: 1.75rem;
+    --ds-r-xl: 2.5rem;
+    --ds-r-full: 999px;
+
+    /* motion */
+    --ds-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --ds-ease-out: cubic-bezier(0.32, 0.72, 0, 1);
+    --ds-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --ds-blur: 20px;
+
+    /* layout */
+    --ds-container: 84rem;
+    --ds-nav-h: 4.5rem;
+}
+
+.dark {
+    --ds-bg: #060607;
+    --ds-bg-soft: #0b0b0d;
+    --ds-bg-deep: #030304;
+    --ds-ink: #f4f4f5;
+
+    --ds-text: #f2f2f4;
+    --ds-text-muted: #b3b3bb;
+    --ds-text-dim: #8b8b94;
+    --ds-text-faint: #57575f;
+
+    --ds-glass: rgba(255, 255, 255, 0.045);
+    --ds-glass-strong: rgba(255, 255, 255, 0.08);
+    --ds-glass-faint: rgba(255, 255, 255, 0.022);
+    --ds-glass-border: rgba(255, 255, 255, 0.1);
+    --ds-glass-highlight: rgba(255, 255, 255, 0.16);
+    --ds-hairline: rgba(255, 255, 255, 0.1);
+    --ds-hairline-strong: rgba(255, 255, 255, 0.2);
+
+    --ds-shadow-soft: 0 30px 70px -36px rgba(0, 0, 0, 0.75);
+    --ds-shadow-lift: 0 52px 104px -46px rgba(0, 0, 0, 0.85);
+
+    --ds-orb-1: rgba(99, 102, 241, 0.17);
+    --ds-orb-2: rgba(45, 212, 191, 0.1);
+    --ds-orb-3: rgba(232, 121, 249, 0.08);
+    --ds-grid-line: rgba(255, 255, 255, 0.045);
+
+    --ds-grain-opacity: 0.55;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --ds-blur: 13px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   2. PRIMITIVES
+   -------------------------------------------------------------------------- */
+
+.ds-container {
+    width: 100%;
+    max-width: var(--ds-container);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .ds-container {
+        padding-inline: 2rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .ds-container {
+        padding-inline: 3rem;
+    }
+}
+
+/* Glass surface. A hairline border + inset highlight reads as a physical edge. */
+.ds-glass {
+    background: var(--ds-glass);
+    border: 1px solid var(--ds-glass-border);
+    -webkit-backdrop-filter: blur(var(--ds-blur)) saturate(150%);
+    backdrop-filter: blur(var(--ds-blur)) saturate(150%);
+    box-shadow: inset 0 1px 0 0 var(--ds-glass-highlight);
+}
+
+.ds-glass--strong {
+    background: var(--ds-glass-strong);
+}
+
+.ds-glass--faint {
+    background: var(--ds-glass-faint);
+}
+
+/* The outer "tray" of the double-bezel: a shell that seats the inner glass. */
+.ds-panel {
+    background: var(--ds-glass-faint);
+    border: 1px solid var(--ds-hairline);
+    padding: 0.375rem;
+    border-radius: var(--ds-r-lg);
+}
+
+.ds-hairline {
+    border-color: var(--ds-hairline);
+}
+
+.ds-hairline-t {
+    border-top: 1px solid var(--ds-hairline);
+}
+.ds-hairline-b {
+    border-bottom: 1px solid var(--ds-hairline);
+}
+
+/* --------------------------------------------------------------------------
+   3. TYPE SCALE
+   -------------------------------------------------------------------------- */
+
+.eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ds-text-dim);
+}
+
+.display-2xl {
+    font-size: clamp(2.75rem, 8.4vw, 7.5rem);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 0.94;
+    color: var(--ds-text);
+    text-wrap: balance;
+}
+
+.display-xl {
+    font-size: clamp(2.25rem, 5.6vw, 4.75rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+    color: var(--ds-text);
+    text-wrap: balance;
+}
+
+.display-lg {
+    font-size: clamp(1.75rem, 3.4vw, 3rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+    color: var(--ds-text);
+    text-wrap: balance;
+}
+
+.display-md {
+    font-size: clamp(1.3rem, 2.1vw, 1.85rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    color: var(--ds-text);
+}
+
+.lead {
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
+    line-height: 1.65;
+    color: var(--ds-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   4. AMBIENT BACKGROUND
+   -------------------------------------------------------------------------- */
+
+/* Subtle engineering grid; masked so it fades at the edges. */
+.ds-grid-bg {
+    background-image:
+        linear-gradient(to right, var(--ds-grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--ds-grid-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 78%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 78%);
+}
+
+.ds-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    will-change: transform;
+    pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. LAYOUT RHYTHM
+   -------------------------------------------------------------------------- */
+
+.section {
+    padding-block: clamp(3.5rem, 8vw, 7rem);
+}
+
+/* --------------------------------------------------------------------------
+   6. THEME-AWARE CONTENT
+   Swap an asset or element per colour mode (e.g. brand marks).
+   -------------------------------------------------------------------------- */
+
+.dark-only {
+    display: none;
+}
+
+.dark .dark-only {
+    display: revert;
+}
+
+.dark .light-only {
+    display: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. THEME SWITCH REVEAL
+   The incoming theme expands as a circle from --theme-x / --theme-y, which the
+   toggle sets to the centre of the hero widget. Falls back to a plain swap
+   when the browser has no View Transitions support.
+   -------------------------------------------------------------------------- */
+
+::view-transition-old(root) {
+    animation: none;
+    mix-blend-mode: normal;
+    z-index: 1;
+}
+
+::view-transition-new(root) {
+    animation: ds-theme-reveal 760ms var(--ds-ease) forwards;
+    mix-blend-mode: normal;
+    z-index: 2;
+}
+
+@keyframes ds-theme-reveal {
+    from {
+        clip-path: circle(0% at var(--theme-x, 50%) var(--theme-y, 50%));
+    }
+    to {
+        clip-path: circle(150% at var(--theme-x, 50%) var(--theme-y, 50%));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-new(root) {
+        animation: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   8. BASE
+   -------------------------------------------------------------------------- */
+
+::selection {
+    background: var(--ds-ink);
+    color: var(--ds-bg);
+}
+
+:focus-visible {
+    outline: 2px solid var(--ds-text);
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+}
