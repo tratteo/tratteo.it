@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     sitemap: {
         autoLastmod: true,
         discoverImages: true,
-        exclude: ["/app/**", "/api/**", "/_nuxt/**", "/__nuxt_content/**"],
+        exclude: ["/app/**", "/api/**", "/_nuxt/**", "/__nuxt_content/**", "/lab/**"],
         debug: false,
         xslColumns: [
             { label: "URL", width: "60%" },
@@ -45,6 +45,15 @@ export default defineNuxtConfig({
     },
     app: {
         head: {
+            script: [
+                {
+                    /* Flags the document as scriptable before the body renders, so
+                       the reveal masks only ever apply when something can lift
+                       them. Without script, text is simply visible. */
+                    innerHTML: 'document.documentElement.setAttribute("data-js","")',
+                    tagPosition: "head",
+                },
+            ],
             meta: [
                 {
                     name: "apple-mobile-web-app-title",
@@ -62,7 +71,7 @@ export default defineNuxtConfig({
         },
     },
     robots: {
-        disallow: ["/app/**", "/api/**", "/_nuxt/**"],
+        disallow: ["/app/**", "/api/**", "/_nuxt/**", "/lab/**"],
     },
     site: {
         url: appMeta.url,
@@ -110,6 +119,25 @@ export default defineNuxtConfig({
                 "mdi:instagram",
                 "mdi:linkedin",
                 "ion:logo-youtube",
+                "logos:paypal",
+                "fluent-emoji-flat:kiwi-fruit",
+                "twemoji:flag-italy",
+                "logos:nuxt-icon",
+                "logos:typescript-icon",
+                "logos:javascript",
+                "logos:vue",
+                "logos:css-3",
+                "logos:html-5",
+                "logos:c-plusplus",
+                "logos:c",
+                "logos:nodejs-icon",
+                "logos:python",
+                "logos:firebase-icon",
+                "logos:tailwindcss-icon",
+                "logos:git-icon",
+                "logos:markdown",
+                "logos:arduino",
+                "logos:bun",
             ],
             sizeLimitKb: 1024,
         },
@@ -129,9 +157,6 @@ export default defineNuxtConfig({
                 maxAge: 2592000,
                 staleMaxAge: 31536000,
             },
-        },
-        "/minecraft-mods": {
-            appLayout: "fullwidth",
         },
     },
     colorMode: {
@@ -164,7 +189,8 @@ export default defineNuxtConfig({
         },
         families: [
             { name: "Geist", provider: "google", weights: [300, 400, 500, 600, 700], subsets: ["latin"] },
-            { name: "Geist Mono", provider: "google", weights: [400, 500], subsets: ["latin"] },
+            // The display tier is monospace, so the technical face carries Medium.
+            { name: "Geist Mono", provider: "google", weights: [400, 500, 600], subsets: ["latin"] },
         ],
     },
     modules: ["@nuxt/ui", "@vueuse/nuxt", "@pinia/nuxt", "@nuxt/content", "@nuxtjs/seo", "@nuxt/scripts"],

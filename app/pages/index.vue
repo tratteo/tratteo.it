@@ -1,5 +1,5 @@
 <template>
-    <div class="landing">
+    <div class="landing ds-page">
         <LandingHeroSection />
         <LandingMarqueeStrip />
         <LandingServicesSection />
@@ -12,8 +12,6 @@
 </template>
 
 <script lang="ts" setup>
-definePageMeta({ layout: "landing" });
-
 useSeoMeta({
     title: "Matteo Beltrame · Problems in, products out",
     description:
@@ -22,5 +20,5 @@ useSeoMeta({
     ogDescription: "CTO at Hybrida, founder of Reviy. I build software that ships, and I'll help you get found on Google and AI search.",
 });
 
-defineOgImage("Default.takumi", { avatarUrl: "/web-app-manifest-512x512.png", subtitle: "Problems in. Products out." });
+defineOgImage("Default.takumi", { avatarUrl: "/web-app-manifest-512x512.png" });
 </script>

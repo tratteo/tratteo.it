@@ -1,5 +1,5 @@
 <template>
-    <button ref="buttonEl" class="ds-toggle" type="button" :aria-label="label" :title="label" @click="toggle">
+    <button class="ds-toggle" type="button" :aria-label="label" :title="label" @click="toggle">
         <ClientOnly>
             <AnimatePresence mode="wait" :initial="false">
                 <motion.span
@@ -14,7 +14,7 @@
                 </motion.span>
             </AnimatePresence>
             <template #fallback>
-                <span class="flex items-center justify-center opacity-0"><u-icon name="material-symbols:dark-mode-rounded" class="size-[1.15rem]" /></span>
+                <span class="flex items-center justify-center opacity-0"><u-icon :name="'material-symbols:dark-mode-rounded'" class="size-[1.15rem]" /></span>
             </template>
         </ClientOnly>
     </button>
@@ -29,24 +29,10 @@ interface ViewTransitionDocument extends Document {
 
 const colorMode = useColorMode();
 const mounted = useMounted();
-const buttonEl = useTemplateRef<HTMLButtonElement>("buttonEl");
 const prefersReduced = usePreferredReducedMotion();
 
 const isDark = computed(() => (mounted.value ? colorMode.value === "dark" : false));
 const label = computed(() => (isDark.value ? "Switch to light mode" : "Switch to dark mode"));
-
-/**
- * Reveal origin: the centre of the hero widget when it is on the page, otherwise
- * the centre of the toggle button itself.
- */
-function revealOrigin(fallback?: DOMRect): { x: number; y: number } {
-    const widget = document.querySelector<HTMLElement>("[data-hero-widget]");
-    const rect = widget?.getBoundingClientRect() ?? fallback;
-    if (rect && rect.width > 0 && rect.height > 0) {
-        return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-    return { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-}
 
 function toggle() {
     const next = colorMode.value === "dark" ? "light" : "dark";
@@ -56,11 +42,6 @@ function toggle() {
         colorMode.preference = next;
         return;
     }
-
-    const origin = revealOrigin(buttonEl.value?.getBoundingClientRect());
-    const root = document.documentElement;
-    root.style.setProperty("--theme-x", `${origin.x}px`);
-    root.style.setProperty("--theme-y", `${origin.y}px`);
 
     doc.startViewTransition(async () => {
         colorMode.preference = next;
@@ -74,20 +55,28 @@ function toggle() {
 <style lang="css" scoped>
 @reference "~/assets/css/main.css";
 
+/* Square icon control, same frame language as the badges. */
 .ds-toggle {
-    @apply flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full;
-    border: 1px solid var(--ds-glass-border);
-    background: var(--ds-glass);
-    color: var(--ds-text);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
+    display: flex;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: var(--ds-hair) solid var(--ds-line);
+    border-radius: var(--ds-r-control);
+    background: var(--ds-surface-1);
+    color: var(--ds-text-muted);
+    cursor: pointer;
     transition:
-        background-color 0.3s var(--ds-ease),
-        border-color 0.3s var(--ds-ease);
+        background-color var(--ds-quick) var(--ds-ease-out),
+        border-color var(--ds-quick) var(--ds-ease-out),
+        color var(--ds-quick) var(--ds-ease-out);
 }
 
 .ds-toggle:hover {
-    border-color: var(--ds-hairline-strong);
-    background: var(--ds-glass-strong);
+    color: var(--ds-text);
+    border-color: var(--ds-line-strong);
+    background: var(--ds-surface-2);
 }
 </style>

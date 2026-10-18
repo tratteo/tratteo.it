@@ -40,11 +40,11 @@ export interface Interest {
 }
 
 export const nav: NavItem[] = [
-    { label: "Services", href: "#services" },
-    { label: "Work", href: "#work" },
-    { label: "About", href: "#about" },
-    { label: "Off screen", href: "#interests" },
-    { label: "Contact", href: "#contact" },
+    { label: "Services", href: "/#services" },
+    { label: "Work", href: "/#work" },
+    { label: "About", href: "/#about" },
+    { label: "Off screen", href: "/#interests" },
+    { label: "Contact", href: "/#contact" },
 ];
 
 export const hero = {
@@ -201,4 +201,7 @@ export const mods = {
     title: "Yeah, I also mod Minecraft.",
     description: "A handful of mods with a quiet six-figure download count each. Because sometimes you just want a chest that teleports.",
     href: "/minecraft-mods",
+    downloads: "550k+",
+    downloadLabel: "CurseForge downloads",
+    modCount: 5,
 };

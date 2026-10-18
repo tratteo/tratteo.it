@@ -1,69 +1,63 @@
 <template>
-    <section id="work" class="section ds-container">
-        <DsSectionHead
-            eyebrow="Selected work"
-            :title="['Things I built,', 'and actually shipped.']"
-            lead="Some are products, some are tools, a couple are experiments that found real users. Every one of them is live (or was, until I learned what I needed to)."
-        />
+    <section id="work" class="work ds-container">
+        <div class="work__list ds-matrix ds-bleed">
+            <DsSectionHead
+                class="ds-head-row"
+                index="02"
+                eyebrow="Selected work"
+                :title="['Things I built,', 'and actually shipped.']"
+                lead="Some are products, some are tools, a couple are experiments that found real users. Every one of them is live (or was, until I learned what I needed to)."
+            />
 
-        <div class="work">
-            <DsReveal v-if="featured">
-                <DsTiltCard :max="5">
-                    <a :href="featured.url ?? '#'" target="_blank" rel="noopener noreferrer" class="work__link">
-                        <DsGlassCard radius="xl" padding="none" interactive class="relative flex min-h-[26rem] items-end">
-                            <img v-if="featured.thumbnail" :src="featured.thumbnail" :alt="featured.title" class="work__media" />
-                            <span class="work__scrim" />
-                            <div class="work__featured-body">
-                                <div class="work__featured-top">
-                                    <img v-if="featured.icon" :src="featured.icon" :alt="featured.title" class="work__logo" />
-                                    <span class="work__badge">{{ featured.role }}</span>
-                                </div>
-                                <h3 class="display-md work__featured-title">{{ featured.title }}</h3>
-                                <p class="work__desc work__desc--lead">{{ featured.description }}</p>
-                                <div class="work__tags">
-                                    <span v-for="tag in featured.tags" :key="tag" class="work__tag">{{ tag }}</span>
-                                </div>
-                            </div>
-                            <span class="work__arrow work__arrow--featured">
-                                <u-icon name="material-symbols:arrow-outward-rounded" class="size-5" />
-                            </span>
-                        </DsGlassCard>
-                    </a>
-                </DsTiltCard>
-            </DsReveal>
+            <component
+                v-for="(project, i) in projects"
+                :key="project.title"
+                :is="project.url ? 'a' : 'div'"
+                :href="project.url ?? undefined"
+                :target="project.url ? '_blank' : undefined"
+                :rel="project.url ? 'noopener noreferrer' : undefined"
+                class="ds-cell work__row"
+                :class="project.url && 'ds-cell--interactive'"
+            >
+                <div class="work__ident">
+                    <span class="work__index mono-micro">[{{ String(i + 1).padStart(2, "0") }}]</span>
+                    <span class="work__fav">
+                        <img :src="project.icon" :alt="project.title" class="work__fav-img" loading="lazy" />
+                    </span>
+                    <DsReveal class="work__name-slot" :delay="(i % 6) * 0.04">
+                        <span class="work__name">
+                            <span class="work__title">{{ project.title }}</span>
+                            <span v-if="project.role" class="work__role mono-micro">{{ project.role }}</span>
+                        </span>
+                    </DsReveal>
+                </div>
 
-            <div class="work__grid">
-                <DsReveal v-for="(project, i) in others" :key="project.title" :delay="(i % 3) * 0.06">
-                    <component
-                        :is="project.url ? 'a' : 'div'"
-                        :href="project.url ?? undefined"
-                        :target="project.url ? '_blank' : undefined"
-                        :rel="project.url ? 'noopener noreferrer' : undefined"
-                        class="work__link"
-                    >
-                        <DsGlassCard padding="none" interactive class="flex h-full flex-col">
-                            <div class="work__thumb">
-                                <img v-if="project.thumbnail" :src="project.thumbnail" :alt="project.title" class="work__thumb-img" />
-                                <span class="work__scrim work__scrim--soft" />
-                                <span class="work__status">
-                                    <u-icon :name="statusIcon(project.status)" class="size-3.5" />
-                                    {{ capitalize(project.status) }}
-                                </span>
-                            </div>
-                            <div class="work__body">
-                                <div class="work__head">
-                                    <img v-if="project.icon" :src="project.icon" :alt="project.title" class="work__logo work__logo--sm" />
-                                    <h3 class="work__title">{{ project.title }}</h3>
-                                </div>
-                                <p class="work__desc">{{ project.description }}</p>
-                                <div class="work__tags">
-                                    <span v-for="tag in project.tags" :key="tag" class="work__tag">{{ tag }}</span>
-                                </div>
-                            </div>
-                        </DsGlassCard>
-                    </component>
+                <DsReveal class="work__desc-slot" :delay="(i % 6) * 0.04 + 0.06">
+                    <p class="work__desc">{{ project.description }}</p>
                 </DsReveal>
-            </div>
+
+                <div class="work__tags">
+                    <span v-for="tag in project.tags" :key="tag" class="work__tag mono-micro">{{ tag }}</span>
+                </div>
+
+                <div class="work__tail">
+                    <DsBadge :tone="toneFor(project.status)">{{ capitalize(project.status) }}</DsBadge>
+                    <!-- The arrow slot is always rendered, so every status badge in
+                         the column starts on the same edge. A project without a
+                         public link gets the archive mark instead of nothing. -->
+                    <span class="work__arrow" :class="!project.url && 'work__arrow--muted'">
+                        <template v-if="project.url">
+                            <span class="work__glyph work__glyph--out">
+                                <u-icon name="material-symbols:arrow-outward-rounded" class="size-4" />
+                            </span>
+                            <span class="work__glyph work__glyph--in">
+                                <u-icon name="material-symbols:arrow-outward-rounded" class="size-4" />
+                            </span>
+                        </template>
+                        <u-icon v-else name="material-symbols:archive-outline-rounded" class="size-4" />
+                    </span>
+                </div>
+            </component>
         </div>
     </section>
 </template>
@@ -85,234 +79,175 @@ interface Project {
 
 const statusPriority: Record<string, number> = { shipped: 1, validating: 2, archived: 3 };
 
-const projects = computed(() => [...(projectsData.projects as Project[])].sort((a, b) => (statusPriority[a.status] ?? 9) - (statusPriority[b.status] ?? 9)));
+/* Ordered by status. Every project carries its mark in the repo, so the list
+   never depends on a remote favicon: the sites that are offline, archived or
+   simply without one still show the right icon. */
+const projects = computed<Project[]>(() =>
+    [...(projectsData.projects as Project[])].sort((a, b) => (statusPriority[a.status] ?? 9) - (statusPriority[b.status] ?? 9)),
+);
 
-const featured = computed(() => projects.value.find((project) => project.title === "Reviy"));
-const others = computed(() => projects.value.filter((project) => project.title !== "Reviy"));
-
-function statusIcon(status: string): string {
-    if (status === "archived") return "material-symbols:archive-outline-rounded";
-    if (status === "validating") return "material-symbols:visibility-outline-rounded";
-    return "material-symbols:rocket-launch-outline-rounded";
+/* Status carries a colour, so a project reads at a glance: shipped is live,
+   archived has stopped, validating sits in between. */
+function toneFor(status: string): "ok" | "warn" | "info" {
+    if (status === "archived") return "warn";
+    if (status === "validating") return "info";
+    return "ok";
 }
 </script>
 
 <style lang="css" scoped>
 @reference "~/assets/css/main.css";
 
-.work {
-    margin-top: 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.15rem;
-}
-
-.work__link {
-    display: block;
-    height: 100%;
-}
-
-.work__grid {
-    display: grid;
-    gap: 1.15rem;
+.work__list {
     grid-template-columns: 1fr;
 }
 
-/* featured */
-.work__media {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.4;
-    transition: transform 0.9s var(--ds-ease), opacity 0.5s var(--ds-ease);
-}
-
-.work__link:hover .work__media {
-    transform: scale(1.04);
-    opacity: 0.55;
-}
-
-.work__scrim {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, var(--ds-bg) 6%, color-mix(in srgb, var(--ds-bg) 55%, transparent) 55%, transparent 100%);
-}
-
-.work__scrim--soft {
-    background: linear-gradient(to top, var(--ds-bg) 2%, transparent 70%);
-}
-
-.work__featured-body {
-    position: relative;
-    z-index: 1;
+/* One row per project, wrapping rather than switching layout, so the description
+   only takes its own line when it actually needs one. */
+.work__row {
     display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    padding: clamp(1.5rem, 4vw, 2.75rem);
-    max-width: 46rem;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 1.2rem;
+    padding: calc(var(--ds-pad) * 1.05) var(--ds-pad);
+    color: inherit;
 }
 
-.work__featured-top {
+.work__ident {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    flex: 0 1 auto;
+    min-width: 0;
 }
 
-.work__logo {
-    width: 2.4rem;
-    height: 2.4rem;
+.work__index {
+    color: var(--ds-text-faint);
+}
+
+/* The mark sits in its own hairline cell, so light and dark icons both read. */
+.work__fav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    border: var(--ds-hair) solid var(--ds-line);
+    background: var(--ds-surface-3);
+    overflow: hidden;
+}
+
+.work__fav-img {
+    width: 1.15rem;
+    height: 1.15rem;
     object-fit: contain;
 }
 
-.work__logo--sm {
-    width: 1.75rem;
-    height: 1.75rem;
+.work__name {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
 }
 
-.work__badge {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ds-text-muted);
-    padding: 0.25rem 0.6rem;
-    border-radius: var(--ds-r-full);
-    border: 1px solid var(--ds-hairline-strong);
+.work__name-slot {
+    min-width: 0;
 }
 
-.work__featured-title {
-    margin-top: 0.15rem;
+.work__title {
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--ds-text);
+}
+
+.work__role {
+    color: var(--ds-text-dim);
+}
+
+.work__desc-slot {
+    flex: 1 1 20rem;
+    min-width: 0;
 }
 
 .work__desc {
-    font-size: 0.875rem;
-    line-height: 1.6;
+    min-width: 0;
+    font-size: 0.8125rem;
+    line-height: 1.55;
     color: var(--ds-text-muted);
-    flex: 1;
-}
-
-.work__desc--lead {
-    font-size: 1rem;
-    max-width: 44ch;
 }
 
 .work__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem;
+    gap: 0.3rem;
+    flex: 0 0 auto;
 }
 
 .work__tag {
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    padding: 0.2rem 0.45rem;
+    border: var(--ds-hair) solid var(--ds-line);
+    border-radius: var(--ds-r-control);
     color: var(--ds-text-dim);
-    padding: 0.2rem 0.5rem;
-    border-radius: var(--ds-r-full);
-    border: 1px solid var(--ds-hairline);
 }
 
+.work__tail {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+/* The arrow keeps its square cell and the glyph swap carried over from the
+   earlier language: it reads as an instrument rather than a decoration. */
 .work__arrow {
-    position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    z-index: 2;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.75rem;
-    height: 2.75rem;
-    border-radius: var(--ds-r-full);
-    border: 1px solid var(--ds-glass-border);
-    background: var(--ds-glass-strong);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    color: var(--ds-text);
-    transition: transform 0.45s var(--ds-ease);
-}
-
-.work__link:hover .work__arrow {
-    transform: translate(3px, -3px);
-}
-
-/* standard cards */
-.work__thumb {
-    position: relative;
-    aspect-ratio: 16 / 10;
+    width: 1.75rem;
+    height: 1.75rem;
+    flex-shrink: 0;
     overflow: hidden;
-    background: var(--ds-bg-deep);
+    border: var(--ds-hair) solid var(--ds-line);
+    border-radius: var(--ds-r-control);
+    background: var(--ds-surface-2);
+    color: var(--ds-text-muted);
+    transition:
+        border-color var(--ds-quick) var(--ds-ease-out),
+        color var(--ds-quick) var(--ds-ease-out);
 }
 
-.work__thumb-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.55;
-    transition: transform 0.8s var(--ds-ease), opacity 0.5s var(--ds-ease);
-}
-
-.work__link:hover .work__thumb-img {
-    transform: scale(1.05);
-    opacity: 0.78;
-}
-
-.work__status {
+.work__glyph {
     position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.06em;
-    color: var(--ds-text);
-    padding: 0.25rem 0.55rem;
-    border-radius: var(--ds-r-full);
-    border: 1px solid var(--ds-glass-border);
-    background: var(--ds-glass-strong);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-}
-
-.work__body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    padding: 1.1rem 1.25rem 1.35rem;
-    flex: 1;
-}
-
-.work__head {
+    inset: 0;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    justify-content: center;
+    transition: transform 0.5s var(--ds-ease);
 }
 
-.work__title {
-    font-size: 1.05rem;
-    font-weight: 500;
-    letter-spacing: -0.02em;
+.work__glyph--in {
+    transform: translate(-120%, 120%);
+}
+
+.work__row:hover .work__arrow {
+    border-color: var(--ds-line-contrast);
     color: var(--ds-text);
 }
 
-.work__tags {
-    margin-top: auto;
-    padding-top: 0.5rem;
+.work__row:hover .work__glyph--out {
+    transform: translate(120%, -120%);
 }
 
-@media (min-width: 640px) {
-    .work__grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.work__row:hover .work__glyph--in {
+    transform: translate(0, 0);
 }
 
-@media (min-width: 1024px) {
-    .work__grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+/* No destination: the mark stays muted and the row is not clickable. */
+.work__arrow--muted {
+    color: var(--ds-text-faint);
 }
 </style>

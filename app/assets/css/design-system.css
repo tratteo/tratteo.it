@@ -1,8 +1,10 @@
 /* ==========================================================================
-   tratteo design system
-   A monochrome, glass-first language. Dual theme. No brand accent color:
-   contrast does the work, colour only enters through content (logos, photos).
-   Every visual decision here is a token. Change it once, it changes everywhere.
+   tratteo design system, v2: Monolith Grid Blueprint
+   Architectural monochrome. Zero-gap 1px hairlines, rectilinear geometry,
+   strict grayscale, developer telemetry. Dual theme.
+   No glass, no glow, no blurred depth: elevation comes from tone and line.
+   Colour enters only as content, plus one green status pip.
+   Every visual decision is a token. Change it once, it changes everywhere.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -11,238 +13,411 @@
 
 :root {
     /* surfaces */
-    --ds-bg: #f3f3f4;
-    --ds-bg-soft: #fbfbfc;
-    --ds-bg-deep: #e7e7ea;
-    --ds-ink: #09090b;
+    --ds-canvas: #ffffff;
+    --ds-surface-1: #f7f7f8;
+    --ds-surface-2: #f0f0f1;
+    --ds-surface-3: #e7e7e9;
+    --ds-invert: #0a0a0a;
+    --ds-on-invert: #ffffff;
 
-    /* text hierarchy */
-    --ds-text: #0a0a0d;
-    --ds-text-muted: #55555e;
-    --ds-text-dim: #74747d;
-    --ds-text-faint: #a3a3ac;
+    /* text hierarchy, four calibrated tiers */
+    --ds-text: #0a0a0a;
+    --ds-text-muted: #525252;
+    --ds-text-dim: #737373;
+    --ds-text-faint: #a3a3a3;
 
-    /* glass */
-    --ds-glass: rgba(255, 255, 255, 0.62);
-    --ds-glass-strong: rgba(255, 255, 255, 0.82);
-    --ds-glass-faint: rgba(255, 255, 255, 0.38);
-    --ds-glass-border: rgba(9, 9, 11, 0.09);
-    --ds-glass-highlight: rgba(255, 255, 255, 0.9);
-    --ds-hairline: rgba(9, 9, 11, 0.08);
-    --ds-hairline-strong: rgba(9, 9, 11, 0.16);
-
-    /* depth */
-    --ds-shadow-soft: 0 28px 60px -34px rgba(9, 9, 11, 0.26);
-    --ds-shadow-lift: 0 44px 96px -46px rgba(9, 9, 11, 0.34);
-
-    /* status (the only colour in the UI, and only as a signal) */
-    --ds-live: #10b981;
-
-    /* ambient mesh */
-    --ds-orb-1: rgba(79, 70, 229, 0.09);
-    --ds-orb-2: rgba(13, 148, 136, 0.08);
-    --ds-orb-3: rgba(217, 70, 239, 0.055);
-    --ds-grid-line: rgba(9, 9, 11, 0.045);
+    /* structural hairlines */
+    --ds-line: #e3e3e5;
+    --ds-line-soft: #ececee;
+    --ds-line-strong: #c9c9cc;
+    --ds-line-contrast: #111111;
 
     /* texture */
-    --ds-grain-opacity: 0.4;
+    --ds-dot: rgba(10, 10, 10, 0.06);
+    --ds-coord: rgba(10, 10, 10, 0.05);
+
+    /* status: the only colour in the UI, and only as a signal */
+    --ds-ok: #15803d;
+    --ds-warn: #b45309;
+    --ds-info: #0e7490;
 
     /* geometry */
-    --ds-r-xs: 0.625rem;
-    --ds-r-sm: 0.875rem;
-    --ds-r-md: 1.25rem;
-    --ds-r-lg: 1.75rem;
-    --ds-r-xl: 2.5rem;
-    --ds-r-full: 999px;
+    --ds-r-cell: 0px;
+    --ds-r-control: 2px;
+    --ds-hair: 1px;
+    --ds-pad: 1rem;
 
     /* motion */
     --ds-ease: cubic-bezier(0.16, 1, 0.3, 1);
     --ds-ease-out: cubic-bezier(0.32, 0.72, 0, 1);
     --ds-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-    --ds-blur: 20px;
+    --ds-quick: 150ms;
 
     /* layout */
-    --ds-container: 84rem;
-    --ds-nav-h: 4.5rem;
+    --ds-container: 80rem;
+    --ds-nav-h: 3.75rem;
+    --ds-grid-dot: 32px;
+    --ds-grid-coord: 64px;
 }
 
 .dark {
-    --ds-bg: #060607;
-    --ds-bg-soft: #0b0b0d;
-    --ds-bg-deep: #030304;
-    --ds-ink: #f4f4f5;
+    --ds-canvas: #000000;
+    --ds-surface-1: #0a0a0a;
+    --ds-surface-2: #111111;
+    --ds-surface-3: #161616;
+    --ds-invert: #ffffff;
+    --ds-on-invert: #000000;
 
-    --ds-text: #f2f2f4;
-    --ds-text-muted: #b3b3bb;
-    --ds-text-dim: #8b8b94;
-    --ds-text-faint: #57575f;
+    --ds-text: #ffffff;
+    --ds-text-muted: #a1a1a1;
+    --ds-text-dim: #666666;
+    --ds-text-faint: #404040;
 
-    --ds-glass: rgba(255, 255, 255, 0.045);
-    --ds-glass-strong: rgba(255, 255, 255, 0.08);
-    --ds-glass-faint: rgba(255, 255, 255, 0.022);
-    --ds-glass-border: rgba(255, 255, 255, 0.1);
-    --ds-glass-highlight: rgba(255, 255, 255, 0.16);
-    --ds-hairline: rgba(255, 255, 255, 0.1);
-    --ds-hairline-strong: rgba(255, 255, 255, 0.2);
+    --ds-line: #222222;
+    --ds-line-soft: #1a1a1a;
+    --ds-line-strong: #333333;
+    --ds-line-contrast: #e5e5e5;
 
-    --ds-shadow-soft: 0 30px 70px -36px rgba(0, 0, 0, 0.75);
-    --ds-shadow-lift: 0 52px 104px -46px rgba(0, 0, 0, 0.85);
+    --ds-dot: rgba(255, 255, 255, 0.075);
+    --ds-coord: rgba(255, 255, 255, 0.06);
 
-    --ds-orb-1: rgba(99, 102, 241, 0.17);
-    --ds-orb-2: rgba(45, 212, 191, 0.1);
-    --ds-orb-3: rgba(232, 121, 249, 0.08);
-    --ds-grid-line: rgba(255, 255, 255, 0.045);
-
-    --ds-grain-opacity: 0.55;
-}
-
-@media (max-width: 768px) {
-    :root {
-        --ds-blur: 13px;
-    }
+    --ds-ok: #22c55e;
+    --ds-warn: #f59e0b;
+    --ds-info: #38bdf8;
 }
 
 /* --------------------------------------------------------------------------
    2. PRIMITIVES
    -------------------------------------------------------------------------- */
 
+/* The outer shell. The two continuous vertical coordinate rails that bound the
+   page are drawn by the layout frame, not here, so they never break between
+   sections. Inset matches cell padding, so a section head lines up with the text
+   inside the modules below it. */
 .ds-container {
+    position: relative;
     width: 100%;
     max-width: var(--ds-container);
     margin-inline: auto;
-    padding-inline: 1.25rem;
+    padding-inline: var(--ds-pad);
 }
 
 @media (min-width: 768px) {
-    .ds-container {
-        padding-inline: 2rem;
+    :root,
+    .dark {
+        --ds-pad: 1.25rem;
     }
 }
 
-@media (min-width: 1280px) {
-    .ds-container {
-        padding-inline: 3rem;
+/* Pull a module out to the page frame. Text keeps the container inset so it
+   lines up with cell content; modules that must touch the frame cancel it. On a
+   small screen the frame is the physical screen edge, so the bleed applies there
+   too and the module's own padding provides the inset. */
+.ds-bleed {
+    margin-inline: calc(var(--ds-pad) * -1);
+}
+
+/* A structural cell. Zero radius, one hairline, no shadow. */
+.ds-cell {
+    position: relative;
+    background: var(--ds-surface-2);
+    border: var(--ds-hair) solid var(--ds-line);
+    border-radius: var(--ds-r-cell);
+}
+
+/* Padding tiers, global rather than scoped to the component that renders them,
+   so a hand rolled cell (the shell widget, the footer columns) shares exactly
+   the same inset as a DsCell. */
+.ds-cell--sm {
+    padding: 0.75rem;
+}
+
+.ds-cell--md {
+    padding: var(--ds-pad);
+}
+
+.ds-cell--lg {
+    padding: calc(var(--ds-pad) * 1.4);
+}
+
+.ds-cell--xl {
+    padding: calc(var(--ds-pad) * 2);
+}
+
+/* Contiguous matrix of cells. The 1px background shows through the 1px gap and
+   the 1px padding, so every seam is exactly one hairline wide and none of them
+   double up. Works at any column count, so no per breakpoint nth-child rules.
+
+   Only the top rule is drawn: the section below supplies the line at the shared
+   boundary, which is what keeps the whole page on single hairlines. */
+.ds-matrix {
+    display: grid;
+    gap: var(--ds-hair);
+    padding: var(--ds-hair) var(--ds-hair) 0;
+    background: var(--ds-line);
+    border-radius: var(--ds-r-cell);
+}
+
+@media (min-width: 768px) {
+    .ds-matrix {
+        padding-inline: 0;
+    }
+
+    /* Opt out for a matrix nested inside a module rather than flush with the
+       frame, since it needs its own vertical walls. */
+    .ds-matrix--inset {
+        padding-inline: var(--ds-hair);
     }
 }
 
-/* Glass surface. A hairline border + inset highlight reads as a physical edge. */
-.ds-glass {
-    background: var(--ds-glass);
-    border: 1px solid var(--ds-glass-border);
-    -webkit-backdrop-filter: blur(var(--ds-blur)) saturate(150%);
-    backdrop-filter: blur(var(--ds-blur)) saturate(150%);
-    box-shadow: inset 0 1px 0 0 var(--ds-glass-highlight);
+/* A matrix that closes its own bottom edge, for the module that ends the page
+   frame rather than handing the rule to the next section. */
+.ds-matrix--closed {
+    padding-bottom: var(--ds-hair);
 }
 
-.ds-glass--strong {
-    background: var(--ds-glass-strong);
+/* Every grid item carries the surface, not just cells, so a wrapper element
+   (a reveal, a link) can never leave the line colour exposed behind it. */
+.ds-matrix > * {
+    min-width: 0;
+    background: var(--ds-surface-2);
 }
 
-.ds-glass--faint {
-    background: var(--ds-glass-faint);
+/* Cells drop their own frame so the matrix seam is the only line. The cell also
+   fills its grid item, which keeps the surface opaque across the whole area so
+   the line colour never bleeds behind a cell. */
+.ds-matrix .ds-cell {
+    height: 100%;
+    border-color: transparent;
+    background: var(--ds-surface-2);
 }
 
-/* The outer "tray" of the double-bezel: a shell that seats the inner glass. */
-.ds-panel {
-    background: var(--ds-glass-faint);
-    border: 1px solid var(--ds-hairline);
-    padding: 0.375rem;
-    border-radius: var(--ds-r-lg);
+/* A section head that lives inside the section matrix as its first row. Its
+   inline padding is the same token the cells use, so head text and cell text
+   share one left edge. The block padding is the section's only rhythm, and it is
+   what reads as the space between sections. */
+.ds-head-row {
+    grid-column: 1 / -1;
+    padding: calc(var(--ds-pad) * 3.2) var(--ds-pad) calc(var(--ds-pad) * 2.8);
+    background: var(--ds-surface-1);
 }
 
-.ds-hairline {
-    border-color: var(--ds-hairline);
+/* An empty slot in a matrix. The seams carry on around it and the slot itself
+   shows the page rather than a block of line colour. */
+.ds-cell--void {
+    pointer-events: none;
 }
 
-.ds-hairline-t {
-    border-top: 1px solid var(--ds-hairline);
+.ds-matrix .ds-cell--void {
+    background: var(--ds-canvas);
+    border-color: transparent;
 }
-.ds-hairline-b {
-    border-bottom: 1px solid var(--ds-hairline);
+
+/* Cells illuminate on hover: the tone lifts and nothing else changes. No ring,
+   because a second hairline inside the seam just reads as a thicker border. */
+.ds-cell--interactive {
+    cursor: pointer;
+    transition:
+        background-color var(--ds-quick) var(--ds-ease-out),
+        color var(--ds-quick) var(--ds-ease-out);
+}
+
+.ds-cell--interactive:hover {
+    background: var(--ds-surface-3);
+}
+
+/* Engineering telemetry: the crosshair that marks container corners and seam
+   intersections. Positioned by the consumer with inset or top/left. */
+.ds-crosshair {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    translate: -50% -50%;
+    pointer-events: none;
+}
+
+.ds-crosshair::before,
+.ds-crosshair::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    background: var(--ds-line-strong);
+}
+
+.ds-crosshair::before {
+    width: 9px;
+    height: var(--ds-hair);
+}
+
+.ds-crosshair::after {
+    width: var(--ds-hair);
+    height: 9px;
+}
+
+/* A square status pip. Colour is allowed here and nowhere else. Tones that are
+   live ping, tones that are resting do not. */
+.ds-pip {
+    width: 4px;
+    height: 4px;
+    flex-shrink: 0;
+    background: var(--ds-ok);
+    animation: ds-pip-pulse 2s var(--ds-ease-in-out) infinite;
+}
+
+.ds-pip--warn {
+    background: var(--ds-warn);
+    animation: none;
+}
+
+.ds-pip--info {
+    background: var(--ds-info);
+    animation: none;
+}
+
+.ds-pip--standby {
+    background: var(--ds-text-dim);
+    animation: none;
+}
+
+@keyframes ds-pip-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
 }
 
 /* --------------------------------------------------------------------------
-   3. TYPE SCALE
+   3. TYPE
    -------------------------------------------------------------------------- */
 
+/* Monospace label tier: uppercase, tight tracking, for indices and metadata.
+   .eyebrow is the same tier with its colour applied, so section labels and
+   inline labels stay in step. */
+.mono-label,
 .eyebrow {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     font-weight: 500;
-    letter-spacing: 0.24em;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
     text-transform: uppercase;
+}
+
+.eyebrow {
     color: var(--ds-text-dim);
 }
 
+/* Micro telemetry. Smaller, wider tracking, for annotation only. */
+.mono-micro {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+/* The display tier is the technical face: monospace for anything carrying the
+   Medium weight, sans for flowing copy. Monospace advance is wider, so the
+   scale is calibrated to fit the column rather than the old sans metrics. */
 .display-2xl {
-    font-size: clamp(2.75rem, 8.4vw, 7.5rem);
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 6.2vw, 5rem);
     font-weight: 500;
-    letter-spacing: -0.05em;
-    line-height: 0.94;
+    letter-spacing: -0.045em;
+    line-height: 1;
     color: var(--ds-text);
     text-wrap: balance;
 }
 
 .display-xl {
-    font-size: clamp(2.25rem, 5.6vw, 4.75rem);
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 4vw, 3rem);
     font-weight: 500;
-    letter-spacing: -0.045em;
-    line-height: 0.98;
+    letter-spacing: -0.04em;
+    line-height: 1.06;
     color: var(--ds-text);
     text-wrap: balance;
 }
 
 .display-lg {
-    font-size: clamp(1.75rem, 3.4vw, 3rem);
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2.6vw, 2.1rem);
     font-weight: 500;
-    letter-spacing: -0.035em;
-    line-height: 1.04;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
     color: var(--ds-text);
     text-wrap: balance;
 }
 
 .display-md {
-    font-size: clamp(1.3rem, 2.1vw, 1.85rem);
+    font-family: var(--font-heading);
+    font-size: clamp(1.1rem, 1.85vw, 1.5rem);
     font-weight: 500;
-    letter-spacing: -0.025em;
-    line-height: 1.12;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--ds-text);
+}
+
+/* Anything carrying the interface's voice: titles, values, names. Same face as
+   the display tier, at UI sizes. */
+.ds-strong {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: -0.015em;
     color: var(--ds-text);
 }
 
 .lead {
-    font-size: clamp(1rem, 1.35vw, 1.2rem);
-    line-height: 1.65;
+    font-size: clamp(0.9375rem, 1.25vw, 1.125rem);
+    line-height: 1.7;
     color: var(--ds-text-muted);
 }
 
 /* --------------------------------------------------------------------------
-   4. AMBIENT BACKGROUND
+   4. BACKGROUND TEXTURE
+   Two fixed, non-intrusive layers: a dot matrix and a coordinate grid.
    -------------------------------------------------------------------------- */
 
-/* Subtle engineering grid; masked so it fades at the edges. */
-.ds-grid-bg {
-    background-image:
-        linear-gradient(to right, var(--ds-grid-line) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--ds-grid-line) 1px, transparent 1px);
-    background-size: 64px 64px;
-    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 78%);
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 78%);
+.ds-dot-matrix {
+    background-image: radial-gradient(var(--ds-dot) 1px, transparent 1px);
+    background-size: var(--ds-grid-dot) var(--ds-grid-dot);
 }
 
-.ds-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(90px);
-    will-change: transform;
-    pointer-events: none;
+.ds-coord-grid {
+    background-image:
+        linear-gradient(to right, var(--ds-coord) var(--ds-hair), transparent var(--ds-hair)),
+        linear-gradient(to bottom, var(--ds-coord) var(--ds-hair), transparent var(--ds-hair));
+    background-size: var(--ds-grid-coord) var(--ds-grid-coord);
 }
 
 /* --------------------------------------------------------------------------
    5. LAYOUT RHYTHM
+   Section rhythm comes from the head row inside each matrix, plus the container
+   inset, so no section carries padding of its own and every rule stays within
+   the frame.
+
+   Every page is a stack of sibling sections. Each one opens its own top edge and
+   the last one closes the frame, so a boundary is always exactly one hairline,
+   never two. Pages only have to carry this class.
    -------------------------------------------------------------------------- */
 
-.section {
-    padding-block: clamp(3.5rem, 8vw, 7rem);
+.ds-page > * {
+    border-top: var(--ds-hair) solid var(--ds-line);
+}
+
+/* The bar is fixed, so the first section on every page has to clear it. Pages
+   never account for it themselves. */
+.ds-page > *:first-child {
+    padding-top: var(--ds-nav-h);
+}
+
+.ds-page > *:last-child {
+    border-bottom: var(--ds-hair) solid var(--ds-line);
 }
 
 /* --------------------------------------------------------------------------
@@ -264,9 +439,8 @@
 
 /* --------------------------------------------------------------------------
    7. THEME SWITCH REVEAL
-   The incoming theme expands as a circle from --theme-x / --theme-y, which the
-   toggle sets to the centre of the hero widget. Falls back to a plain swap
-   when the browser has no View Transitions support.
+   The incoming theme wipes in as a scanline. A circle is the one organic shape
+   the language does not allow, so the origin is only used for the fallback.
    -------------------------------------------------------------------------- */
 
 ::view-transition-old(root) {
@@ -276,17 +450,17 @@
 }
 
 ::view-transition-new(root) {
-    animation: ds-theme-reveal 760ms var(--ds-ease) forwards;
+    animation: ds-theme-wipe 620ms var(--ds-ease) forwards;
     mix-blend-mode: normal;
     z-index: 2;
 }
 
-@keyframes ds-theme-reveal {
+@keyframes ds-theme-wipe {
     from {
-        clip-path: circle(0% at var(--theme-x, 50%) var(--theme-y, 50%));
+        clip-path: inset(0 100% 0 0);
     }
     to {
-        clip-path: circle(150% at var(--theme-x, 50%) var(--theme-y, 50%));
+        clip-path: inset(0 0 0 0);
     }
 }
 
@@ -301,14 +475,14 @@
    -------------------------------------------------------------------------- */
 
 ::selection {
-    background: var(--ds-ink);
-    color: var(--ds-bg);
+    background: var(--ds-invert);
+    color: var(--ds-on-invert);
 }
 
 :focus-visible {
     outline: 2px solid var(--ds-text);
-    outline-offset: 2px;
-    border-radius: 6px;
+    outline-offset: 1px;
+    border-radius: var(--ds-r-control);
 }
 
 @media (prefers-reduced-motion: reduce) {

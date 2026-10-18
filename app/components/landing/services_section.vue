@@ -1,24 +1,38 @@
 <template>
-    <section id="services" class="section ds-container">
-        <DsSectionHead
-            eyebrow="What I actually do"
-            :title="['Eight ways', 'I can help you ship.']"
-            lead="Whether you're starting from a blank page or a codebase that's gotten away from you, there's a lane here. And if yours isn't listed, that's what the email address is for."
-        />
+    <section id="services" class="services ds-container">
+        <div class="services__grid ds-matrix ds-bleed">
+            <DsSectionHead
+                class="ds-head-row"
+                index="01"
+                eyebrow="What I actually do"
+                :title="['Eight ways', 'I can help you ship.']"
+                lead="Whether you're starting from a blank page or a codebase that's gotten away from you, there's a lane here. And if yours isn't listed, that's what the email address is for."
+            />
 
-        <div class="services__grid">
-            <DsReveal v-for="(service, i) in services" :key="service.title" :delay="(i % 4) * 0.06">
-                <DsGlassCard interactive padding="lg" class="flex h-full flex-col gap-3.5">
-                    <div class="services__icon">
-                        <u-icon :name="service.icon" class="size-5" />
+            <!-- The cell is static: only the words inside it enter. -->
+            <DsCell
+                v-for="(service, i) in services"
+                :key="service.title"
+                interactive
+                padding="md"
+                :index="`[${String(i + 1).padStart(2, '0')}]`"
+                class="services__cell"
+            >
+                <div class="services__icon">
+                    <u-icon :name="service.icon" class="size-[1.15rem]" />
+                </div>
+
+                <DsReveal :delay="(i % 4) * 0.05">
+                    <div class="services__copy">
+                        <h3 class="services__title">{{ service.title }}</h3>
+                        <p class="services__desc">{{ service.description }}</p>
                     </div>
-                    <h3 class="services__title">{{ service.title }}</h3>
-                    <p class="services__desc">{{ service.description }}</p>
-                    <div class="services__tags">
-                        <span v-for="tag in service.tags" :key="tag" class="services__tag">{{ tag }}</span>
-                    </div>
-                </DsGlassCard>
-            </DsReveal>
+                </DsReveal>
+
+                <div class="services__tags">
+                    <span v-for="tag in service.tags" :key="tag" class="services__tag mono-micro">{{ tag }}</span>
+                </div>
+            </DsCell>
         </div>
     </section>
 </template>
@@ -31,54 +45,63 @@ import { services } from "~/data/landing";
 @reference "~/assets/css/main.css";
 
 .services__grid {
-    margin-top: 3rem;
-    display: grid;
-    gap: 1rem;
     grid-template-columns: 1fr;
+}
+
+.services__cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
 }
 
 .services__icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.75rem;
-    height: 2.75rem;
-    border-radius: var(--ds-r-sm);
-    border: 1px solid var(--ds-glass-border);
-    background: var(--ds-glass-strong);
+    width: 2.25rem;
+    height: 2.25rem;
+    border: var(--ds-hair) solid var(--ds-line);
+    border-radius: var(--ds-r-control);
+    background: var(--ds-surface-1);
     color: var(--ds-text);
 }
 
+/* The text run takes the room, so the tag row stays on the floor of the card. */
+.services__copy {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
 .services__title {
-    font-size: 1.15rem;
+    margin-top: 0.4rem;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
     font-weight: 500;
     letter-spacing: -0.02em;
     color: var(--ds-text);
 }
 
 .services__desc {
-    font-size: 0.9rem;
+    flex: 1;
+    font-size: 0.875rem;
     line-height: 1.6;
     color: var(--ds-text-muted);
-    flex: 1;
 }
 
 .services__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem;
-    padding-top: 0.4rem;
+    gap: 0.3rem;
+    padding-top: 0.35rem;
 }
 
 .services__tag {
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    padding: 0.2rem 0.45rem;
+    border: var(--ds-hair) solid var(--ds-line);
+    border-radius: var(--ds-r-control);
     color: var(--ds-text-dim);
-    padding: 0.2rem 0.5rem;
-    border-radius: var(--ds-r-full);
-    border: 1px solid var(--ds-hairline);
 }
 
 @media (min-width: 640px) {
@@ -87,10 +110,9 @@ import { services } from "~/data/landing";
     }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
     .services__grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 1.15rem;
     }
 }
 </style>

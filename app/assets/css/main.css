@@ -12,6 +12,9 @@
 @theme static {
     --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+    /* The display tier carries the Medium weight, so it takes the technical
+       face. Flowing copy stays on --font-sans. */
+    --font-heading: "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
 
     --color-neutral-50: #fafafa;
     --color-neutral-100: #f4f4f5;
@@ -104,7 +107,7 @@
    components (and legacy pages) follow the theme automatically.
 --------------------------------------------------------------------------- */
 :root {
-    --ui-radius: 0.75rem;
+    --ui-radius: 2px;
     --ui-container: var(--ds-container);
 
     --ui-text-dimmed: var(--ds-text-faint);
@@ -112,18 +115,20 @@
     --ui-text-toned: var(--ds-text-muted);
     --ui-text: var(--ds-text-muted);
     --ui-text-highlighted: var(--ds-text);
-    --ui-text-inverted: var(--ds-bg);
+    --ui-text-inverted: var(--ds-on-invert);
 
-    --ui-bg: var(--ds-bg);
-    --ui-bg-muted: var(--ds-bg-soft);
-    --ui-bg-elevated: var(--ds-bg-soft);
-    --ui-bg-accented: var(--ds-bg-deep);
-    --ui-bg-inverted: var(--ds-text);
+    --ui-bg: var(--ds-canvas);
+    --ui-bg-muted: var(--ds-surface-1);
+    --ui-bg-elevated: var(--ds-surface-2);
+    --ui-bg-accented: var(--ds-surface-3);
+    --ui-bg-inverted: var(--ds-invert);
 
-    --ui-border: var(--ds-hairline);
-    --ui-border-muted: var(--ds-hairline);
-    --ui-border-accented: var(--ds-hairline-strong);
-    --ui-border-inverted: var(--ds-text);
+    /* Nuxt UI must not add a second frame: the page shell is drawn once, by the
+       fixed backdrop. */
+    --ui-border: var(--ds-line);
+    --ui-border-muted: var(--ds-line-soft);
+    --ui-border-accented: var(--ds-line-strong);
+    --ui-border-inverted: var(--ds-line-contrast);
 }
 
 /* ---------------------------------------------------------------------------
@@ -134,12 +139,14 @@
     scrollbar-color: var(--ds-text-faint) transparent;
     scroll-behavior: smooth;
     --ui-header-height: var(--ds-nav-h);
-    scroll-margin-top: calc(var(--ds-nav-h) + 2rem);
+    /* Anchor jumps land with the section's top rule flush under the pinned nav,
+       rather than floating in space below it. */
+    scroll-margin-top: calc(var(--ds-nav-h) + var(--ds-hair));
 }
 
 html,
 body {
-    background-color: var(--ds-bg);
+    background-color: var(--ds-canvas);
     color: var(--ds-text);
 }
 
