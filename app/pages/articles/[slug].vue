@@ -3,24 +3,18 @@
         <section v-if="data" class="ds-container">
             <div class="article__head ds-matrix ds-bleed">
                 <div class="ds-head-row article__head-row">
-                    <DsReveal>
-                        <div class="article__crumb">
-                            <NuxtLink to="/articles" class="eyebrow article__crumb-link">
-                                <u-icon name="material-symbols:north-rounded" class="size-3 article__crumb-glyph" />
-                                Archive
-                            </NuxtLink>
-                            <span class="article__rule" aria-hidden="true" />
-                            <span class="mono-micro article__crumb-read">{{ date }} · {{ readingTime }}</span>
-                        </div>
-                    </DsReveal>
+                    <div class="article__crumb">
+                        <NuxtLink to="/articles" class="eyebrow article__crumb-link">
+                            <u-icon name="material-symbols:north-rounded" class="size-3 article__crumb-glyph" />
+                            Archive
+                        </NuxtLink>
+                        <span class="article__rule" aria-hidden="true" />
+                        <span class="mono-micro article__crumb-read">{{ date }} · {{ readingTime }}</span>
+                    </div>
 
-                    <DsReveal :delay="0.06">
-                        <h1 class="display-xl article__title">{{ data.title }}</h1>
-                    </DsReveal>
+                    <h1 class="display-xl article__title">{{ data.title }}</h1>
 
-                    <DsReveal :delay="0.12">
-                        <p class="lead article__lead">{{ data.description }}</p>
-                    </DsReveal>
+                    <p class="lead article__lead">{{ data.description }}</p>
 
                     <div class="article__meta">
                         <div v-if="data.tags?.length" class="article__tags">
@@ -107,7 +101,7 @@
                     <span class="article__rule" aria-hidden="true" />
                 </div>
 
-                <BlogPost v-for="(item, i) in links" :key="item.path" :article="item" :delay="(i % 2) * 0.05" />
+                <BlogPost v-for="item in links" :key="item.path" :article="item" />
 
                 <span v-for="n in relatedVoids" :key="`void-${n}`" class="ds-cell ds-cell--void article__void" aria-hidden="true" />
             </div>

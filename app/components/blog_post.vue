@@ -5,19 +5,17 @@
         </div>
 
         <div class="post__body">
-            <DsReveal :delay="delay">
-                <div class="post__text">
-                    <div class="post__meta mono-micro">
-                        <span v-if="index" class="post__index">[{{ String(index).padStart(2, "0") }}]</span>
-                        <span class="post__date">{{ date }}</span>
-                        <span v-if="readingTime" class="post__read">{{ readingTime }}</span>
-                        <span v-if="isNew" class="post__new">New</span>
-                    </div>
-
-                    <h3 class="post__title ds-strong">{{ article.title }}</h3>
-                    <p class="post__desc">{{ article.description }}</p>
+            <div class="post__text">
+                <div class="post__meta mono-micro">
+                    <span v-if="index" class="post__index">[{{ String(index).padStart(2, "0") }}]</span>
+                    <span class="post__date">{{ date }}</span>
+                    <span v-if="readingTime" class="post__read">{{ readingTime }}</span>
+                    <span v-if="isNew" class="post__new">New</span>
                 </div>
-            </DsReveal>
+
+                <h3 class="post__title ds-strong">{{ article.title }}</h3>
+                <p class="post__desc">{{ article.description }}</p>
+            </div>
 
             <div v-if="article.tags?.length" class="post__tags">
                 <span v-for="tag in article.tags.slice(0, 3)" :key="tag" class="post__tag mono-micro">
@@ -45,7 +43,7 @@
 import type { ArticlesCollectionItem } from "@nuxt/content";
 import dayjs from "dayjs";
 
-const props = defineProps<{ article: ArticlesCollectionItem; index?: number; delay?: number }>();
+const props = defineProps<{ article: ArticlesCollectionItem; index?: number }>();
 
 const date = computed(() => dayjs(props.article.date).format("DD MMM YYYY").toUpperCase());
 const readingTime = computed(() => (props.article.meta as { readingTime?: { text?: string } } | undefined)?.readingTime?.text);

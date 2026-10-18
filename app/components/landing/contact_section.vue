@@ -7,15 +7,15 @@
                 <span class="contact__rule" aria-hidden="true" />
             </div>
 
-            <DsReveal class="contact__title-cell" as="div">
+            <div class="contact__title-cell">
                 <h2 class="display-2xl contact__title">
                     <span v-for="line in contact.title" :key="line" class="contact__line">{{ line }}</span>
                 </h2>
-            </DsReveal>
+            </div>
 
-            <DsReveal class="contact__lead-cell" :delay="0.06" as="div">
+            <div class="contact__lead-cell">
                 <p class="lead contact__lead">{{ contact.lead }}</p>
-            </DsReveal>
+            </div>
 
             <!-- Reach: a live wireframe globe, standing in for the old "working
                  worldwide" line so the claim has an instrument behind it. -->

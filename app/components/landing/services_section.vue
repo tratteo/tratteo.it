@@ -22,12 +22,10 @@
                     <u-icon :name="service.icon" class="size-[1.15rem]" />
                 </div>
 
-                <DsReveal :delay="(i % 4) * 0.05">
-                    <div class="services__copy">
-                        <h3 class="services__title">{{ service.title }}</h3>
-                        <p class="services__desc">{{ service.description }}</p>
-                    </div>
-                </DsReveal>
+                <div class="services__copy">
+                    <h3 class="services__title">{{ service.title }}</h3>
+                    <p class="services__desc">{{ service.description }}</p>
+                </div>
 
                 <div class="services__tags">
                     <span v-for="tag in service.tags" :key="tag" class="services__tag mono-micro">{{ tag }}</span>

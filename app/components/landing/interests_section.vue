@@ -18,12 +18,10 @@
                 </div>
                 <figcaption class="interest__cap">
                     <span class="mono-micro interest__index">[{{ String(i + 1).padStart(2, "0") }}]</span>
-                    <DsReveal :delay="(i % 5) * 0.05">
-                        <div class="interest__text">
-                            <span class="interest__name">{{ interest.name }}</span>
-                            <span class="interest__note">{{ interest.note }}</span>
-                        </div>
-                    </DsReveal>
+                    <div class="interest__text">
+                        <span class="interest__name">{{ interest.name }}</span>
+                        <span class="interest__note">{{ interest.note }}</span>
+                    </div>
                 </figcaption>
             </figure>
 

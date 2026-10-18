@@ -24,17 +24,13 @@
                     <span class="work__fav">
                         <img :src="project.icon" :alt="project.title" class="work__fav-img" loading="lazy" />
                     </span>
-                    <DsReveal class="work__name-slot" :delay="(i % 6) * 0.04">
-                        <span class="work__name">
-                            <span class="work__title">{{ project.title }}</span>
-                            <span v-if="project.role" class="work__role mono-micro">{{ project.role }}</span>
-                        </span>
-                    </DsReveal>
+                    <span class="work__name">
+                        <span class="work__title">{{ project.title }}</span>
+                        <span v-if="project.role" class="work__role mono-micro">{{ project.role }}</span>
+                    </span>
                 </div>
 
-                <DsReveal class="work__desc-slot" :delay="(i % 6) * 0.04 + 0.06">
-                    <p class="work__desc">{{ project.description }}</p>
-                </DsReveal>
+                <p class="work__desc">{{ project.description }}</p>
 
                 <div class="work__tags">
                     <span v-for="tag in project.tags" :key="tag" class="work__tag mono-micro">{{ tag }}</span>
@@ -150,10 +146,6 @@ function toneFor(status: string): "ok" | "warn" | "info" {
     min-width: 0;
 }
 
-.work__name-slot {
-    min-width: 0;
-}
-
 .work__title {
     font-family: var(--font-heading);
     font-size: 0.9375rem;
@@ -166,12 +158,8 @@ function toneFor(status: string): "ok" | "warn" | "info" {
     color: var(--ds-text-dim);
 }
 
-.work__desc-slot {
-    flex: 1 1 20rem;
-    min-width: 0;
-}
-
 .work__desc {
+    flex: 1 1 20rem;
     min-width: 0;
     font-size: 0.8125rem;
     line-height: 1.55;

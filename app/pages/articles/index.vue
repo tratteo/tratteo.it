@@ -33,7 +33,7 @@
                     <span class="mono-micro blog__count">{{ String(articles?.length ?? 0).padStart(2, "0") }} entries</span>
                 </div>
 
-                <BlogPost v-for="(article, i) in articles" :key="article.path" :article="article" :index="i + 1" :delay="(i % 3) * 0.05" />
+                <BlogPost v-for="(article, i) in articles" :key="article.path" :article="article" :index="i + 1" />
 
                 <div v-if="!articles?.length" class="blog__empty ds-cell">
                     <span class="mono-micro blog__empty-label">No entries</span>

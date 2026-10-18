@@ -1,20 +1,16 @@
 <template>
     <header class="flex flex-col gap-5">
-        <DsReveal v-if="eyebrow || index">
-            <div class="head__meta">
-                <span v-if="index" class="head__index mono-micro">{{ index }}</span>
-                <span v-if="eyebrow" class="eyebrow">{{ eyebrow }}</span>
-                <span class="head__rule" aria-hidden="true" />
-            </div>
-        </DsReveal>
-        <DsReveal :delay="0.06">
-            <component :is="as" :id="id" class="display-lg" :class="titleClass">
-                <span v-for="(line, i) in titleLines" :key="i" class="block">{{ line }}</span>
-            </component>
-        </DsReveal>
-        <DsReveal v-if="lead" :delay="0.12">
-            <p class="lead" :class="leadClass">{{ lead }}</p>
-        </DsReveal>
+        <div v-if="eyebrow || index" class="head__meta">
+            <span v-if="index" class="head__index mono-micro">{{ index }}</span>
+            <span v-if="eyebrow" class="eyebrow">{{ eyebrow }}</span>
+            <span class="head__rule" aria-hidden="true" />
+        </div>
+
+        <component :is="as" :id="id" class="display-lg" :class="titleClass">
+            <span v-for="(line, i) in titleLines" :key="i" class="block">{{ line }}</span>
+        </component>
+
+        <p v-if="lead" class="lead" :class="leadClass">{{ lead }}</p>
     </header>
 </template>
 

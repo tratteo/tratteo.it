@@ -3,11 +3,11 @@
         <div class="about__grid ds-matrix ds-bleed">
             <DsSectionHead class="ds-head-row" index="03" :eyebrow="about.eyebrow" :title="about.title" title-class="max-w-[22ch]" />
 
-            <DsReveal class="about__item about__item--copy" as="div">
+            <div class="about__item about__item--copy">
                 <div class="about__copy">
                     <p v-for="(paragraph, i) in about.paragraphs" :key="i" class="lead about__paragraph">{{ paragraph }}</p>
                 </div>
-            </DsReveal>
+            </div>
 
             <div class="about__item about__item--media">
                 <img src="/trat.jpg" alt="Portrait of Matteo Beltrame" width="1024" height="1024" class="about__portrait" loading="lazy" />
@@ -15,13 +15,11 @@
 
             <div v-for="(stat, i) in stats" :key="stat.label" class="about__item about__item--stat">
                 <div class="about__stat">
-                    <DsReveal :delay="0.1 + i * 0.04">
-                        <div class="about__stat-text">
-                            <span class="about__stat-index mono-micro">[{{ String(i + 1).padStart(2, "0") }}]</span>
-                            <span class="about__stat-value">{{ stat.value }}</span>
-                            <span class="about__stat-label mono-micro">{{ stat.label }}</span>
-                        </div>
-                    </DsReveal>
+                    <div class="about__stat-text">
+                        <span class="about__stat-index mono-micro">[{{ String(i + 1).padStart(2, "0") }}]</span>
+                        <span class="about__stat-value">{{ stat.value }}</span>
+                        <span class="about__stat-label mono-micro">{{ stat.label }}</span>
+                    </div>
                 </div>
             </div>
 
@@ -32,7 +30,7 @@
                 <span class="about__rule" aria-hidden="true" />
             </div>
 
-            <DsReveal v-for="(entry, i) in experience" :key="entry.role" class="about__item about__item--exp" :delay="(i % 4) * 0.04" as="div">
+            <div v-for="(entry, i) in experience" :key="entry.role" class="about__item about__item--exp">
                 <div class="timeline__item">
                     <span class="timeline__index mono-micro">{{ String(i + 1).padStart(2, "0") }}</span>
                     <div class="timeline__content">
@@ -58,20 +56,14 @@
                         <p class="timeline__desc">{{ entry.description }}</p>
                     </div>
                 </div>
-            </DsReveal>
+            </div>
 
             <div class="about__colhead about__item--edu">
                 <span class="eyebrow">Education</span>
                 <span class="about__rule" aria-hidden="true" />
             </div>
 
-            <DsReveal
-                v-for="(item, i) in education"
-                :key="item.title"
-                class="about__item about__item--edu"
-                :delay="0.08 + i * 0.04"
-                as="div"
-            >
+            <div v-for="(item, i) in education" :key="item.title" class="about__item about__item--edu">
                 <div class="edu__cell">
                     <div class="edu__head">
                         <span class="edu__index mono-micro">[{{ String(i + 1).padStart(2, "0") }}]</span>
@@ -85,7 +77,7 @@
                     <p class="edu__thesis">{{ item.thesis }}</p>
                     <p class="edu__abstract">{{ item.abstract }}</p>
                 </div>
-            </DsReveal>
+            </div>
 
             <span v-for="n in voids" :key="`void-${n}`" class="ds-cell ds-cell--void about__void" aria-hidden="true" />
         </div>

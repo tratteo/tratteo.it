@@ -66,18 +66,14 @@
                         <span class="mod__icon">
                             <img :src="mod.icon" :alt="mod.title" loading="lazy" />
                         </span>
-                        <DsReveal class="mod__ident" :delay="(i % 3) * 0.05">
-                            <span class="mod__ident-text">
-                                <a :href="mod.url" target="_blank" rel="noopener noreferrer" class="mod__title ds-strong">{{ mod.title }}</a>
-                                <span class="mod__loaders mono-micro">{{ mod.frameworks.map((f) => f.name).join(" · ") }}</span>
-                            </span>
-                        </DsReveal>
+                        <span class="mod__ident-text">
+                            <a :href="mod.url" target="_blank" rel="noopener noreferrer" class="mod__title ds-strong">{{ mod.title }}</a>
+                            <span class="mod__loaders mono-micro">{{ mod.frameworks.map((f) => f.name).join(" · ") }}</span>
+                        </span>
                         <DsBadge tone="ok" class="mod__badge">Live</DsBadge>
                     </div>
 
-                    <DsReveal class="mod__desc-slot" :delay="(i % 5) * 0.04 + 0.06">
-                        <p class="mod__desc">{{ mod.description }}</p>
-                    </DsReveal>
+                    <p class="mod__desc">{{ mod.description }}</p>
 
                         <div class="mod__tags">
                             <span v-for="tag in mod.tags" :key="tag" class="mod__tag mono-micro">{{ tag }}</span>
@@ -353,13 +349,9 @@ defineOgImage("Default.takumi", {
     margin-left: auto;
 }
 
-.mod__ident {
-    flex: 1 1 auto;
-    min-width: 0;
-}
-
 .mod__ident-text {
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
     min-width: 0;
 }
@@ -405,12 +397,8 @@ defineOgImage("Default.takumi", {
     color: var(--ds-text-dim);
 }
 
-.mod__desc-slot {
-    flex: 1;
-    min-width: 0;
-}
-
 .mod__desc {
+    flex: 1;
     min-width: 0;
     font-size: 0.8125rem;
     line-height: 1.55;
