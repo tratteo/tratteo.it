@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     sitemap: {
         autoLastmod: true,
         discoverImages: true,
-        exclude: ["/app/**", "/api/**", "/_nuxt/**", "/__nuxt_content/**"],
+        exclude: ["/app/**", "/api/**", "/_nuxt/**", "/__nuxt_content/**", "/lab/**"],
         debug: false,
         xslColumns: [
             { label: "URL", width: "60%" },
@@ -45,8 +45,16 @@ export default defineNuxtConfig({
     },
     app: {
         head: {
+            script: [
+                {
+                    /* Flags the document as scriptable before the body renders, so
+                       the reveal masks only ever apply when something can lift
+                       them. Without script, text is simply visible. */
+                    innerHTML: 'document.documentElement.setAttribute("data-js","")',
+                    tagPosition: "head",
+                },
+            ],
             meta: [
-                { charset: "utf-8" },
                 {
                     name: "apple-mobile-web-app-title",
                     content: appMeta.name,
@@ -63,7 +71,7 @@ export default defineNuxtConfig({
         },
     },
     robots: {
-        disallow: ["/app/**", "/api/**", "/_nuxt/**"],
+        disallow: ["/app/**", "/api/**", "/_nuxt/**", "/lab/**"],
     },
     site: {
         url: appMeta.url,
@@ -77,9 +85,61 @@ export default defineNuxtConfig({
         options: { scrollBehaviorType: "smooth" },
     },
     icon: {
-        fetchTimeout: 4000,
+        fetchTimeout: 8000,
         clientBundle: {
-            scan: true,
+            // The default scan glob skips plain .ts files, so icons declared in
+            // app/data/*.ts were never bundled. Include them.
+            scan: {
+                globInclude: ["**/*.{vue,jsx,tsx,md,mdc,mdx,ts}"],
+            },
+            // Explicit list of every icon the landing page needs, so bundling
+            // never depends on the scanner.
+            icons: [
+                "material-symbols:arrow-outward-rounded",
+                "material-symbols:south-rounded",
+                "material-symbols:north-rounded",
+                "material-symbols:dark-mode-rounded",
+                "material-symbols:light-mode-rounded",
+                "material-symbols:mail-outline-rounded",
+                "material-symbols:content-copy-outline-rounded",
+                "material-symbols:check-rounded",
+                "material-symbols:code-rounded",
+                "material-symbols:bolt-rounded",
+                "material-symbols:auto-awesome-rounded",
+                "material-symbols:travel-explore-rounded",
+                "material-symbols:business-center-rounded",
+                "material-symbols:rocket-launch-rounded",
+                "material-symbols:school-rounded",
+                "material-symbols:trending-up-rounded",
+                "material-symbols:archive-outline-rounded",
+                "material-symbols:visibility-outline-rounded",
+                "material-symbols:rocket-launch-outline-rounded",
+                "material-symbols:favorite-rounded",
+                "mdi:github",
+                "mdi:instagram",
+                "mdi:linkedin",
+                "ion:logo-youtube",
+                "logos:paypal",
+                "fluent-emoji-flat:kiwi-fruit",
+                "twemoji:flag-italy",
+                "logos:nuxt-icon",
+                "logos:typescript-icon",
+                "logos:javascript",
+                "logos:vue",
+                "logos:css-3",
+                "logos:html-5",
+                "logos:c-plusplus",
+                "logos:c",
+                "logos:nodejs-icon",
+                "logos:python",
+                "logos:firebase-icon",
+                "logos:tailwindcss-icon",
+                "logos:git-icon",
+                "logos:markdown",
+                "logos:arduino",
+                "logos:bun",
+            ],
+            sizeLimitKb: 1024,
         },
     },
     vite: {},
@@ -98,12 +158,15 @@ export default defineNuxtConfig({
                 staleMaxAge: 31536000,
             },
         },
-        "/minecraft-mods": {
-            appLayout: "fullwidth",
-        },
+    },
+    colorMode: {
+        preference: "dark",
+        fallback: "dark",
+        classSuffix: "",
+        disableTransition: true,
     },
     ui: {
-        colorMode: false,
+        colorMode: true,
     },
     nitro: {
         debug: false,
@@ -122,8 +185,13 @@ export default defineNuxtConfig({
     },
     fonts: {
         defaults: {
-            weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+            weights: [300, 400, 500, 600, 700],
         },
+        families: [
+            { name: "Geist", provider: "google", weights: [300, 400, 500, 600, 700], subsets: ["latin"] },
+            // The display tier is monospace, so the technical face carries Medium.
+            { name: "Geist Mono", provider: "google", weights: [400, 500, 600], subsets: ["latin"] },
+        ],
     },
     modules: ["@nuxt/ui", "@vueuse/nuxt", "@pinia/nuxt", "@nuxt/content", "@nuxtjs/seo", "@nuxt/scripts"],
 

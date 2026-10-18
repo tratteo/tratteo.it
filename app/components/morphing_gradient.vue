@@ -97,7 +97,8 @@ function morph() {
     border-radius: 36%;
     z-index: -100 !important;
     animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-    background: linear-gradient(var(--color-violet-500), var(--ui-primary));
+    /* The article is about this gradient, so it gets real colour. */
+    background: linear-gradient(140deg, #ec4899, #d946ef);
     color: transparent;
     width: v-bind(size);
     height: v-bind(size);

@@ -1,8 +1,231 @@
+/* ---------------------------------------------------------------------------
+   Long-form content, in the blueprint language.
+   Headings take the technical face and open with a hairline, so an article
+   reads as a stack of indexed bands rather than a wall of text. Body copy stays
+   on the sans face for reading length. Colour enters only through code, which
+   is content.
+--------------------------------------------------------------------------- */
+
 .markdown-content {
-    .katex-display {
-        @apply overflow-x-auto overflow-y-hidden text-nowrap;
-    }
-    pre {
-        @apply overflow-x-auto text-nowrap;
-    }
+    font-size: 0.9375rem;
+    line-height: 1.78;
+    color: var(--ds-text-muted);
+}
+
+.markdown-content > :first-child {
+    margin-top: 0;
+}
+
+.markdown-content > :last-child {
+    margin-bottom: 0;
+}
+
+/* Band headings: hairline above, mono face below. */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ds-text);
+    text-wrap: balance;
+}
+
+.markdown-content h1 {
+    font-size: 1.6rem;
+    line-height: 1.2;
+    margin-block: 2.5rem 1rem;
+}
+
+.markdown-content h2 {
+    font-size: 1.35rem;
+    line-height: 1.25;
+    margin-block: 3rem 1rem;
+    padding-top: 1.1rem;
+    border-top: var(--ds-hair) solid var(--ds-line);
+    scroll-margin-top: calc(var(--ds-nav-h) + 2rem);
+}
+
+.markdown-content h3 {
+    font-size: 1.1rem;
+    line-height: 1.3;
+    margin-block: 2.25rem 0.75rem;
+    scroll-margin-top: calc(var(--ds-nav-h) + 2rem);
+}
+
+.markdown-content h4 {
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    margin-block: 1.75rem 0.5rem;
+    color: var(--ds-text-muted);
+}
+
+/* Anchor offsets for the table of contents on every heading level. */
+.markdown-content :is(h1, h2, h3, h4) a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.markdown-content p {
+    margin-block: 1.15rem;
+}
+
+.markdown-content strong {
+    color: var(--ds-text);
+    font-weight: 500;
+}
+
+.markdown-content em {
+    font-style: italic;
+}
+
+.markdown-content a {
+    color: var(--ds-text);
+    text-decoration: underline;
+    text-decoration-color: var(--ds-line-strong);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color var(--ds-quick) var(--ds-ease-out);
+}
+
+.markdown-content a:hover {
+    text-decoration-color: var(--ds-line-contrast);
+}
+
+.markdown-content ul,
+.markdown-content ol {
+    margin-block: 1.15rem;
+    padding-left: 1.35rem;
+}
+
+.markdown-content li {
+    margin-block: 0.4rem;
+}
+
+.markdown-content li::marker {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--ds-text-faint);
+}
+
+.markdown-content ol li::marker {
+    color: var(--ds-text-dim);
+}
+
+.markdown-content li > p {
+    margin-block: 0.4rem;
+}
+
+/* Quotes: a hairline on the left, not a coloured slab. */
+.markdown-content blockquote {
+    margin-block: 1.75rem;
+    padding: 0.15rem 0 0.15rem 1.15rem;
+    border-left: 2px solid var(--ds-line-strong);
+    color: var(--ds-text-dim);
+    font-style: italic;
+}
+
+.markdown-content blockquote p {
+    margin-block: 0.5rem;
+}
+
+.markdown-content hr {
+    margin-block: 2.5rem;
+    border: 0;
+    border-top: var(--ds-hair) solid var(--ds-line);
+}
+
+/* Inline code: a framed chip, same language as the tags. */
+.markdown-content :not(pre) > code {
+    padding: 0.12em 0.4em;
+    border: var(--ds-hair) solid var(--ds-line);
+    border-radius: var(--ds-r-control);
+    background: var(--ds-surface-2);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--ds-text);
+}
+
+.markdown-content pre {
+    margin-block: 1.5rem;
+    padding: 1rem 1.15rem;
+    border: var(--ds-hair) solid var(--ds-line);
+    border-radius: var(--ds-r-control);
+    background: var(--ds-surface-1);
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    overflow-x: auto;
+}
+
+.markdown-content pre code {
+    font-family: var(--font-mono);
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+
+/* Tables: full width, hairlines only, mono header. */
+.markdown-content table {
+    display: block;
+    width: 100%;
+    margin-block: 1.75rem;
+    border: var(--ds-hair) solid var(--ds-line);
+    border-radius: var(--ds-r-control);
+    border-collapse: collapse;
+    overflow-x: auto;
+    font-size: 0.8125rem;
+}
+
+.markdown-content th,
+.markdown-content td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: var(--ds-hair) solid var(--ds-line);
+    border-right: var(--ds-hair) solid var(--ds-line);
+    text-align: left;
+}
+
+.markdown-content th {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ds-text-dim);
+    background: var(--ds-surface-1);
+}
+
+.markdown-content :is(th, td):last-child {
+    border-right: 0;
+}
+
+.markdown-content tr:last-child td {
+    border-bottom: 0;
+}
+
+.markdown-content img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-block: 1.75rem;
+    border: var(--ds-hair) solid var(--ds-line);
+    border-radius: var(--ds-r-control);
+    background: var(--ds-surface-1);
+}
+
+.markdown-content video {
+    width: 100%;
+    margin-block: 1.75rem;
+    border: var(--ds-hair) solid var(--ds-line);
+    border-radius: var(--ds-r-control);
+}
+
+.markdown-content :is(.katex-display, pre) {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.markdown-content .katex-display {
+    margin-block: 1.75rem;
+    padding-block: 0.5rem;
 }
